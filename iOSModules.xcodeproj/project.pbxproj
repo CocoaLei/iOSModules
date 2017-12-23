@@ -16,6 +16,8 @@
 		B71A7E251FEBF85C0050E834 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A7E1D1FEBF85C0050E834 /* AppDelegate.m */; };
 		B71A7E261FEBF85C0050E834 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B71A7E1E1FEBF85C0050E834 /* Info.plist */; };
 		B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B71A7E1F1FEBF85C0050E834 /* iOSModules.xcdatamodeld */; };
+		B7381DC01FED4E31008F7F7A /* IMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DBF1FED4E31008F7F7A /* IMHomeViewController.m */; };
+		B7381DC51FED501D008F7F7A /* IMPlistFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DC41FED501D008F7F7A /* IMPlistFileManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,10 @@
 		B71A7E1D1FEBF85C0050E834 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B71A7E1E1FEBF85C0050E834 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B71A7E201FEBF85C0050E834 /* iOSModules.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSModules.xcdatamodel; sourceTree = "<group>"; };
+		B7381DBE1FED4E31008F7F7A /* IMHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMHomeViewController.h; sourceTree = "<group>"; };
+		B7381DBF1FED4E31008F7F7A /* IMHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMHomeViewController.m; sourceTree = "<group>"; };
+		B7381DC31FED501D008F7F7A /* IMPlistFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPlistFileManager.h; sourceTree = "<group>"; };
+		B7381DC41FED501D008F7F7A /* IMPlistFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMPlistFileManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,8 @@
 		B71A7DDF1FEBF7FB0050E834 /* iOSModules */ = {
 			isa = PBXGroup;
 			children = (
+				B7381DBA1FED4D6E008F7F7A /* HomePage */,
+				B7381DC11FED4FE6008F7F7A /* Tools */,
 				B71A7E151FEBF85C0050E834 /* DefaultFiles */,
 			);
 			path = iOSModules;
@@ -137,6 +145,56 @@
 				B71A7E1F1FEBF85C0050E834 /* iOSModules.xcdatamodeld */,
 			);
 			path = DefaultFiles;
+			sourceTree = "<group>";
+		};
+		B7381DBA1FED4D6E008F7F7A /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				B7381DBC1FED4DB0008F7F7A /* Controllers */,
+				B7381DBB1FED4DB0008F7F7A /* Models */,
+				B7381DBD1FED4DB0008F7F7A /* Views */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		B7381DBB1FED4DB0008F7F7A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B7381DBC1FED4DB0008F7F7A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B7381DBE1FED4E31008F7F7A /* IMHomeViewController.h */,
+				B7381DBF1FED4E31008F7F7A /* IMHomeViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B7381DBD1FED4DB0008F7F7A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B7381DC11FED4FE6008F7F7A /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				B7381DC21FED4FE6008F7F7A /* PLISTManager */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		B7381DC21FED4FE6008F7F7A /* PLISTManager */ = {
+			isa = PBXGroup;
+			children = (
+				B7381DC31FED501D008F7F7A /* IMPlistFileManager.h */,
+				B7381DC41FED501D008F7F7A /* IMPlistFileManager.m */,
+			);
+			path = PLISTManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,7 +333,9 @@
 			files = (
 				B71A7E241FEBF85C0050E834 /* main.m in Sources */,
 				B71A7E251FEBF85C0050E834 /* AppDelegate.m in Sources */,
+				B7381DC51FED501D008F7F7A /* IMPlistFileManager.m in Sources */,
 				B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */,
+				B7381DC01FED4E31008F7F7A /* IMHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
