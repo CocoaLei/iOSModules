@@ -10,4 +10,6 @@
 
 @interface IMPlistFileManager : NSObject
 
++ (id)loadPropertyListWithName:(NSString*)fileName atPath:(NSString*)filePath;
+
 @end

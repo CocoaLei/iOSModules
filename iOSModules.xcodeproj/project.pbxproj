@@ -18,6 +18,10 @@
 		B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B71A7E1F1FEBF85C0050E834 /* iOSModules.xcdatamodeld */; };
 		B7381DC01FED4E31008F7F7A /* IMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DBF1FED4E31008F7F7A /* IMHomeViewController.m */; };
 		B7381DC51FED501D008F7F7A /* IMPlistFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DC41FED501D008F7F7A /* IMPlistFileManager.m */; };
+		B7381DD11FEE995E008F7F7A /* IMModuleItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DCF1FEE995E008F7F7A /* IMModuleItemTableViewCell.m */; };
+		B7381DD21FEE995E008F7F7A /* IMModuleItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7381DD01FEE995E008F7F7A /* IMModuleItemTableViewCell.xib */; };
+		B7B2666D1FF131CA00EDF3C4 /* IMModuleItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B2666C1FF131CA00EDF3C4 /* IMModuleItemModel.m */; };
+		B7B266701FF1326300EDF3C4 /* IMModules.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7B2666F1FF1326300EDF3C4 /* IMModules.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,12 @@
 		B7381DBF1FED4E31008F7F7A /* IMHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMHomeViewController.m; sourceTree = "<group>"; };
 		B7381DC31FED501D008F7F7A /* IMPlistFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPlistFileManager.h; sourceTree = "<group>"; };
 		B7381DC41FED501D008F7F7A /* IMPlistFileManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMPlistFileManager.m; sourceTree = "<group>"; };
+		B7381DCE1FEE995E008F7F7A /* IMModuleItemTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMModuleItemTableViewCell.h; sourceTree = "<group>"; };
+		B7381DCF1FEE995E008F7F7A /* IMModuleItemTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMModuleItemTableViewCell.m; sourceTree = "<group>"; };
+		B7381DD01FEE995E008F7F7A /* IMModuleItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IMModuleItemTableViewCell.xib; sourceTree = "<group>"; };
+		B7B2666B1FF131CA00EDF3C4 /* IMModuleItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMModuleItemModel.h; sourceTree = "<group>"; };
+		B7B2666C1FF131CA00EDF3C4 /* IMModuleItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMModuleItemModel.m; sourceTree = "<group>"; };
+		B7B2666F1FF1326300EDF3C4 /* IMModules.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = IMModules.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +160,7 @@
 		B7381DBA1FED4D6E008F7F7A /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				B7B2666E1FF1324400EDF3C4 /* Resources */,
 				B7381DBC1FED4DB0008F7F7A /* Controllers */,
 				B7381DBB1FED4DB0008F7F7A /* Models */,
 				B7381DBD1FED4DB0008F7F7A /* Views */,
@@ -160,6 +171,8 @@
 		B7381DBB1FED4DB0008F7F7A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B7B2666B1FF131CA00EDF3C4 /* IMModuleItemModel.h */,
+				B7B2666C1FF131CA00EDF3C4 /* IMModuleItemModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -176,6 +189,9 @@
 		B7381DBD1FED4DB0008F7F7A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B7381DCE1FEE995E008F7F7A /* IMModuleItemTableViewCell.h */,
+				B7381DCF1FEE995E008F7F7A /* IMModuleItemTableViewCell.m */,
+				B7381DD01FEE995E008F7F7A /* IMModuleItemTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +212,15 @@
 			);
 			path = PLISTManager;
 			sourceTree = "<group>";
+		};
+		B7B2666E1FF1324400EDF3C4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B7B2666F1FF1326300EDF3C4 /* IMModules.plist */,
+			);
+			name = Resources;
+			path = iOSModules/Resources;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -303,9 +328,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7381DD21FEE995E008F7F7A /* IMModuleItemTableViewCell.xib in Resources */,
 				B71A7E211FEBF85C0050E834 /* Assets.xcassets in Resources */,
 				B71A7E231FEBF85C0050E834 /* Main.storyboard in Resources */,
 				B71A7E221FEBF85C0050E834 /* LaunchScreen.storyboard in Resources */,
+				B7B266701FF1326300EDF3C4 /* IMModules.plist in Resources */,
 				B71A7E261FEBF85C0050E834 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,10 +358,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7B2666D1FF131CA00EDF3C4 /* IMModuleItemModel.m in Sources */,
 				B71A7E241FEBF85C0050E834 /* main.m in Sources */,
 				B71A7E251FEBF85C0050E834 /* AppDelegate.m in Sources */,
 				B7381DC51FED501D008F7F7A /* IMPlistFileManager.m in Sources */,
 				B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */,
+				B7381DD11FEE995E008F7F7A /* IMModuleItemTableViewCell.m in Sources */,
 				B7381DC01FED4E31008F7F7A /* IMHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,7 +531,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6H7FG34BKU;
 				INFOPLIST_FILE = "$(SRCROOT)/iOSModules/DefaultFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CodeLei.iOSModules;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -519,7 +548,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6H7FG34BKU;
 				INFOPLIST_FILE = "$(SRCROOT)/iOSModules/DefaultFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CodeLei.iOSModules;
 				PRODUCT_NAME = "$(TARGET_NAME)";

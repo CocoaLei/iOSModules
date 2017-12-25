@@ -7,6 +7,9 @@
 //
 
 #import "IMHomeViewController.h"
+#import "IMModuleItemTableViewCell.h"
+
+static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
 
 @interface IMHomeViewController ()
 <
@@ -15,6 +18,8 @@
 >
 
 @property (nonatomic, strong)   UITableView *homeTableView;
+@property (nonatomic, copy  )   NSArray     *modulesArray;
+
 
 @end
 
@@ -41,8 +46,19 @@
 
 #pragma mark - Delegate
 #pragma mark - UITableViewDatasource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.modulesArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    IMModuleItemTableViewCell   *imModuleItemTVCell =   [[IMModuleItemTableViewCell alloc] init];
+    return imModuleItemTVCell;
+}
 
 #pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 120.0f;
+}
 
 #pragma mark - Initializations
 #pragma mark - Initial views
@@ -51,6 +67,8 @@
         _homeTableView              =   [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _homeTableView.dataSource   =   self;
         _homeTableView.delegate     =   self;
+        [_homeTableView registerNib:[UINib nibWithNibName:NSStringFromClass([IMModuleItemTableViewCell class]) bundle:nil]
+             forCellReuseIdentifier:IMModuleItemTVCID];
     }
     return _homeTableView;
 }
