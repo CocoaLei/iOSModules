@@ -10,8 +10,7 @@
 
 @interface IMModuleItemTableViewCell ()
 
-@property (weak, nonatomic) IBOutlet UILabel *imModuleNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *imModuleDescriptionLabel;
+
 
 @end
 

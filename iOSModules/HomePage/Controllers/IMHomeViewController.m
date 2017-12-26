@@ -42,6 +42,8 @@ static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
 #pragma mark - Configure and Layout
 - (void)configureViewApperance {
     self.title  =   @"iOS Modules";
+    self.homeTableView.frame    =   self.view.bounds;
+    [self.view addSubview:self.homeTableView];
 }
 
 #pragma mark - Delegate
@@ -51,7 +53,8 @@ static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    IMModuleItemTableViewCell   *imModuleItemTVCell =   [[IMModuleItemTableViewCell alloc] init];
+    IMModuleItemTableViewCell   *imModuleItemTVCell =   [tableView dequeueReusableCellWithIdentifier:IMModuleItemTVCID];
+    imModuleItemTVCell.imModuleNameLabel.text       =   self.modulesArray[indexPath.row][@"ModuleName"];
     return imModuleItemTVCell;
 }
 
@@ -71,6 +74,13 @@ static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
              forCellReuseIdentifier:IMModuleItemTVCID];
     }
     return _homeTableView;
+}
+
+- (NSArray *)modulesArray {
+    if (!_modulesArray) {
+        _modulesArray   =   [[NSArray alloc] initWithObjects:@{@"ModuleName":@"iOSImagePicker"}, nil];
+    }
+    return _modulesArray;
 }
 
 @end
