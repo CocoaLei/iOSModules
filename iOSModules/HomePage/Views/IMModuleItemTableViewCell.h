@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class IMModuleItemModel;
+
 @interface IMModuleItemTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *imModuleNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *imModuleDescriptionLabel;
+@property (nonatomic, strong )  IMModuleItemModel *model;
 
 @end

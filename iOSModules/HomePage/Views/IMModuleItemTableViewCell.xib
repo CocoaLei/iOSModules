@@ -12,36 +12,34 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IMModuleItemTVCID" rowHeight="120" id="KGk-i7-Jjw" customClass="IMModuleItemTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IMModuleItemTVCID" rowHeight="60" id="KGk-i7-Jjw" customClass="IMModuleItemTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="341" height="59.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HlS-4S-Ple">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Grj-Az-TwI">
+                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOSModuleName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwm-qq-bJH">
-                                <rect key="frame" x="8" y="10" width="359" height="40"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="im_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="uVx-ju-CgZ">
+                                <rect key="frame" x="8" y="8" width="44" height="44"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="gwm-qq-bJH" secondAttribute="bottom" constant="10" id="Ec8-BM-S2d"/>
-                            <constraint firstItem="gwm-qq-bJH" firstAttribute="leading" secondItem="HlS-4S-Ple" secondAttribute="leading" constant="8" id="Ldc-Zl-aQ9"/>
-                            <constraint firstAttribute="trailing" secondItem="gwm-qq-bJH" secondAttribute="trailing" constant="8" id="W7e-kb-nkZ"/>
-                            <constraint firstItem="gwm-qq-bJH" firstAttribute="top" secondItem="HlS-4S-Ple" secondAttribute="top" constant="10" id="Yas-F7-c7p"/>
+                            <constraint firstAttribute="width" constant="60" id="DTH-tz-PGb"/>
+                            <constraint firstAttribute="trailing" secondItem="uVx-ju-CgZ" secondAttribute="trailing" constant="8" id="DuR-lW-aRC"/>
+                            <constraint firstItem="uVx-ju-CgZ" firstAttribute="leading" secondItem="Grj-Az-TwI" secondAttribute="leading" constant="8" id="LXw-cU-Zmx"/>
+                            <constraint firstAttribute="bottom" secondItem="uVx-ju-CgZ" secondAttribute="bottom" constant="8" id="gIj-my-ase"/>
+                            <constraint firstItem="uVx-ju-CgZ" firstAttribute="top" secondItem="Grj-Az-TwI" secondAttribute="top" constant="8" id="n6I-He-1Lw"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5d-ta-cd3">
-                        <rect key="frame" x="0.0" y="60" width="375" height="60"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HlS-4S-Ple">
+                        <rect key="frame" x="60" y="0.0" width="281" height="60"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOSModuleDescription" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sa1-KB-dqG">
-                                <rect key="frame" x="8" y="8" width="359" height="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IM_Module_Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0rE-yJ-4Ja">
+                                <rect key="frame" x="8" y="8" width="265" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -49,30 +47,32 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="sa1-KB-dqG" secondAttribute="bottom" constant="8" id="IWd-EL-FA9"/>
-                            <constraint firstItem="sa1-KB-dqG" firstAttribute="top" secondItem="N5d-ta-cd3" secondAttribute="top" constant="8" id="QiJ-bY-MOm"/>
-                            <constraint firstItem="sa1-KB-dqG" firstAttribute="leading" secondItem="N5d-ta-cd3" secondAttribute="leading" constant="8" id="W8L-cu-wkz"/>
-                            <constraint firstAttribute="trailing" secondItem="sa1-KB-dqG" secondAttribute="trailing" constant="8" id="fQb-5o-8zC"/>
+                            <constraint firstAttribute="bottom" secondItem="0rE-yJ-4Ja" secondAttribute="bottom" constant="8" id="RCU-GL-qsp"/>
+                            <constraint firstItem="0rE-yJ-4Ja" firstAttribute="leading" secondItem="HlS-4S-Ple" secondAttribute="leading" constant="8" id="dUZ-uX-36d"/>
+                            <constraint firstItem="0rE-yJ-4Ja" firstAttribute="top" secondItem="HlS-4S-Ple" secondAttribute="top" constant="8" id="hZP-aj-dAD"/>
+                            <constraint firstAttribute="trailing" secondItem="0rE-yJ-4Ja" secondAttribute="trailing" constant="8" id="mGR-Z3-LWH"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="N5d-ta-cd3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1FQ-YU-t1z"/>
-                    <constraint firstAttribute="trailing" secondItem="N5d-ta-cd3" secondAttribute="trailing" id="79g-NW-q1M"/>
                     <constraint firstItem="HlS-4S-Ple" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="F4Y-gh-OiG"/>
-                    <constraint firstAttribute="bottom" secondItem="N5d-ta-cd3" secondAttribute="bottom" id="KVX-Nk-pJQ"/>
-                    <constraint firstItem="N5d-ta-cd3" firstAttribute="height" secondItem="HlS-4S-Ple" secondAttribute="height" id="Tat-bH-dPN"/>
+                    <constraint firstItem="HlS-4S-Ple" firstAttribute="leading" secondItem="Grj-Az-TwI" secondAttribute="trailing" id="JuS-Fn-G1C"/>
                     <constraint firstAttribute="trailing" secondItem="HlS-4S-Ple" secondAttribute="trailing" id="ZKu-Ms-vsH"/>
-                    <constraint firstItem="N5d-ta-cd3" firstAttribute="top" secondItem="HlS-4S-Ple" secondAttribute="bottom" id="bYV-Fw-1gA"/>
-                    <constraint firstItem="HlS-4S-Ple" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="eQ4-vl-PCe"/>
+                    <constraint firstAttribute="bottom" secondItem="HlS-4S-Ple" secondAttribute="bottom" id="hZd-PX-MKh"/>
+                    <constraint firstItem="Grj-Az-TwI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="kyJ-CW-gVM"/>
+                    <constraint firstAttribute="bottom" secondItem="Grj-Az-TwI" secondAttribute="bottom" id="r6C-Q0-YfM"/>
+                    <constraint firstItem="Grj-Az-TwI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="sSM-ja-Zcj"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
-                <outlet property="imModuleDescriptionLabel" destination="sa1-KB-dqG" id="qUs-jd-6vu"/>
-                <outlet property="imModuleNameLabel" destination="gwm-qq-bJH" id="p09-Tr-05F"/>
+                <outlet property="imModuleItemImageView" destination="uVx-ju-CgZ" id="fcp-6N-uwk"/>
+                <outlet property="imModuleItemNameLabel" destination="0rE-yJ-4Ja" id="2sS-yg-gJo"/>
             </connections>
             <point key="canvasLocation" x="34.5" y="54"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="im_placeholder" width="44" height="44"/>
+    </resources>
 </document>

@@ -7,7 +7,12 @@
 //
 
 #import "IMHomeViewController.h"
+#import "ModulesHeader.h"
+
+#import "IMModuleItemModel.h"
 #import "IMModuleItemTableViewCell.h"
+
+
 
 static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
 
@@ -54,22 +59,27 @@ static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     IMModuleItemTableViewCell   *imModuleItemTVCell =   [tableView dequeueReusableCellWithIdentifier:IMModuleItemTVCID];
-    imModuleItemTVCell.imModuleNameLabel.text       =   self.modulesArray[indexPath.row][@"ModuleName"];
+    [imModuleItemTVCell setModel:self.modulesArray[indexPath.row]];
     return imModuleItemTVCell;
 }
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 120.0f;
+    return 60.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
 
 #pragma mark - Initializations
 #pragma mark - Initial views
 - (UITableView *)homeTableView {
     if (!_homeTableView) {
-        _homeTableView              =   [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _homeTableView.dataSource   =   self;
-        _homeTableView.delegate     =   self;
+        _homeTableView                  =   [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _homeTableView.dataSource       =   self;
+        _homeTableView.delegate         =   self;
+        _homeTableView.tableFooterView  =   [[UIView alloc] initWithFrame:CGRectZero];
         [_homeTableView registerNib:[UINib nibWithNibName:NSStringFromClass([IMModuleItemTableViewCell class]) bundle:nil]
              forCellReuseIdentifier:IMModuleItemTVCID];
     }
@@ -78,7 +88,16 @@ static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
 
 - (NSArray *)modulesArray {
     if (!_modulesArray) {
-        _modulesArray   =   [[NSArray alloc] initWithObjects:@{@"ModuleName":@"iOSImagePicker"}, nil];
+        NSString *filePath                  =   [[NSBundle mainBundle] pathForResource:ModulesItemPListFileName ofType:@"plist"];
+        NSArray *modulesItemArray           =   [NSArray loadArrayFromPListAtPath:filePath];
+        NSMutableArray *tempMutArray        =   [NSMutableArray arrayWithCapacity:modulesItemArray.count];
+        for (NSDictionary *itemDict in modulesItemArray) {
+            IMModuleItemModel *itemModel    =   [[IMModuleItemModel alloc] init];
+            itemModel.imModuleName          =   itemDict[@"ModuleName"];
+            itemModel.imModuleImagePath     =   itemDict[@"ModuleImagePath"];
+            [tempMutArray addObject:itemModel];
+        }
+        _modulesArray                       =   [[NSArray alloc] initWithArray:[tempMutArray copy]];
     }
     return _modulesArray;
 }

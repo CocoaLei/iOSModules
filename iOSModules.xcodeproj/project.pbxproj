@@ -22,6 +22,9 @@
 		B7381DD21FEE995E008F7F7A /* IMModuleItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7381DD01FEE995E008F7F7A /* IMModuleItemTableViewCell.xib */; };
 		B7B2666D1FF131CA00EDF3C4 /* IMModuleItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B2666C1FF131CA00EDF3C4 /* IMModuleItemModel.m */; };
 		B7B266701FF1326300EDF3C4 /* IMModules.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7B2666F1FF1326300EDF3C4 /* IMModules.plist */; };
+		B7B266E21FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B266E11FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m */; };
+		B7B266E71FF3DA7000EDF3C4 /* IMConstantFile.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B266E61FF3DA7000EDF3C4 /* IMConstantFile.m */; };
+		B7B266EE1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B266ED1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,13 @@
 		B7B2666B1FF131CA00EDF3C4 /* IMModuleItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMModuleItemModel.h; sourceTree = "<group>"; };
 		B7B2666C1FF131CA00EDF3C4 /* IMModuleItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMModuleItemModel.m; sourceTree = "<group>"; };
 		B7B2666F1FF1326300EDF3C4 /* IMModules.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = IMModules.plist; sourceTree = "<group>"; };
+		B7B266DC1FF3D62F00EDF3C4 /* ModulesHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModulesHeader.h; sourceTree = "<group>"; };
+		B7B266E01FF3D75E00EDF3C4 /* NSArray+LoadFromPList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+LoadFromPList.h"; sourceTree = "<group>"; };
+		B7B266E11FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LoadFromPList.m"; sourceTree = "<group>"; };
+		B7B266E51FF3DA7000EDF3C4 /* IMConstantFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMConstantFile.h; sourceTree = "<group>"; };
+		B7B266E61FF3DA7000EDF3C4 /* IMConstantFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMConstantFile.m; sourceTree = "<group>"; };
+		B7B266EC1FF3E5A400EDF3C4 /* UIImage+RoundCorner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundCorner.h"; sourceTree = "<group>"; };
+		B7B266ED1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundCorner.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +127,7 @@
 		B71A7DDF1FEBF7FB0050E834 /* iOSModules */ = {
 			isa = PBXGroup;
 			children = (
+				B7B266D31FF3B25700EDF3C4 /* Modules */,
 				B7381DBA1FED4D6E008F7F7A /* HomePage */,
 				B7381DC11FED4FE6008F7F7A /* Tools */,
 				B71A7E151FEBF85C0050E834 /* DefaultFiles */,
@@ -173,6 +184,10 @@
 			children = (
 				B7B2666B1FF131CA00EDF3C4 /* IMModuleItemModel.h */,
 				B7B2666C1FF131CA00EDF3C4 /* IMModuleItemModel.m */,
+				B7B266E01FF3D75E00EDF3C4 /* NSArray+LoadFromPList.h */,
+				B7B266E11FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m */,
+				B7B266EC1FF3E5A400EDF3C4 /* UIImage+RoundCorner.h */,
+				B7B266ED1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,6 +236,64 @@
 			name = Resources;
 			path = iOSModules/Resources;
 			sourceTree = SOURCE_ROOT;
+		};
+		B7B266D31FF3B25700EDF3C4 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				B7B266E51FF3DA7000EDF3C4 /* IMConstantFile.h */,
+				B7B266E61FF3DA7000EDF3C4 /* IMConstantFile.m */,
+				B7B266DC1FF3D62F00EDF3C4 /* ModulesHeader.h */,
+				B7B266DA1FF3D5E700EDF3C4 /* IMTableViewCellAnimation */,
+				B7B266D61FF3B2A300EDF3C4 /* IMImagePicker */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		B7B266D61FF3B2A300EDF3C4 /* IMImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				B7B266D91FF3B2D800EDF3C4 /* Models */,
+				B7B266D81FF3B2D100EDF3C4 /* Views */,
+				B7B266D71FF3B2C700EDF3C4 /* Controllers */,
+			);
+			path = IMImagePicker;
+			sourceTree = "<group>";
+		};
+		B7B266D71FF3B2C700EDF3C4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B7B266D81FF3B2D100EDF3C4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B7B266D91FF3B2D800EDF3C4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B7B266DA1FF3D5E700EDF3C4 /* IMTableViewCellAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				B7B266DB1FF3D5FD00EDF3C4 /* Controllers */,
+			);
+			path = IMTableViewCellAnimation;
+			sourceTree = "<group>";
+		};
+		B7B266DB1FF3D5FD00EDF3C4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -363,8 +436,11 @@
 				B71A7E251FEBF85C0050E834 /* AppDelegate.m in Sources */,
 				B7381DC51FED501D008F7F7A /* IMPlistFileManager.m in Sources */,
 				B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */,
+				B7B266E21FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m in Sources */,
 				B7381DD11FEE995E008F7F7A /* IMModuleItemTableViewCell.m in Sources */,
+				B7B266EE1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m in Sources */,
 				B7381DC01FED4E31008F7F7A /* IMHomeViewController.m in Sources */,
+				B7B266E71FF3DA7000EDF3C4 /* IMConstantFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,7 @@
 
 @interface IMModuleItemModel : NSObject
 
-@property (nonatomic, copy  )   NSString *imModuleName;
-@property (nonatomic, copy  )   NSString *imModuleDescription;
+@property (nonatomic, copy  )   NSString    *imModuleImagePath;
+@property (nonatomic, copy  )   NSString    *imModuleName;
 
 @end

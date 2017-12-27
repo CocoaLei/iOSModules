@@ -4,9 +4,15 @@
 <array>
 	<dict>
 		<key>ModuleName</key>
-		<string>ImagePicker</string>
-		<key>ModuleDescription</key>
-		<string>Pick image from photo album.</string>
+		<string>PhotoPicker</string>
+		<key>ModuleImagePath</key>
+		<string>im_placeholder</string>
+	</dict>
+	<dict>
+		<key>ModuleName</key>
+		<string>TableViewCellAnimation</string>
+		<key>ModuleImagePath</key>
+		<string>im_placeholder</string>
 	</dict>
 </array>
 </plist>

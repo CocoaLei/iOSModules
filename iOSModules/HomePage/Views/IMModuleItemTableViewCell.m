@@ -7,24 +7,25 @@
 //
 
 #import "IMModuleItemTableViewCell.h"
+#import "IMModuleItemModel.h"
+#import "UIImage+RoundCorner.h"
 
 @interface IMModuleItemTableViewCell ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *imModuleItemImageView;
+@property (weak, nonatomic) IBOutlet UILabel     *imModuleItemNameLabel;
 
 
 @end
 
 @implementation IMModuleItemTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)setModel:(IMModuleItemModel *)model {
+    _model                          =   model;
+    _imModuleItemNameLabel.text     =   model.imModuleName;
+    _imModuleItemImageView.image    =   [[UIImage imageNamed:model.imModuleImagePath]
+                                         im_addRoundCornerWithRadius:_imModuleItemImageView.bounds.size.width/2
+                                         andSize:_imModuleItemImageView.bounds.size];
 }
 
 @end
