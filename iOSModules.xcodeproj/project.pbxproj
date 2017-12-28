@@ -20,6 +20,9 @@
 		B7381DC51FED501D008F7F7A /* IMPlistFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DC41FED501D008F7F7A /* IMPlistFileManager.m */; };
 		B7381DD11FEE995E008F7F7A /* IMModuleItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DCF1FEE995E008F7F7A /* IMModuleItemTableViewCell.m */; };
 		B7381DD21FEE995E008F7F7A /* IMModuleItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7381DD01FEE995E008F7F7A /* IMModuleItemTableViewCell.xib */; };
+		B78720651FF5223F0005928C /* IMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B78720641FF5223F0005928C /* IMBaseViewController.m */; };
+		B787206B1FF525D00005928C /* IMPhotoPickerInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B78720691FF525D00005928C /* IMPhotoPickerInitialViewController.m */; };
+		B787206F1FF52F6F0005928C /* UIView+AddRoundBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = B787206E1FF52F6F0005928C /* UIView+AddRoundBorder.m */; };
 		B7B2666D1FF131CA00EDF3C4 /* IMModuleItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B2666C1FF131CA00EDF3C4 /* IMModuleItemModel.m */; };
 		B7B266701FF1326300EDF3C4 /* IMModules.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7B2666F1FF1326300EDF3C4 /* IMModules.plist */; };
 		B7B266E21FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B266E11FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m */; };
@@ -67,6 +70,14 @@
 		B7381DCE1FEE995E008F7F7A /* IMModuleItemTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMModuleItemTableViewCell.h; sourceTree = "<group>"; };
 		B7381DCF1FEE995E008F7F7A /* IMModuleItemTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMModuleItemTableViewCell.m; sourceTree = "<group>"; };
 		B7381DD01FEE995E008F7F7A /* IMModuleItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IMModuleItemTableViewCell.xib; sourceTree = "<group>"; };
+		B78720631FF5223F0005928C /* IMBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMBaseViewController.h; sourceTree = "<group>"; };
+		B78720641FF5223F0005928C /* IMBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMBaseViewController.m; sourceTree = "<group>"; };
+		B78720681FF525D00005928C /* IMPhotoPickerInitialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhotoPickerInitialViewController.h; sourceTree = "<group>"; };
+		B78720691FF525D00005928C /* IMPhotoPickerInitialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMPhotoPickerInitialViewController.m; sourceTree = "<group>"; };
+		B787206D1FF52F6F0005928C /* UIView+AddRoundBorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+AddRoundBorder.h"; sourceTree = "<group>"; };
+		B787206E1FF52F6F0005928C /* UIView+AddRoundBorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+AddRoundBorder.m"; sourceTree = "<group>"; };
+		B78720701FF538680005928C /* IMMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMMacroTool.h; sourceTree = "<group>"; };
+		B78720731FF53AFB0005928C /* IMModules-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IMModules-PrefixHeader.pch"; sourceTree = "<group>"; };
 		B7B2666B1FF131CA00EDF3C4 /* IMModuleItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMModuleItemModel.h; sourceTree = "<group>"; };
 		B7B2666C1FF131CA00EDF3C4 /* IMModuleItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMModuleItemModel.m; sourceTree = "<group>"; };
 		B7B2666F1FF1326300EDF3C4 /* IMModules.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = IMModules.plist; sourceTree = "<group>"; };
@@ -243,8 +254,12 @@
 				B7B266E51FF3DA7000EDF3C4 /* IMConstantFile.h */,
 				B7B266E61FF3DA7000EDF3C4 /* IMConstantFile.m */,
 				B7B266DC1FF3D62F00EDF3C4 /* ModulesHeader.h */,
+				B78720701FF538680005928C /* IMMacroTool.h */,
+				B78720631FF5223F0005928C /* IMBaseViewController.h */,
+				B78720641FF5223F0005928C /* IMBaseViewController.m */,
 				B7B266DA1FF3D5E700EDF3C4 /* IMTableViewCellAnimation */,
 				B7B266D61FF3B2A300EDF3C4 /* IMImagePicker */,
+				B78720731FF53AFB0005928C /* IMModules-PrefixHeader.pch */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -262,6 +277,8 @@
 		B7B266D71FF3B2C700EDF3C4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B78720681FF525D00005928C /* IMPhotoPickerInitialViewController.h */,
+				B78720691FF525D00005928C /* IMPhotoPickerInitialViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -276,6 +293,8 @@
 		B7B266D91FF3B2D800EDF3C4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B787206D1FF52F6F0005928C /* UIView+AddRoundBorder.h */,
+				B787206E1FF52F6F0005928C /* UIView+AddRoundBorder.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -433,8 +452,11 @@
 			files = (
 				B7B2666D1FF131CA00EDF3C4 /* IMModuleItemModel.m in Sources */,
 				B71A7E241FEBF85C0050E834 /* main.m in Sources */,
+				B787206B1FF525D00005928C /* IMPhotoPickerInitialViewController.m in Sources */,
 				B71A7E251FEBF85C0050E834 /* AppDelegate.m in Sources */,
 				B7381DC51FED501D008F7F7A /* IMPlistFileManager.m in Sources */,
+				B78720651FF5223F0005928C /* IMBaseViewController.m in Sources */,
+				B787206F1FF52F6F0005928C /* UIView+AddRoundBorder.m in Sources */,
 				B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */,
 				B7B266E21FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m in Sources */,
 				B7381DD11FEE995E008F7F7A /* IMModuleItemTableViewCell.m in Sources */,
@@ -606,6 +628,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6H7FG34BKU;
+				GCC_PREFIX_HEADER = "${SRCROOT}/iOSModules/Modules/IMModules-PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/iOSModules/DefaultFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -623,6 +646,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6H7FG34BKU;
+				GCC_PREFIX_HEADER = "${SRCROOT}/iOSModules/Modules/IMModules-PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/iOSModules/DefaultFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

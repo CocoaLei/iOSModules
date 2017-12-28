@@ -12,7 +12,7 @@
 #import "IMModuleItemModel.h"
 #import "IMModuleItemTableViewCell.h"
 
-
+#import "IMPhotoPickerInitialViewController.h"
 
 static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
 
@@ -69,7 +69,16 @@ static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    switch (indexPath.row) {
+        case 0:
+        {
+            IMPhotoPickerInitialViewController *photoPickerInitialVC    =   [[IMPhotoPickerInitialViewController alloc] init];
+            [self.navigationController pushViewController:photoPickerInitialVC animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - Initializations

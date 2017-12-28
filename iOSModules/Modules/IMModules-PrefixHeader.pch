@@ -1,0 +1,14 @@
+//
+//  IMModules-PrefixHeader.pch
+//  iOSModules
+//
+//  Created by 石城磊 on 28/12/2017.
+//  Copyright © 2017 石城磊. All rights reserved.
+//
+
+#ifndef IMModules_PrefixHeader_pch
+#define IMModules_PrefixHeader_pch
+
+#import "IMMacroTool.h"
+
+#endif /* IMModules_PrefixHeader_pch */

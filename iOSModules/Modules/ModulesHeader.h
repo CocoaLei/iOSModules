@@ -12,5 +12,6 @@
 #import "NSArray+LoadFromPList.h"
 #import "IMConstantFile.h"
 #import "UIImage+RoundCorner.h"
+#import "IMMacroTool.h"
 
 #endif /* Modules_h */
