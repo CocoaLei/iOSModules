@@ -19,13 +19,13 @@
     // Do any additional setup after loading the view.
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18.0f],
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
                                                                       NSForegroundColorAttributeName:[UIColor blackColor]
                                                                       }];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     
-    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"im_back_arrow_solid"] style:UIBarButtonItemStylePlain target:self action:@selector(backItemAction)];
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"im_arrow_left"] style:UIBarButtonItemStylePlain target:self action:@selector(backItemAction)];
 }
 
 - (void)backItemAction {

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="IMPhotoAlbumTVCID" rowHeight="70" id="KGk-i7-Jjw" customClass="IMPhotoAlbumItemTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="341" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4m-iw-Yra">
+                        <rect key="frame" x="0.0" y="0.0" width="78" height="70"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="im_album_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="kT6-to-5hC">
+                                <rect key="frame" x="9" y="5" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="WTf-9m-y8L"/>
+                                    <constraint firstAttribute="height" constant="60" id="WyV-gx-ov2"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kT6-to-5hC" firstAttribute="leading" secondItem="PMe-a8-icc" secondAttribute="leading" constant="9" id="All-zc-sbr"/>
+                            <constraint firstItem="kT6-to-5hC" firstAttribute="centerX" secondItem="PMe-a8-icc" secondAttribute="centerX" id="KDV-eK-G5i"/>
+                            <constraint firstItem="kT6-to-5hC" firstAttribute="centerY" secondItem="PMe-a8-icc" secondAttribute="centerY" id="TQO-ic-0ju"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PMe-a8-icc"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wC6-ol-w0p">
+                        <rect key="frame" x="78" y="5" width="259" height="60"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IM Photo Album Name &amp; Photo Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTv-Bv-SsT">
+                                <rect key="frame" x="8" y="18" width="243" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="a8R-Ub-yoq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bS1-wE-mvt" firstAttribute="trailing" secondItem="nTv-Bv-SsT" secondAttribute="trailing" constant="8" id="ABP-FA-jRc"/>
+                            <constraint firstAttribute="height" constant="60" id="agK-fV-Y4i"/>
+                            <constraint firstItem="nTv-Bv-SsT" firstAttribute="centerY" secondItem="bS1-wE-mvt" secondAttribute="centerY" id="eBZ-2d-ycH"/>
+                            <constraint firstItem="nTv-Bv-SsT" firstAttribute="leading" secondItem="bS1-wE-mvt" secondAttribute="leading" constant="8" id="qRn-jR-tE7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bS1-wE-mvt"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="wC6-ol-w0p" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1Vt-au-Lof"/>
+                    <constraint firstItem="x4m-iw-Yra" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9p1-VB-VaJ"/>
+                    <constraint firstAttribute="bottom" secondItem="x4m-iw-Yra" secondAttribute="bottom" id="kKj-6S-ryx"/>
+                    <constraint firstItem="wC6-ol-w0p" firstAttribute="leading" secondItem="x4m-iw-Yra" secondAttribute="trailing" id="uFX-Lw-x2J"/>
+                    <constraint firstItem="x4m-iw-Yra" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="x7y-sG-gSK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="photoAlbumBriefIntroLabel" destination="nTv-Bv-SsT" id="y8Z-Of-udX"/>
+                <outlet property="photoAlbumCoverImageView" destination="kT6-to-5hC" id="3pm-b2-Tga"/>
+            </connections>
+            <point key="canvasLocation" x="34.5" y="60"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="im_album_placeholder" width="60" height="60"/>
+    </resources>
+</document>

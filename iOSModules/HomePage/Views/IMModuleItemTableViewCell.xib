@@ -56,7 +56,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqu-u5-bSI">
                         <rect key="frame" x="335" y="0.0" width="40" height="60"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="im_arrow_detail" translatesAutoresizingMaskIntoConstraints="NO" id="kIg-i2-Jct">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="im_arrow_right" translatesAutoresizingMaskIntoConstraints="NO" id="kIg-i2-Jct">
                                 <rect key="frame" x="8" y="18" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="7PE-Fu-yt9"/>
@@ -94,7 +94,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="im_arrow_detail" width="24" height="24"/>
+        <image name="im_arrow_right" width="24" height="24"/>
         <image name="im_placeholder" width="44" height="44"/>
     </resources>
 </document>

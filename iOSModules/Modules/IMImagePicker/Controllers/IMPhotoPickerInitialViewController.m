@@ -8,6 +8,9 @@
 
 #import "IMPhotoPickerInitialViewController.h"
 #import "UIView+AddRoundBorder.h"
+#import "IMPhotosManager.h"
+#import <Photos/Photos.h>
+#import "IMPhotoAlbumsViewController.h"
 
 @interface IMPhotoPickerInitialViewController ()
 
@@ -20,24 +23,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title  =   @"IMPhotoPicker";
-    IMDebugLog();
     [self configureViewsApperance];
     
 }
 
 - (void)configureViewsApperance {
-    
 }
 
-- (void)viewDidLayoutSubviews {
-    IMDebugLog();
-}
 
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self presentPhotoPickerActionSheetButtonAction];
+}
 
 
 - (void)presentPhotoPickerActionSheetButtonAction {
     UIAlertController *photoPickerActionSheet   =   [UIAlertController alertControllerWithTitle:@"Select Image" message:@"Select image from photo album or take a picture use camera" preferredStyle:UIAlertControllerStyleActionSheet];
     [photoPickerActionSheet addAction:[UIAlertAction actionWithTitle:@"Select From Album" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self presentPhotoAlbumViewController];
         [photoPickerActionSheet dismissViewControllerAnimated:YES completion:^{}];
     }]];
     [photoPickerActionSheet addAction:[UIAlertAction actionWithTitle:@"User Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -49,5 +51,10 @@
     [self presentViewController:photoPickerActionSheet animated:YES completion:^{}];
 }
 
+- (void)presentPhotoAlbumViewController {
+    IMPhotoAlbumsViewController *photoAlbumViewController   =   [[IMPhotoAlbumsViewController alloc] init];
+    UINavigationController *naviPhotoAlbumViewController    =   [[UINavigationController alloc] initWithRootViewController:photoAlbumViewController];
+    [self presentViewController:naviPhotoAlbumViewController animated:YES completion:^{}];
+}
 
 @end
