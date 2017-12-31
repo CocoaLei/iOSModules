@@ -10,5 +10,6 @@
 #define IMModules_PrefixHeader_pch
 
 #import "IMMacroTool.h"
+#import "ModulesHeader.h"
 
 #endif /* IMModules_PrefixHeader_pch */

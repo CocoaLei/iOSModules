@@ -24,16 +24,19 @@
     // Do any additional setup after loading the view from its nib.
     self.title  =   @"IMPhotoPicker";
     [self configureViewsApperance];
-    
 }
 
 - (void)configureViewsApperance {
+    UIButton *handleButton  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [handleButton setFrame:CGRectMake(8.0f, ScreenHeight/2-20.0f, ScreenWidth-16.0f, 40.0f)];
+    [handleButton setTitle:@"Start use photo picker ~ " forState:UIControlStateNormal];
+    [handleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [handleButton addTarget:self action:@selector(presentPhotoPickerActionSheetButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [handleButton addRoundBorderWithBorderColor:[UIColor blackColor] borderWidth:1.0f radius:5.0f];
+    [self.view addSubview:handleButton];
 }
 
 
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self presentPhotoPickerActionSheetButtonAction];
-}
 
 
 - (void)presentPhotoPickerActionSheetButtonAction {

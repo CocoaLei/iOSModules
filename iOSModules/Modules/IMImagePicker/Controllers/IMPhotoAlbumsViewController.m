@@ -9,6 +9,7 @@
 #import "IMPhotoAlbumsViewController.h"
 #import "IMPhotoAlbumItemTableViewCell.h"
 #import "IMPhotosManager.h"
+#import "IMPhotoBrowseViewController.h"
 
 static  NSString * const IMPhotoAlbumTVCID  =   @"IMPhotoAlbumTVCID";
 
@@ -36,9 +37,14 @@ static  NSString * const IMPhotoAlbumTVCID  =   @"IMPhotoAlbumTVCID";
 #pragma mark - Private methods
 - (void)configureViewApperance {
     self.title  =   @"Photo";
-    [self.navigationController.navigationBar setOpaque:NO];
+    UIImage *backgroundImage    =   [UIImage createTranslucenceImageWithSize:CGSizeMake(ScreenWidth, 64.0f)
+                                                                       alpha:0.5
+                                                                      colorR:255.0f
+                                                                      colorG:255.0f
+                                                                      colorB:255.0f];
+    [self.navigationController.navigationBar setBackgroundImage:backgroundImage
+                                                  forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
-    [self.navigationController.navigationBar setBarTintColor:RGBACOLOR(255.0f, 255.0f, 255.0f, 0.3)];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
                                                                       NSForegroundColorAttributeName:[UIColor blackColor]
                                                                       }];
@@ -60,21 +66,29 @@ static  NSString * const IMPhotoAlbumTVCID  =   @"IMPhotoAlbumTVCID";
     return self.photoAlbumsArray.count;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    IMPhotoAlbumItemTableViewCell *photoAlbumTVC    =   [tableView dequeueReusableCellWithIdentifier:IMPhotoAlbumTVCID];
+    NSDictionary   *albumDetailDict                 =   self.photoAlbumsArray[indexPath.row];
+    NSString *albumName                             =   albumDetailDict[IM_ALBUM_TITLE];
+    NSUInteger assetCount                           =   [albumDetailDict[IM_ALBUM_PHOTO_COUNT] unsignedIntegerValue];
+    photoAlbumTVC.photoAlbumBriefIntroLabel.text    =   [NSString stringWithFormat:@"%@ (%lu)",albumName,(unsigned long)assetCount];
+    UIImage *coverImage                             =   albumDetailDict[IM_ALBUM_COVER_IMAGE];
+    photoAlbumTVC.photoAlbumCoverImageView.image    =   coverImage;
+    return photoAlbumTVC;
+}
+
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 70.0f;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    IMPhotoAlbumItemTableViewCell *photoAlbumTVC    =   [tableView dequeueReusableCellWithIdentifier:IMPhotoAlbumTVCID];
-    NSDictionary   *albumDetailDict                 =   self.photoAlbumsArray[indexPath.row];
-    NSString *albumName                             =   albumDetailDict[ALBUM_TITLE];
-    NSUInteger assetCount                           =   [albumDetailDict[ALBUM_PHOTO_COUNT] unsignedIntegerValue];
-    photoAlbumTVC.photoAlbumBriefIntroLabel.text    =   [NSString stringWithFormat:@"%@ (%lu)",albumName,(unsigned long)assetCount];
-    UIImage *coverImage                             =   albumDetailDict[ALBUM_COVER_IMAGE];
-    photoAlbumTVC.photoAlbumCoverImageView.image    =   coverImage;
-    return photoAlbumTVC;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    IMPhotoBrowseViewController *photoBrowseViewController  =   [[IMPhotoBrowseViewController alloc] init];
+    photoBrowseViewController.albumDetialDict   =   self.photoAlbumsArray[indexPath.row];
+    [self.navigationController pushViewController:photoBrowseViewController animated:YES];
 }
+
+
 
 #pragma mark -
 #pragma mark - Initializations

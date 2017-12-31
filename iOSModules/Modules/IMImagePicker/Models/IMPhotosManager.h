@@ -12,10 +12,10 @@
 #define IMPhotoManagerInstance [IMPhotosManager sharedIMPhotosManger]
 
 // key of return dictionary
-#define ALBUM_TITLE             @"ALBUM_TITLE"
-#define ALBUM_PHOTO_COUNT       @"ALBUM_PHOTO_COUNT"
-#define ALBUM_COVER_IMAGE       @"ALBUM_COVER_IMAGE"
-#define ALBUM_ASSET_COLLECZTION @"ALBUM_ASSET_COLLECTION"
+#define IM_ALBUM_TITLE             @"IM_ALBUM_TITLE"
+#define IM_ALBUM_PHOTO_COUNT       @"IM_ALBUM_PHOTO_COUNT"
+#define IM_ALBUM_COVER_IMAGE       @"IM_ALBUM_COVER_IMAGE"
+#define IM_ALBUM_ASSET_COLLECZTION @"IM_ALBUM_ASSET_COLLECTION"
 
 @interface IMPhotosManager : NSObject
 
@@ -29,7 +29,13 @@
 - (NSArray *)loadMyPhotoAlbumsFromDevice;
 - (NSArray *)loadSmartPhotoAlbumsFromDevice;
 
-// Get photo from album
-- (NSArray *)loadPhotosFromAlbum:(PHAssetCollection *)assetCollection withSize:(CGSize)imageSize;
+// Get photo asset from album
+- (NSArray *)loadPhotosFromAlbum:(PHAssetCollection *)assetCollection;
+
+// Get photo by asset
+- (UIImage *)requestPreviewImageFromAsset:(PHAsset *)asset
+                          withSize:(CGSize)imageSize
+                       contentMode:(PHImageContentMode)imageContentMode;
+- (UIImage *)requestOriginalImageFromAsset:(PHAsset *)asset;
 
 @end

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="IMPhotoCVCID" id="gTV-IL-0wX" customClass="IMPhotoCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="160"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="160"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f90-gH-HW3">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="160"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UYd-wv-SFH">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="160"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYx-df-nyl">
+                                <rect key="frame" x="72" y="4" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="KS4-ed-5y5"/>
+                                    <constraint firstAttribute="height" constant="24" id="zVH-9f-KFR"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" backgroundImage="im_deselect">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="selected" backgroundImage="im_select"/>
+                                <connections>
+                                    <action selector="photoSelectedButtonAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="cXp-89-aU4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="sYx-df-nyl" firstAttribute="top" secondItem="f90-gH-HW3" secondAttribute="top" constant="4" id="KhS-kk-pbZ"/>
+                            <constraint firstAttribute="trailing" secondItem="UYd-wv-SFH" secondAttribute="trailing" id="QNp-1Z-wUc"/>
+                            <constraint firstAttribute="bottom" secondItem="UYd-wv-SFH" secondAttribute="bottom" id="ZdV-e5-PAN"/>
+                            <constraint firstItem="UYd-wv-SFH" firstAttribute="leading" secondItem="f90-gH-HW3" secondAttribute="leading" id="k1G-ja-ZGr"/>
+                            <constraint firstItem="UYd-wv-SFH" firstAttribute="top" secondItem="f90-gH-HW3" secondAttribute="top" id="mmr-JJ-832"/>
+                            <constraint firstAttribute="trailing" secondItem="sYx-df-nyl" secondAttribute="trailing" constant="4" id="rzR-03-4y2"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="f90-gH-HW3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="3Qb-O2-HtI"/>
+                <constraint firstAttribute="trailing" secondItem="f90-gH-HW3" secondAttribute="trailing" id="QLw-7y-KQL"/>
+                <constraint firstAttribute="bottom" secondItem="f90-gH-HW3" secondAttribute="bottom" id="aZm-iG-7Fh"/>
+                <constraint firstItem="f90-gH-HW3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="cVO-29-ULr"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <connections>
+                <outlet property="photoImageView" destination="UYd-wv-SFH" id="ZfQ-xs-50z"/>
+                <outlet property="photoSelectedButton" destination="sYx-df-nyl" id="fzj-4O-bKJ"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="im_deselect" width="24" height="24"/>
+        <image name="im_select" width="24" height="24"/>
+    </resources>
+</document>

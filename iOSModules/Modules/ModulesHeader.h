@@ -13,5 +13,6 @@
 #import "IMConstantFile.h"
 #import "UIImage+RoundCorner.h"
 #import "IMMacroTool.h"
+#import "UIImage+TranslucenceImage.h"
 
 #endif /* Modules_h */
