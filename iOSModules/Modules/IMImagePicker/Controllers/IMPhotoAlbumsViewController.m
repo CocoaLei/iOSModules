@@ -104,7 +104,20 @@ static  NSString * const IMPhotoAlbumTVCID  =   @"IMPhotoAlbumTVCID";
 
 - (NSArray *)photoAlbumsArray {
     if (!_photoAlbumsArray) {
-        _photoAlbumsArray   =   [[NSArray alloc] initWithArray:[IMPhotoManagerInstance loadAllPhotoAlbumsFromDevice]];
+        NSArray *albumsArray   =    [IMPhotoManagerInstance loadAllPhotoAlbumsFromDevice];
+        // Descending sort album by photo count
+        NSArray *sortedArray   =   [albumsArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            NSDictionary *albumA    =   (NSDictionary *)obj1;
+            NSDictionary *albumB    =   (NSDictionary *)obj2;
+            return [albumB[IM_ALBUM_PHOTO_COUNT] compare:albumA[IM_ALBUM_PHOTO_COUNT]];
+        }];
+        NSMutableArray *tempMutArray    =   [NSMutableArray arrayWithArray:sortedArray];
+        for (NSDictionary *albumDict in sortedArray) {
+            if ([albumDict[IM_ALBUM_PHOTO_COUNT] integerValue] == 0) {
+                [tempMutArray removeObject:albumDict];
+            }
+        }
+        _photoAlbumsArray   =   [tempMutArray copy];
     }
     return _photoAlbumsArray;
 }
