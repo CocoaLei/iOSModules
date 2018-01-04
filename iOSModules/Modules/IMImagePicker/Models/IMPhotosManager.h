@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
 
+typedef void (^ImageRequestFinished)(NSDictionary *imageInfo, UIImage *resulImage);
+
 #define IMPhotoManagerInstance [IMPhotosManager sharedIMPhotosManger]
 
 // key of return dictionary
@@ -35,7 +37,12 @@
 // Get photo by asset
 - (UIImage *)requestPreviewImageFromAsset:(PHAsset *)asset
                           withSize:(CGSize)imageSize
-                       contentMode:(PHImageContentMode)imageContentMode;
+                              contentMode:(PHImageContentMode)imageContentMode;
 - (UIImage *)requestOriginalImageFromAsset:(PHAsset *)asset;
+
+- (void )requestPreviewImageFromAsset:(PHAsset *)asset
+                                 withSize:(CGSize)imageSize
+                              contentMode:(PHImageContentMode)imageContentMode
+                          requestFinished:(ImageRequestFinished)requestFinised;
 
 @end

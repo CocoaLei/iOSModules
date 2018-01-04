@@ -202,20 +202,23 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
     if (!_photoArray) {
         PHAssetCollection *assetCollection  =   self.albumDetialDict[IM_ALBUM_ASSET_COLLECZTION];
         NSArray *photosInAlbumArr           =   [IMPhotoManagerInstance loadPhotosFromAlbum:assetCollection];
-        NSInteger photoAlbumNo              =   0;
+        __block NSInteger photoAlbumNo      =   0;
         NSMutableArray *tempPhotosMutArr    =   [NSMutableArray arrayWithCapacity:photosInAlbumArr.count];
         CGFloat screenScale                 =   [UIScreen mainScreen].scale;
         CGFloat sizeWidth                   =   ((ScreenWidth-25.0f)/4)*screenScale;
         CGFloat sizeHeight                  =   (sizeWidth*(16/10))*screenScale;
         for (PHAsset *photoAsset in photosInAlbumArr) {
-            UIImage *image  =   [IMPhotoManagerInstance requestPreviewImageFromAsset:photoAsset withSize:CGSizeMake(sizeWidth,sizeHeight) contentMode:PHImageContentModeAspectFit];
-            NSDictionary *photoDict =   @{IM_PHOTO_IMAGE       :   image,
-                                          IM_PHOTO_IS_SELECTED :   [NSNumber numberWithBool:NO],
-                                          IM_PHOTO_SELECT_NO   :   [NSNumber numberWithInteger:0],
-                                          IM_PHOTO_ALBUM_NO    :   [NSNumber numberWithInteger:photoAlbumNo++],
-                                          IM_PHOTO_ASSET        :   photoAsset
-                                          };
-            [tempPhotosMutArr addObject:photoDict];
+            @autoreleasepool {
+                [[IMPhotosManager sharedIMPhotosManger] requestPreviewImageFromAsset:photoAsset withSize:CGSizeMake(sizeWidth, sizeHeight) contentMode:PHImageContentModeAspectFit requestFinished:^(NSDictionary *imageInfo, UIImage *resulImage) {
+                    NSDictionary *photoDict =   @{IM_PHOTO_IMAGE       :   resulImage,
+                                                  IM_PHOTO_IS_SELECTED :   [NSNumber numberWithBool:NO],
+                                                  IM_PHOTO_SELECT_NO   :   [NSNumber numberWithInteger:0],
+                                                  IM_PHOTO_ALBUM_NO    :   [NSNumber numberWithInteger:photoAlbumNo++],
+                                                  IM_PHOTO_ASSET       :   photoAsset
+                                                  };
+                    [tempPhotosMutArr addObject:photoDict];
+                }];
+            }
         }
         _photoArray =   [[NSArray alloc] initWithArray:[tempPhotosMutArr copy]];
     }

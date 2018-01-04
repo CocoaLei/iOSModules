@@ -8,6 +8,9 @@
 
 #import "IMPhotosManager.h"
 
+@interface IMPhotosManager ()
+
+@end
 
 @implementation IMPhotosManager
 
@@ -92,23 +95,54 @@
 
 #pragma mark -
 #pragma mark - Get preview photo with asset
+- (void)requestPreviewImageFromAsset:(PHAsset *)asset
+                             withSize:(CGSize)imageSize
+                          contentMode:(PHImageContentMode)imageContentMode
+                      requestFinished:(ImageRequestFinished)requestFinised {
+    PHImageRequestOptions *opt      =   [[PHImageRequestOptions alloc] init];
+    opt.resizeMode                  =   PHImageRequestOptionsResizeModeFast;
+    opt.deliveryMode                =   PHImageRequestOptionsDeliveryModeFastFormat;
+    [[PHImageManager defaultManager] requestImageForAsset:asset
+                                                      targetSize:imageSize
+                                                     contentMode:imageContentMode
+                                                         options:opt
+                                                   resultHandler:^(UIImage * _Nullable resultImage, NSDictionary * _Nullable imageInfo) {
+                                                       if (resultImage && [[imageInfo objectForKey:PHImageResultIsDegradedKey] boolValue]) {
+                                                           requestFinised(imageInfo, resultImage);
+                                                       }
+                                                   }];
+}
+
+/*
+ @DeliveryMode
+    PHImageRequestOptionsDeliveryModeOpportunistic
+    -- client may get several image results when the call is asynchronous or will get one result when the call is synchronous
+    PHImageRequestOptionsDeliveryModeHighQualityFormat
+    -- client will get one result only and it will be as asked or better than asked (sync requests are automatically processed this way regardless of the specified mode)
+    PHImageRequestOptionsDeliveryModeFastFormat
+    -- client will get one result only and it may be degraded and only available when synchronous = YES
+*/
 - (UIImage *)requestPreviewImageFromAsset:(PHAsset *)asset withSize:(CGSize)imageSize contentMode:(PHImageContentMode)imageContentMode {
+    if (asset.mediaType != PHAssetMediaTypeImage) {
+        return [UIImage imageNamed:@"im_image_placeholder"];
+    }
+
     PHImageRequestOptions *opt      =   [[PHImageRequestOptions alloc] init];
     opt.deliveryMode                =   PHImageRequestOptionsDeliveryModeHighQualityFormat;
     opt.resizeMode                  =   PHImageRequestOptionsResizeModeExact;
     opt.synchronous                 =   YES;
     __block UIImage *resultImage    =   [[UIImage alloc] init];
-    [[PHImageManager defaultManager]  requestImageForAsset:asset
-                                      targetSize:imageSize
-                                      contentMode:imageContentMode
-                                      options:opt
-                                      resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                                          if (result) {
-                                              resultImage =  result;
-                                          } else {
-                                              resultImage   =   [UIImage imageNamed:@"im_image_placeholder"];
-                                          }
-     }];
+    
+    [[PHCachingImageManager defaultManager] requestImageForAsset:asset
+                                                      targetSize:imageSize
+                                                     contentMode:imageContentMode
+                                                         options:opt
+                                                   resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        BOOL downloadFinined = (![[info objectForKey:PHLivePhotoInfoCancelledKey] boolValue] && ![info objectForKey:PHLivePhotoInfoErrorKey]);
+        if (downloadFinined && result) {
+           
+        }
+    }];
     return  resultImage;
 }
 
@@ -129,11 +163,10 @@
     --- > A key whose value indicate whether photo asset data is stored on the local device or must be downloaded from iCloud.
  PHImageResultIsPlaceholderKey
 
- 
  */
 - (UIImage *)requestOriginalImageFromAsset:(PHAsset *)asset {
     PHImageRequestOptions *opt      =   [[PHImageRequestOptions alloc] init];
-    opt.synchronous                 =   YES;
+    opt.deliveryMode                =   PHImageRequestOptionsDeliveryModeOpportunistic;
     __block UIImage *resultImage    =   [[UIImage alloc] init];
     [[PHImageManager defaultManager]  requestImageForAsset:asset
                                                 targetSize:PHImageManagerMaximumSize
