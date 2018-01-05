@@ -16,6 +16,7 @@
 		B71A7E251FEBF85C0050E834 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A7E1D1FEBF85C0050E834 /* AppDelegate.m */; };
 		B71A7E261FEBF85C0050E834 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B71A7E1E1FEBF85C0050E834 /* Info.plist */; };
 		B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B71A7E1F1FEBF85C0050E834 /* iOSModules.xcdatamodeld */; };
+		B728F9071FFFBA6E007B903B /* IMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B728F9061FFFBA6E007B903B /* IMPhoto.m */; };
 		B7381DC01FED4E31008F7F7A /* IMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DBF1FED4E31008F7F7A /* IMHomeViewController.m */; };
 		B7381DC51FED501D008F7F7A /* IMPlistFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DC41FED501D008F7F7A /* IMPlistFileManager.m */; };
 		B7381DD11FEE995E008F7F7A /* IMModuleItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DCF1FEE995E008F7F7A /* IMModuleItemTableViewCell.m */; };
@@ -72,6 +73,9 @@
 		B71A7E1D1FEBF85C0050E834 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B71A7E1E1FEBF85C0050E834 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B71A7E201FEBF85C0050E834 /* iOSModules.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSModules.xcdatamodel; sourceTree = "<group>"; };
+		B728F9051FFFBA6E007B903B /* IMPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhoto.h; sourceTree = "<group>"; };
+		B728F9061FFFBA6E007B903B /* IMPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMPhoto.m; sourceTree = "<group>"; };
+		B728F9081FFFBD23007B903B /* IMPhotoProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhotoProtocol.h; sourceTree = "<group>"; };
 		B7381DBE1FED4E31008F7F7A /* IMHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMHomeViewController.h; sourceTree = "<group>"; };
 		B7381DBF1FED4E31008F7F7A /* IMHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMHomeViewController.m; sourceTree = "<group>"; };
 		B7381DC31FED501D008F7F7A /* IMPlistFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPlistFileManager.h; sourceTree = "<group>"; };
@@ -336,6 +340,9 @@
 				B78720CD1FF631EB0005928C /* IMPhotosManager.m */,
 				B786C72F1FF6AC7C0017AA6C /* UIImage+TranslucenceImage.h */,
 				B786C7301FF6AC7C0017AA6C /* UIImage+TranslucenceImage.m */,
+				B728F9051FFFBA6E007B903B /* IMPhoto.h */,
+				B728F9061FFFBA6E007B903B /* IMPhoto.m */,
+				B728F9081FFFBD23007B903B /* IMPhotoProtocol.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -506,6 +513,7 @@
 				B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */,
 				B7B266E21FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m in Sources */,
 				B7381DD11FEE995E008F7F7A /* IMModuleItemTableViewCell.m in Sources */,
+				B728F9071FFFBA6E007B903B /* IMPhoto.m in Sources */,
 				B7B266EE1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m in Sources */,
 				B786C72E1FF6A0020017AA6C /* IMPhotoBrowseViewController.m in Sources */,
 				B78720D81FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.m in Sources */,

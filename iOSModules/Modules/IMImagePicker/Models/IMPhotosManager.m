@@ -32,7 +32,6 @@
     NSMutableArray *tempAlbumsMutArray  =   [[NSMutableArray alloc] init];
     [tempAlbumsMutArray addObjectsFromArray:[self loadMyPhotoAlbumsFromDevice]];
     [tempAlbumsMutArray addObjectsFromArray:[self loadSmartPhotoAlbumsFromDevice]];
-//    [tempAlbumsMutArray addObjectsFromArray:[self loadMomentPhotoAlbumsFromDevice]];
     return [tempAlbumsMutArray copy];
 }
 
