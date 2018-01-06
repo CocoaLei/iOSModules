@@ -7,18 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IMPhoto.h"
 
-#define IM_PHOTO_IMAGE         @"IM_PHOTO_IMAGE"
-#define IM_PHOTO_IS_SELECTED   @"IM_PHOTO_IS_SELECTED"
-#define IM_PHOTO_SELECT_NO     @"IM_PHOTO_SELECT_NO"
-#define IM_PHOTO_ALBUM_NO      @"IM_PHOTO_ALBUM_NO"
-#define IM_PHOTO_ASSET         @"IM_PHOTO_ASSET_ID"
-
-typedef void (^IMPhotoCVCDidSelectedBlock)(NSDictionary *photoDict, BOOL isSelected);
+typedef void (^IMPhotoCVCDidSelectedBlock)(id <IMPhotoProtocol> photo, BOOL isSelected);
 
 @interface IMPhotoCollectionViewCell : UICollectionViewCell
 
-- (void)configurePhotoCVCWithDict:(NSDictionary *)photoDict
+- (void)configurePhotoCVCWithPhoto:(id <IMPhotoProtocol> )photo
                   selectedHandler:(IMPhotoCVCDidSelectedBlock)selectedBlock;
 
 

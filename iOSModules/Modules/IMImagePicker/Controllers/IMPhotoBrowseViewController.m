@@ -13,6 +13,8 @@
 #import "UIView+AddRoundBorder.h"
 #import "IMPhotosPreviewViewController.h"
 
+#import "IMPhoto.h"
+
 static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
 
 @interface IMPhotoBrowseViewController ()
@@ -110,16 +112,19 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     IMPhotoCollectionViewCell *photoCVC  =   [collectionView dequeueReusableCellWithReuseIdentifier:IMPhotoCVCID forIndexPath:indexPath];
-    [photoCVC configurePhotoCVCWithDict:self.photoArray[indexPath.row] selectedHandler:^(NSDictionary *photoDict, BOOL isSelected) {
+    IMPhoto *photo                       =   self.photoArray[indexPath.row];
+    if (!photo.resultImage) {
+        [photo loadImageFromAsset];
+    }
+    [photoCVC configurePhotoCVCWithPhoto:photo selectedHandler:^(id<IMPhotoProtocol> photo, BOOL isSelected) {
         NSDictionary *handlePhotoDict   =   @{@"IndexPath"  :   indexPath,
-                                              @"PhotoDict"  :   photoDict
+                                              @"PhotoDict"  :   photo
                                               };
         if (!isSelected) {
             [self deselectePhoto:handlePhotoDict];
         } else {
             [self selectedPhoto:handlePhotoDict];
         }
-        IMDebugLog(@"Seleced Photo Count = %li",self.selectedPhotosArray.count);
     }];
     return photoCVC;
 }
@@ -202,22 +207,14 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
     if (!_photoArray) {
         PHAssetCollection *assetCollection  =   self.albumDetialDict[IM_ALBUM_ASSET_COLLECZTION];
         NSArray *photosInAlbumArr           =   [IMPhotoManagerInstance loadPhotosFromAlbum:assetCollection];
-        __block NSInteger photoAlbumNo      =   0;
         NSMutableArray *tempPhotosMutArr    =   [NSMutableArray arrayWithCapacity:photosInAlbumArr.count];
         CGFloat screenScale                 =   [UIScreen mainScreen].scale;
         CGFloat sizeWidth                   =   ((ScreenWidth-25.0f)/4)*screenScale;
         CGFloat sizeHeight                  =   (sizeWidth*(16/10))*screenScale;
         for (PHAsset *photoAsset in photosInAlbumArr) {
             @autoreleasepool {
-                [[IMPhotosManager sharedIMPhotosManger] requestPreviewImageFromAsset:photoAsset withSize:CGSizeMake(sizeWidth, sizeHeight) contentMode:PHImageContentModeAspectFit requestFinished:^(NSDictionary *imageInfo, UIImage *resulImage) {
-                    NSDictionary *photoDict =   @{IM_PHOTO_IMAGE       :   resulImage,
-                                                  IM_PHOTO_IS_SELECTED :   [NSNumber numberWithBool:NO],
-                                                  IM_PHOTO_SELECT_NO   :   [NSNumber numberWithInteger:0],
-                                                  IM_PHOTO_ALBUM_NO    :   [NSNumber numberWithInteger:photoAlbumNo++],
-                                                  IM_PHOTO_ASSET       :   photoAsset
-                                                  };
-                    [tempPhotosMutArr addObject:photoDict];
-                }];
+                IMPhoto *photo   =   [[IMPhoto alloc] initWithAsset:photoAsset targetSize:CGSizeMake(sizeWidth, sizeHeight)];
+                [tempPhotosMutArr addObject:photo];
             }
         }
         _photoArray =   [[NSArray alloc] initWithArray:[tempPhotosMutArr copy]];

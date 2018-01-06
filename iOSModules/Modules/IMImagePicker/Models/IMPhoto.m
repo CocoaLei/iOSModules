@@ -34,6 +34,7 @@
         self.photoAsset         =   asset;
         self.photoTargetSize    =   targetSize;
         self.assetRequestId     =   PHInvalidImageRequestID;
+        [self loadResultImage];
     }
     return self;
 }
@@ -81,6 +82,7 @@
 
 #pragma mark - Private methods
 - (void)loadResultImage {
+    NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
     if (self.resultImage) {
         self.assetImage =   self.resultImage;
         self.isLoading  =   NO;
@@ -116,7 +118,6 @@
 }
 
 - (void)imageLoadFinished {
-    NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
     self.isLoading  =   NO;
     [self performSelector:@selector(postPhotoDidLoadedNotification) withObject:nil];
 }
