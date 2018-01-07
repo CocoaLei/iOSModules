@@ -8,6 +8,7 @@
 
 #import "IMPhotosManager.h"
 #import "IMPhoto.h"
+#import "IMAlbum.h"
 
 @interface IMPhotosManager ()
 
@@ -67,13 +68,16 @@
                     CGFloat screenScale     =   [UIScreen mainScreen].scale;
                     self.photoRequestSize   =   CGSizeMake(60.0f*screenScale, 60.0f*screenScale);
                 }
-                UIImage *albumCoverImage            =   [self requestPreviewImageFromAsset:[assetFetchResult firstObject] withSize:self.photoRequestSize contentMode:PHImageContentModeAspectFill];
-                NSDictionary *albumDetailDict       =   @{IM_ALBUM_TITLE               :   albumTitle,
-                                                          IM_ALBUM_PHOTO_COUNT         :   @(assetCount),
-                                                          IM_ALBUM_COVER_IMAGE         :   albumCoverImage,
-                                                          IM_ALBUM_ASSET_COLLECZTION   :   assetCollection
-                                                          };
-                [tempAlbumsMutArr addObject:albumDetailDict];
+                if (assetFetchResult.count > 0) {
+                    IMPhoto *albumCoverPhoto    =   [[IMPhoto alloc] initWithAsset:assetFetchResult[0]
+                                                                        targetSize:self.photoRequestSize
+                                                                       contentMode:PHImageContentModeAspectFill];
+                    IMAlbum *albumModel         =   [[IMAlbum alloc] initAlbumModelWithTitle:albumTitle
+                                                                                  photoCount:assetCount
+                                                                                  albumCover:albumCoverPhoto
+                                                                             albumCollection:(PHAssetCollection *)assetCollection];
+                    [tempAlbumsMutArr addObject:albumModel];
+                }
             }
         }
         
@@ -86,6 +90,17 @@
 - (NSArray *)loadPhotosFromAlbum:(PHAssetCollection *)assetCollection {
     PHFetchResult *assetFetchResult     =   [PHAsset fetchAssetsInAssetCollection:assetCollection
                                                                options:nil];
+    NSMutableArray *tempPhotoMutArr     =   [[NSMutableArray alloc] initWithCapacity:assetFetchResult.count];
+    for (PHAsset *asset in assetFetchResult) {
+        [tempPhotoMutArr addObject:asset];
+    }
+    return [tempPhotoMutArr copy];
+}
+
+- (NSArray *)loadPhotosFromAlbum:(PHAssetCollection *)assetCollection
+                      targetSize:(CGSize)targetSize {
+    PHFetchResult *assetFetchResult     =   [PHAsset fetchAssetsInAssetCollection:assetCollection
+                                                                          options:nil];
     NSMutableArray *tempPhotoMutArr     =   [[NSMutableArray alloc] initWithCapacity:assetFetchResult.count];
     for (PHAsset *asset in assetFetchResult) {
         [tempPhotoMutArr addObject:asset];

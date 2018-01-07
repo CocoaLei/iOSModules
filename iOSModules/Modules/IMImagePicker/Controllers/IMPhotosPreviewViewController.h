@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IMAlbum.h"
+
+typedef NS_ENUM(NSInteger, IMPhotosPreviewType) {
+    IMPhotosPreviewTypeSelectedPhotos   =   0,
+    IMPhotosPreviewTypeAlbumPhotos      =   1
+};
 
 @interface IMPhotosPreviewViewController : UIViewController
 
-@property (nonatomic, copy) NSDictionary *albumDetialDict;
+@property (nonatomic, assign) IMPhotosPreviewType   previewType;
+@property (nonatomic, strong) IMAlbum               *album;
+@property (nonatomic, copy  ) NSArray               *selectedPhotosArray;
 
 @end

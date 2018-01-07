@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IMAlbum.h"
 
 @interface IMPhotoBrowseViewController : UIViewController
 
-@property (nonatomic, copy) NSDictionary *albumDetialDict;
+@property (nonatomic, strong) IMAlbum *album;
 
 @end

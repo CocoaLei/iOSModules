@@ -17,6 +17,9 @@
 		B71A7E261FEBF85C0050E834 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B71A7E1E1FEBF85C0050E834 /* Info.plist */; };
 		B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B71A7E1F1FEBF85C0050E834 /* iOSModules.xcdatamodeld */; };
 		B728F9071FFFBA6E007B903B /* IMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B728F9061FFFBA6E007B903B /* IMPhoto.m */; };
+		B728F90B20025604007B903B /* IMAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = B728F90A20025604007B903B /* IMAlbum.m */; };
+		B728F90F200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B728F90D200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m */; };
+		B728F910200267C0007B903B /* IMPhotoPreviewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B728F90E200267C0007B903B /* IMPhotoPreviewCollectionViewCell.xib */; };
 		B7381DC01FED4E31008F7F7A /* IMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DBF1FED4E31008F7F7A /* IMHomeViewController.m */; };
 		B7381DC51FED501D008F7F7A /* IMPlistFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DC41FED501D008F7F7A /* IMPlistFileManager.m */; };
 		B7381DD11FEE995E008F7F7A /* IMModuleItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DCF1FEE995E008F7F7A /* IMModuleItemTableViewCell.m */; };
@@ -76,6 +79,11 @@
 		B728F9051FFFBA6E007B903B /* IMPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhoto.h; sourceTree = "<group>"; };
 		B728F9061FFFBA6E007B903B /* IMPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMPhoto.m; sourceTree = "<group>"; };
 		B728F9081FFFBD23007B903B /* IMPhotoProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhotoProtocol.h; sourceTree = "<group>"; };
+		B728F90920025604007B903B /* IMAlbum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMAlbum.h; sourceTree = "<group>"; };
+		B728F90A20025604007B903B /* IMAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMAlbum.m; sourceTree = "<group>"; };
+		B728F90C200267C0007B903B /* IMPhotoPreviewCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhotoPreviewCollectionViewCell.h; sourceTree = "<group>"; };
+		B728F90D200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMPhotoPreviewCollectionViewCell.m; sourceTree = "<group>"; };
+		B728F90E200267C0007B903B /* IMPhotoPreviewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IMPhotoPreviewCollectionViewCell.xib; sourceTree = "<group>"; };
 		B7381DBE1FED4E31008F7F7A /* IMHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMHomeViewController.h; sourceTree = "<group>"; };
 		B7381DBF1FED4E31008F7F7A /* IMHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMHomeViewController.m; sourceTree = "<group>"; };
 		B7381DC31FED501D008F7F7A /* IMPlistFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPlistFileManager.h; sourceTree = "<group>"; };
@@ -327,6 +335,9 @@
 				B786C7321FF769640017AA6C /* IMPhotoCollectionViewCell.h */,
 				B786C7331FF769640017AA6C /* IMPhotoCollectionViewCell.m */,
 				B786C7341FF769640017AA6C /* IMPhotoCollectionViewCell.xib */,
+				B728F90C200267C0007B903B /* IMPhotoPreviewCollectionViewCell.h */,
+				B728F90D200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m */,
+				B728F90E200267C0007B903B /* IMPhotoPreviewCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -343,6 +354,8 @@
 				B728F9051FFFBA6E007B903B /* IMPhoto.h */,
 				B728F9061FFFBA6E007B903B /* IMPhoto.m */,
 				B728F9081FFFBD23007B903B /* IMPhotoProtocol.h */,
+				B728F90920025604007B903B /* IMAlbum.h */,
+				B728F90A20025604007B903B /* IMAlbum.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -474,6 +487,7 @@
 				B71A7E221FEBF85C0050E834 /* LaunchScreen.storyboard in Resources */,
 				B7B266701FF1326300EDF3C4 /* IMModules.plist in Resources */,
 				B786C7361FF769640017AA6C /* IMPhotoCollectionViewCell.xib in Resources */,
+				B728F910200267C0007B903B /* IMPhotoPreviewCollectionViewCell.xib in Resources */,
 				B71A7E261FEBF85C0050E834 /* Info.plist in Resources */,
 				B78720D91FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.xib in Resources */,
 			);
@@ -502,6 +516,7 @@
 			files = (
 				B78720CE1FF631EB0005928C /* IMPhotosManager.m in Sources */,
 				B7B2666D1FF131CA00EDF3C4 /* IMModuleItemModel.m in Sources */,
+				B728F90F200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m in Sources */,
 				B71A7E241FEBF85C0050E834 /* main.m in Sources */,
 				B787206B1FF525D00005928C /* IMPhotoPickerInitialViewController.m in Sources */,
 				B71A7E251FEBF85C0050E834 /* AppDelegate.m in Sources */,
@@ -515,6 +530,7 @@
 				B7381DD11FEE995E008F7F7A /* IMModuleItemTableViewCell.m in Sources */,
 				B728F9071FFFBA6E007B903B /* IMPhoto.m in Sources */,
 				B7B266EE1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m in Sources */,
+				B728F90B20025604007B903B /* IMAlbum.m in Sources */,
 				B786C72E1FF6A0020017AA6C /* IMPhotoBrowseViewController.m in Sources */,
 				B78720D81FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.m in Sources */,
 				B7381DC01FED4E31008F7F7A /* IMHomeViewController.m in Sources */,

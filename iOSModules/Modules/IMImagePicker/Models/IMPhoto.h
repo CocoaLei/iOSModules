@@ -12,7 +12,7 @@
 
 @interface IMPhoto : NSObject   <IMPhotoProtocol>
 
-+ (IMPhoto *)photoWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize;
-- (instancetype)initWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize;
++ (IMPhoto *)photoWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize contentMode:(PHImageContentMode)contentMode;
+- (instancetype)initWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize contentMode:(PHImageContentMode)contentMode;
 
 @end

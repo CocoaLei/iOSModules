@@ -10,12 +10,13 @@
 
 @interface IMPhoto ()
 
-@property (nonatomic, strong) PHAsset          *photoAsset;
-@property (nonatomic, assign) CGSize           photoTargetSize;
+@property (nonatomic, strong) PHAsset               *photoAsset;
+@property (nonatomic, assign) CGSize                photoTargetSize;
 
-@property (nonatomic, assign) PHImageRequestID assetRequestId;
-@property (nonatomic, strong) UIImage          *assetImage;
-@property (nonatomic, assign) BOOL             isLoading;
+@property (nonatomic, assign) PHImageRequestID      assetRequestId;
+@property (nonatomic, strong) UIImage               *assetImage;
+@property (nonatomic, assign) PHImageContentMode    imageContentMode;
+@property (nonatomic, assign) BOOL                  isLoading;
 
 
 @end
@@ -25,15 +26,16 @@
 @synthesize resultImage =   _resultImage;
 
 #pragma mark - Constructor
-+ (IMPhoto *)photoWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize {
-    return [[IMPhoto alloc] initWithAsset:asset targetSize:targetSize];
++ (IMPhoto *)photoWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize contentMode:(PHImageContentMode)contentMode {
+    return [[IMPhoto alloc] initWithAsset:asset targetSize:targetSize contentMode:contentMode];
 }
 
-- (instancetype)initWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize {
+- (instancetype)initWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize contentMode:(PHImageContentMode)contentMode {
     if (self = [super init]) {
         self.photoAsset         =   asset;
         self.photoTargetSize    =   targetSize;
         self.assetRequestId     =   PHInvalidImageRequestID;
+        self.imageContentMode   =   contentMode;
         [self loadResultImage];
     }
     return self;
@@ -96,7 +98,7 @@
 
 - (void)loadImageFromAsset:(PHAsset *)asset targetSize:(CGSize)targetSize {
     PHImageRequestOptions *options  =   [PHImageRequestOptions new];
-    options.resizeMode              =   PHImageRequestOptionsResizeModeFast;
+    options.resizeMode              =   self.imageContentMode==PHImageContentModeAspectFill?PHImageRequestOptionsResizeModeExact:PHImageRequestOptionsResizeModeFast;
     options.deliveryMode            =   PHImageRequestOptionsDeliveryModeHighQualityFormat;
     options.synchronous             =   false;
     options.progressHandler         =   ^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
@@ -107,7 +109,7 @@
     };
     self.assetRequestId             =   [[PHImageManager defaultManager] requestImageForAsset:asset
                                                                                    targetSize:targetSize
-                                                                                  contentMode:PHImageContentModeAspectFit
+                                                                                  contentMode:self.imageContentMode
                                                                                       options:options
                                                                                 resultHandler:^(UIImage *result, NSDictionary *info) {
                                                                                     dispatch_async(dispatch_get_main_queue(), ^{

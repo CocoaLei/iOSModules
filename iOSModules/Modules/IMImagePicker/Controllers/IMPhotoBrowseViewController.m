@@ -46,7 +46,7 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
 #pragma mark -
 #pragma mark - Private methods
 - (void)configureViewApperance {
-    self.title  =   self.albumDetialDict[IM_ALBUM_TITLE];
+    self.title  =   self.album.albumTitle;
     //
     [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
@@ -96,7 +96,8 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
 //
 - (void)previewPhotosButtonAction {
     IMPhotosPreviewViewController *photosPreviewVC  =   [[IMPhotosPreviewViewController alloc] init];
-    photosPreviewVC.albumDetialDict                 =   self.albumDetialDict;
+    photosPreviewVC.previewType                     =   IMPhotosPreviewTypeAlbumPhotos;
+    photosPreviewVC.album                           =   self.album;
     [self.navigationController pushViewController:photosPreviewVC animated:YES];
 }
 
@@ -130,7 +131,6 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
 }
 
 #pragma mark - UICollectionViewDelegate
-
 
 #pragma mark -
 #pragma mark - Initializations
@@ -205,7 +205,7 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
 
 - (NSArray *)photoArray {
     if (!_photoArray) {
-        PHAssetCollection *assetCollection  =   self.albumDetialDict[IM_ALBUM_ASSET_COLLECZTION];
+        PHAssetCollection *assetCollection  =   self.album.albumCollection;
         NSArray *photosInAlbumArr           =   [IMPhotoManagerInstance loadPhotosFromAlbum:assetCollection];
         NSMutableArray *tempPhotosMutArr    =   [NSMutableArray arrayWithCapacity:photosInAlbumArr.count];
         CGFloat screenScale                 =   [UIScreen mainScreen].scale;
@@ -213,7 +213,7 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
         CGFloat sizeHeight                  =   (sizeWidth*(16/10))*screenScale;
         for (PHAsset *photoAsset in photosInAlbumArr) {
             @autoreleasepool {
-                IMPhoto *photo   =   [[IMPhoto alloc] initWithAsset:photoAsset targetSize:CGSizeMake(sizeWidth, sizeHeight)];
+                IMPhoto *photo   =   [[IMPhoto alloc] initWithAsset:photoAsset targetSize:CGSizeMake(sizeWidth, sizeHeight) contentMode:PHImageContentModeAspectFit];
                 [tempPhotosMutArr addObject:photo];
             }
         }

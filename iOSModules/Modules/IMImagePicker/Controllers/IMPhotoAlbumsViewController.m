@@ -10,6 +10,7 @@
 #import "IMPhotoAlbumItemTableViewCell.h"
 #import "IMPhotosManager.h"
 #import "IMPhotoBrowseViewController.h"
+#import "IMAlbum.h"
 
 static  NSString * const IMPhotoAlbumTVCID  =   @"IMPhotoAlbumTVCID";
 
@@ -68,12 +69,7 @@ static  NSString * const IMPhotoAlbumTVCID  =   @"IMPhotoAlbumTVCID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     IMPhotoAlbumItemTableViewCell *photoAlbumTVC    =   [tableView dequeueReusableCellWithIdentifier:IMPhotoAlbumTVCID];
-    NSDictionary   *albumDetailDict                 =   self.photoAlbumsArray[indexPath.row];
-    NSString *albumName                             =   albumDetailDict[IM_ALBUM_TITLE];
-    NSUInteger assetCount                           =   [albumDetailDict[IM_ALBUM_PHOTO_COUNT] unsignedIntegerValue];
-    photoAlbumTVC.photoAlbumBriefIntroLabel.text    =   [NSString stringWithFormat:@"%@ (%lu)",albumName,(unsigned long)assetCount];
-    UIImage *coverImage                             =   albumDetailDict[IM_ALBUM_COVER_IMAGE];
-    photoAlbumTVC.photoAlbumCoverImageView.image    =   coverImage;
+    [photoAlbumTVC configurePhotoAlbum:self.photoAlbumsArray[indexPath.row]];
     return photoAlbumTVC;
 }
 
@@ -84,7 +80,7 @@ static  NSString * const IMPhotoAlbumTVCID  =   @"IMPhotoAlbumTVCID";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     IMPhotoBrowseViewController *photoBrowseViewController  =   [[IMPhotoBrowseViewController alloc] init];
-    photoBrowseViewController.albumDetialDict   =   self.photoAlbumsArray[indexPath.row];
+    photoBrowseViewController.album                         =   self.photoAlbumsArray[indexPath.row];
     [self.navigationController pushViewController:photoBrowseViewController animated:YES];
 }
 
@@ -107,14 +103,14 @@ static  NSString * const IMPhotoAlbumTVCID  =   @"IMPhotoAlbumTVCID";
         NSArray *albumsArray   =    [IMPhotoManagerInstance loadAllPhotoAlbumsFromDevice];
         // Descending sort album by photo count
         NSArray *sortedArray   =   [albumsArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-            NSDictionary *albumA    =   (NSDictionary *)obj1;
-            NSDictionary *albumB    =   (NSDictionary *)obj2;
-            return [albumB[IM_ALBUM_PHOTO_COUNT] compare:albumA[IM_ALBUM_PHOTO_COUNT]];
+            IMAlbum *albumA    =   (IMAlbum *)obj1;
+            IMAlbum *albumB    =   (IMAlbum *)obj2;
+            return [albumB.albumPhotoCount compare:albumA.albumPhotoCount];
         }];
         NSMutableArray *tempMutArray    =   [NSMutableArray arrayWithArray:sortedArray];
-        for (NSDictionary *albumDict in sortedArray) {
-            if ([albumDict[IM_ALBUM_PHOTO_COUNT] integerValue] == 0) {
-                [tempMutArray removeObject:albumDict];
+        for (IMAlbum *album in sortedArray) {
+            if (album.albumPhotoCount == 0) {
+                [tempMutArray removeObject:album];
             }
         }
         _photoAlbumsArray   =   [tempMutArray copy];

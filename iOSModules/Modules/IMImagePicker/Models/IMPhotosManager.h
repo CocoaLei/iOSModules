@@ -33,6 +33,8 @@ typedef void (^ImageRequestFinished)(NSDictionary *imageInfo, UIImage *resulImag
 
 // Get photo asset from album
 - (NSArray *)loadPhotosFromAlbum:(PHAssetCollection *)assetCollection;
+- (NSArray *)loadPhotosFromAlbum:(PHAssetCollection *)assetCollection
+                      targetSize:(CGSize)targetSize;
 
 // Get photo by asset
 - (UIImage *)requestPreviewImageFromAsset:(PHAsset *)asset
