@@ -92,7 +92,9 @@
                                                                options:nil];
     NSMutableArray *tempPhotoMutArr     =   [[NSMutableArray alloc] initWithCapacity:assetFetchResult.count];
     for (PHAsset *asset in assetFetchResult) {
-        [tempPhotoMutArr addObject:asset];
+        if (asset.mediaType == PHAssetMediaTypeImage) {
+           [tempPhotoMutArr addObject:asset];
+        }
     }
     return [tempPhotoMutArr copy];
 }

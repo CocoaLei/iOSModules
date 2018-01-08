@@ -73,7 +73,7 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
             if (imageAssetsArray.count > 0) {
                 for (PHAsset *asset in imageAssetsArray) {
                     IMPhoto *photo  =   [[IMPhoto alloc] initWithAsset:asset
-                                                            targetSize:PHImageManagerMaximumSize
+                                                            targetSize:CGSizeMake(ScreenWidth, ScreenHeight)
                                                            contentMode:PHImageContentModeAspectFit];
                     [self.photosMutArray addObject:photo];
                 }

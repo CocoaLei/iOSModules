@@ -42,7 +42,7 @@ typedef void (^ImageRequestFinished)(NSDictionary *imageInfo, UIImage *resulImag
                               contentMode:(PHImageContentMode)imageContentMode;
 - (UIImage *)requestOriginalImageFromAsset:(PHAsset *)asset;
 
-- (void )requestPreviewImageFromAsset:(PHAsset *)asset
+- (void)requestPreviewImageFromAsset:(PHAsset *)asset
                                  withSize:(CGSize)imageSize
                               contentMode:(PHImageContentMode)imageContentMode
                           requestFinished:(ImageRequestFinished)requestFinised;
