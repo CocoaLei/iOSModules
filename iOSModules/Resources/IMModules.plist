@@ -14,5 +14,17 @@
 		<key>ModuleImagePath</key>
 		<string>im_placeholder</string>
 	</dict>
+	<dict>
+		<key>ModuleName</key>
+		<string>Rich Text</string>
+		<key>ModuleImagePath</key>
+		<string>im_placeholder</string>
+	</dict>
+	<dict>
+		<key>ModuleName</key>
+		<string>Loading View</string>
+		<key>ModuleImagePath</key>
+		<string>im_placeholder</string>
+	</dict>
 </array>
 </plist>
