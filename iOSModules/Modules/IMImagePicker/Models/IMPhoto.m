@@ -111,10 +111,18 @@
                                                                                    targetSize:targetSize
                                                                                   contentMode:self.imageContentMode
                                                                                       options:options
-                                                                                resultHandler:^(UIImage *result, NSDictionary *info) {
+                                                                                resultHandler:^(UIImage *resultImage, NSDictionary *imageInfo) {
+                                                                                    
                                                                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                                                                        self.resultImage    =   result;
-                                                                                        [self imageLoadFinished];
+                                                                                        BOOL downloadFinined = (![[imageInfo objectForKey:PHLivePhotoInfoCancelledKey] boolValue]
+                                                                                                                && ![[imageInfo objectForKey:PHLivePhotoInfoErrorKey] boolValue]);
+                                                                                        if (downloadFinined && resultImage) {
+                                                                                            self.resultImage    =   resultImage;
+                                                                                            [self imageLoadFinished];
+                                                                                        } else {
+                                                                                            IMDebugLog(@"ImageInformation is %@",imageInfo);
+                                                                                            self.resultImage    =   [UIImage imageNamed:@"im_image_placeholder"];
+                                                                                        }
                                                                                     });
                                                                                 }];
 }

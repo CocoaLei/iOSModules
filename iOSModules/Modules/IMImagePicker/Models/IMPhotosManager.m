@@ -30,11 +30,80 @@
 #pragma mark -
 #pragma mark - Get photo album
 - (NSArray *)loadAllPhotoAlbumsFromDevice {
+    // Configure fetch options
+    PHFetchOptions *fetchOptions        =   [PHFetchOptions new];
+    fetchOptions.predicate              =   [NSPredicate predicateWithFormat:@"estimatedAssetCount > 0"];
+    fetchOptions.sortDescriptors        =   @[[NSSortDescriptor sortDescriptorWithKey:@"estimatedAssetCount" ascending:NO]];
+    
+    __block NSMutableArray  *albumAssetCollectionMutArray   =   [[NSMutableArray alloc] init];
+    __weak typeof(self) weakSelf                            =   self;
+    // Get all user albums
+    PHFetchResult *userAlbums           =   [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
+                                                                                     subtype:PHAssetCollectionSubtypeAny
+                                                                                     options:fetchOptions];
+    [userAlbums enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[PHAssetCollection class]]) {
+            PHAssetCollection *aAlbumAssetCollection    =   (PHAssetCollection *)obj;
+            IMPhoto *coverPhoto                         =   [weakSelf getCoverPhotoInAlbumCollection:aAlbumAssetCollection];
+            IMAlbum *aAlbum                             =   [[IMAlbum alloc] initAlbumModelWithTitle:aAlbumAssetCollection.localizedTitle
+                                                                                          photoCount:[weakSelf getAssetCountInAlbumCollection:aAlbumAssetCollection]
+                                                                                          albumCover:coverPhoto
+                                                                                     albumCollection:aAlbumAssetCollection];
+            [albumAssetCollectionMutArray addObject:aAlbum];
+        }
+    }];
+    // Get all smart albums
+    PHFetchResult *smartAlbums          =   [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
+                                                                                     subtype:PHAssetCollectionSubtypeAny
+                                                                                     options:nil];
+    [smartAlbums enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[PHAssetCollection class]]) {
+            PHAssetCollection *aAlbumAssetCollection    =   (PHAssetCollection *)obj;
+            NSUInteger assetCount                       =   [weakSelf getAssetCountInAlbumCollection:aAlbumAssetCollection];
+            if (assetCount > 0) {
+                IMPhoto *coverPhoto                         =   [weakSelf getCoverPhotoInAlbumCollection:aAlbumAssetCollection];
+                IMAlbum *aAlbum                             =   [[IMAlbum alloc] initAlbumModelWithTitle:aAlbumAssetCollection.localizedTitle
+                                                                                              photoCount:assetCount
+                                                                                              albumCover:coverPhoto
+                                                                                         albumCollection:aAlbumAssetCollection];
+                [albumAssetCollectionMutArray addObject:aAlbum];
+            }
+        }
+    }];
+    // Sorted by count
+    return [albumAssetCollectionMutArray sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                IMAlbum *albumA =   (IMAlbum *)obj1;
+                IMAlbum *albumB =   (IMAlbum *)obj2;
+                return [albumB.albumPhotoCount compare:albumA.albumPhotoCount];
+            }];
+}
 
-    NSMutableArray *tempAlbumsMutArray  =   [[NSMutableArray alloc] init];
-    [tempAlbumsMutArray addObjectsFromArray:[self loadMyPhotoAlbumsFromDevice]];
-    [tempAlbumsMutArray addObjectsFromArray:[self loadSmartPhotoAlbumsFromDevice]];
-    return [tempAlbumsMutArray copy];
+- (id <IMPhotoProtocol> )getCoverPhotoInAlbumCollection:(PHAssetCollection *)assetCollection {
+    PHFetchOptions *fetchOptions    =   [[PHFetchOptions alloc] init];
+    fetchOptions.sortDescriptors    =   @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+    PHFetchResult *fetchResult      =   [PHAsset fetchAssetsInAssetCollection:assetCollection
+                                                                      options:fetchOptions];
+    __block IMPhoto *coverPhoto     =   [[IMPhoto alloc] init];
+    [fetchResult enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[PHAsset class]]) {
+            PHAsset *resultAsset    =   (PHAsset *)obj;
+            if (resultAsset.mediaType == PHAssetMediaTypeImage) {
+                coverPhoto =   [IMPhoto photoWithAsset:resultAsset
+                                                     targetSize:CGSizeMake(60.0f*[UIScreen mainScreen].scale, 60.0f*[UIScreen mainScreen].scale)
+                                                    contentMode:PHImageContentModeAspectFill];
+                *stop       =   YES;
+            }
+        }
+    }];
+    return coverPhoto;
+}
+
+- (NSUInteger)getAssetCountInAlbumCollection:(PHAssetCollection *)assetCollection {
+    PHFetchOptions *fetchOptions    =   [[PHFetchOptions alloc] init];
+    fetchOptions.predicate          =   [NSPredicate predicateWithFormat:@"mediaType = %ld",(long)PHAssetMediaTypeImage];
+    PHFetchResult *fetchResult      =   [PHAsset fetchAssetsInAssetCollection:assetCollection
+                                                                      options:fetchOptions];
+    return fetchResult.count;
 }
 
 - (NSArray *)loadMyPhotoAlbumsFromDevice {
@@ -87,12 +156,16 @@
 
 #pragma mark -
 #pragma mark - Get photos from album
+// Not allow download image from iCloud
 - (NSArray *)loadPhotosFromAlbum:(PHAssetCollection *)assetCollection {
+    PHFetchOptions  *fetchOptions       =   [[PHFetchOptions alloc] init];
+    fetchOptions.sortDescriptors        =   @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+    fetchOptions.predicate              =   [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeImage];
     PHFetchResult *assetFetchResult     =   [PHAsset fetchAssetsInAssetCollection:assetCollection
-                                                               options:nil];
+                                                                          options:fetchOptions];
     NSMutableArray *tempPhotoMutArr     =   [[NSMutableArray alloc] initWithCapacity:assetFetchResult.count];
     for (PHAsset *asset in assetFetchResult) {
-        if (asset.mediaType == PHAssetMediaTypeImage) {
+        if (asset.mediaType == PHAssetMediaTypeImage && asset.mediaType) {
            [tempPhotoMutArr addObject:asset];
         }
     }

@@ -24,7 +24,7 @@
 - (void)configurePhotoAlbum:(IMAlbum *)album {
     self.albumModel =   album;
     self.photoAlbumCoverImageView.image =   album.albumCoverPhoto.resultImage;
-    self.photoAlbumBriefIntroLabel.text =   [NSString stringWithFormat:@"%@ (%li)",album.albumTitle,[album.albumPhotoCount integerValue]];
+    self.photoAlbumBriefIntroLabel.text =   [NSString stringWithFormat:@"%@ (%ld)",album.albumTitle,(long)[album.albumPhotoCount integerValue]];
     //
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handlePhotoLoadDidEndNotification:)
