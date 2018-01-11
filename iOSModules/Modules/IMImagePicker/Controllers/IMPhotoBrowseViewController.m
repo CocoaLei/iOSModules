@@ -41,6 +41,7 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self configureViewApperance];
+    [self scrollToBottom];
 }
 
 #pragma mark -
@@ -101,6 +102,15 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
     [self.navigationController pushViewController:photosPreviewVC animated:YES];
 }
 
+// Scroll to bottom
+- (void)scrollToBottom {
+    NSInteger lineCount     =   self.photoArray.count/4;
+    CGFloat itemWidth       =   (ScreenWidth-25.0f)/4;
+    CGFloat itemHeight      =   itemWidth*(16/10);
+    CGFloat contentOffSetY  =   lineCount*(itemHeight+5.0f);
+    [self.photoBrowseCollectionView setContentOffset:CGPointMake(0.0f, contentOffSetY)];
+}
+
 #pragma mark -
 #pragma mark - UICollectionViewDatasource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -114,12 +124,9 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     IMPhotoCollectionViewCell *photoCVC  =   [collectionView dequeueReusableCellWithReuseIdentifier:IMPhotoCVCID forIndexPath:indexPath];
     IMPhoto *photo                       =   self.photoArray[indexPath.row];
-    if (!photo.resultImage) {
-        [photo loadImageFromAsset];
-    }
     [photoCVC configurePhotoCVCWithPhoto:photo selectedHandler:^(id<IMPhotoProtocol> photo, BOOL isSelected) {
-        NSDictionary *handlePhotoDict   =   @{@"IndexPath"  :   indexPath,
-                                              @"PhotoDict"  :   photo
+        NSDictionary *handlePhotoDict    =   @{@"IndexPath"  :   indexPath,
+                                              @"PhotoDict"   :   photo
                                               };
         if (!isSelected) {
             [self deselectePhoto:handlePhotoDict];
@@ -153,7 +160,6 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
         UINib *imPhotoCVCNib                    =   [UINib nibWithNibName:NSStringFromClass([IMPhotoCollectionViewCell class]) bundle:nil];
         [_photoBrowseCollectionView registerNib:imPhotoCVCNib forCellWithReuseIdentifier:IMPhotoCVCID];
         [_photoBrowseCollectionView setFrame:CGRectMake(0.0f, 0.0f, ScreenWidth, ScreenHeight-46.0f)];
-        [_photoBrowseCollectionView setContentSize:CGSizeMake(ScreenWidth, 10*itemHeight+11*5.0f)];
     }
     return _photoBrowseCollectionView;
 }
@@ -205,19 +211,7 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
 
 - (NSArray *)photoArray {
     if (!_photoArray) {
-        PHAssetCollection *assetCollection  =   self.album.albumCollection;
-        NSArray *photosInAlbumArr           =   [IMPhotoManagerInstance loadPhotosFromAlbum:assetCollection];
-        NSMutableArray *tempPhotosMutArr    =   [NSMutableArray arrayWithCapacity:photosInAlbumArr.count];
-        CGFloat screenScale                 =   [UIScreen mainScreen].scale;
-        CGFloat sizeWidth                   =   ((ScreenWidth-25.0f)/4)*screenScale;
-        CGFloat sizeHeight                  =   (sizeWidth*(16/10))*screenScale;
-        for (PHAsset *photoAsset in photosInAlbumArr) {
-            @autoreleasepool {
-                IMPhoto *photo   =   [[IMPhoto alloc] initWithAsset:photoAsset targetSize:CGSizeMake(sizeWidth, sizeHeight) contentMode:PHImageContentModeAspectFit];
-                [tempPhotosMutArr addObject:photo];
-            }
-        }
-        _photoArray =   [[NSArray alloc] initWithArray:[tempPhotosMutArr copy]];
+        _photoArray                         =   [[NSArray alloc] initWithArray:[IMPhotoManagerInstance loadPhotosFromAlbum:self.album.albumCollection]];
     }
     return _photoArray;
 }

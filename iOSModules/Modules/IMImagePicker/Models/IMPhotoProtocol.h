@@ -17,6 +17,7 @@
 @protocol IMPhotoProtocol <NSObject>
 
 @required
+@property (nonatomic, strong) PHAsset *photoAsset;
 @property (nonatomic, strong) UIImage *resultImage;
 - (void)loadImageFromAsset;
 

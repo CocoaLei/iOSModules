@@ -19,7 +19,6 @@
 		B728F9071FFFBA6E007B903B /* IMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B728F9061FFFBA6E007B903B /* IMPhoto.m */; };
 		B728F90B20025604007B903B /* IMAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = B728F90A20025604007B903B /* IMAlbum.m */; };
 		B728F90F200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B728F90D200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m */; };
-		B728F910200267C0007B903B /* IMPhotoPreviewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B728F90E200267C0007B903B /* IMPhotoPreviewCollectionViewCell.xib */; };
 		B7381DC01FED4E31008F7F7A /* IMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DBF1FED4E31008F7F7A /* IMHomeViewController.m */; };
 		B7381DC51FED501D008F7F7A /* IMPlistFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DC41FED501D008F7F7A /* IMPlistFileManager.m */; };
 		B7381DD11FEE995E008F7F7A /* IMModuleItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7381DCF1FEE995E008F7F7A /* IMModuleItemTableViewCell.m */; };
@@ -41,6 +40,7 @@
 		B7B266E21FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B266E11FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m */; };
 		B7B266E71FF3DA7000EDF3C4 /* IMConstantFile.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B266E61FF3DA7000EDF3C4 /* IMConstantFile.m */; };
 		B7B266EE1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B266ED1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m */; };
+		B7FF84202007A9B3001690B3 /* IMPhotoPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FF841F2007A9B3001690B3 /* IMPhotoPreview.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +83,6 @@
 		B728F90A20025604007B903B /* IMAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMAlbum.m; sourceTree = "<group>"; };
 		B728F90C200267C0007B903B /* IMPhotoPreviewCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhotoPreviewCollectionViewCell.h; sourceTree = "<group>"; };
 		B728F90D200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMPhotoPreviewCollectionViewCell.m; sourceTree = "<group>"; };
-		B728F90E200267C0007B903B /* IMPhotoPreviewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IMPhotoPreviewCollectionViewCell.xib; sourceTree = "<group>"; };
 		B7381DBE1FED4E31008F7F7A /* IMHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMHomeViewController.h; sourceTree = "<group>"; };
 		B7381DBF1FED4E31008F7F7A /* IMHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMHomeViewController.m; sourceTree = "<group>"; };
 		B7381DC31FED501D008F7F7A /* IMPlistFileManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPlistFileManager.h; sourceTree = "<group>"; };
@@ -125,6 +124,8 @@
 		B7B266E61FF3DA7000EDF3C4 /* IMConstantFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMConstantFile.m; sourceTree = "<group>"; };
 		B7B266EC1FF3E5A400EDF3C4 /* UIImage+RoundCorner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundCorner.h"; sourceTree = "<group>"; };
 		B7B266ED1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundCorner.m"; sourceTree = "<group>"; };
+		B7FF841E2007A9B3001690B3 /* IMPhotoPreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhotoPreview.h; sourceTree = "<group>"; };
+		B7FF841F2007A9B3001690B3 /* IMPhotoPreview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMPhotoPreview.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,9 +305,9 @@
 		B7B266D61FF3B2A300EDF3C4 /* IMImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				B7B266D71FF3B2C700EDF3C4 /* Controllers */,
 				B7B266D91FF3B2D800EDF3C4 /* Models */,
 				B7B266D81FF3B2D100EDF3C4 /* Views */,
-				B7B266D71FF3B2C700EDF3C4 /* Controllers */,
 			);
 			path = IMImagePicker;
 			sourceTree = "<group>";
@@ -322,6 +323,8 @@
 				B786C72D1FF6A0020017AA6C /* IMPhotoBrowseViewController.m */,
 				B786C7371FF7CEAC0017AA6C /* IMPhotosPreviewViewController.h */,
 				B786C7381FF7CEAC0017AA6C /* IMPhotosPreviewViewController.m */,
+				B7FF841E2007A9B3001690B3 /* IMPhotoPreview.h */,
+				B7FF841F2007A9B3001690B3 /* IMPhotoPreview.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -337,7 +340,6 @@
 				B786C7341FF769640017AA6C /* IMPhotoCollectionViewCell.xib */,
 				B728F90C200267C0007B903B /* IMPhotoPreviewCollectionViewCell.h */,
 				B728F90D200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m */,
-				B728F90E200267C0007B903B /* IMPhotoPreviewCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -487,7 +489,6 @@
 				B71A7E221FEBF85C0050E834 /* LaunchScreen.storyboard in Resources */,
 				B7B266701FF1326300EDF3C4 /* IMModules.plist in Resources */,
 				B786C7361FF769640017AA6C /* IMPhotoCollectionViewCell.xib in Resources */,
-				B728F910200267C0007B903B /* IMPhotoPreviewCollectionViewCell.xib in Resources */,
 				B71A7E261FEBF85C0050E834 /* Info.plist in Resources */,
 				B78720D91FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.xib in Resources */,
 			);
@@ -519,6 +520,7 @@
 				B728F90F200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m in Sources */,
 				B71A7E241FEBF85C0050E834 /* main.m in Sources */,
 				B787206B1FF525D00005928C /* IMPhotoPickerInitialViewController.m in Sources */,
+				B7FF84202007A9B3001690B3 /* IMPhotoPreview.m in Sources */,
 				B71A7E251FEBF85C0050E834 /* AppDelegate.m in Sources */,
 				B7381DC51FED501D008F7F7A /* IMPlistFileManager.m in Sources */,
 				B78720651FF5223F0005928C /* IMBaseViewController.m in Sources */,

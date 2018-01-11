@@ -28,8 +28,7 @@ typedef void (^ImageRequestFinished)(NSDictionary *imageInfo, UIImage *resulImag
 
 // Get photo album
 - (NSArray *)loadAllPhotoAlbumsFromDevice;
-- (NSArray *)loadMyPhotoAlbumsFromDevice;
-- (NSArray *)loadSmartPhotoAlbumsFromDevice;
+
 
 // Get photo asset from album
 - (NSArray *)loadPhotosFromAlbum:(PHAssetCollection *)assetCollection;

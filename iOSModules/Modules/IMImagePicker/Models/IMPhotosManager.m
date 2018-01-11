@@ -98,6 +98,7 @@
     return coverPhoto;
 }
 
+// Note : estimatedAssetCount of PHAssetCollection is just estimates, it will return NSNotFound if a count cannot be quickly returned.
 - (NSUInteger)getAssetCountInAlbumCollection:(PHAssetCollection *)assetCollection {
     PHFetchOptions *fetchOptions    =   [[PHFetchOptions alloc] init];
     fetchOptions.predicate          =   [NSPredicate predicateWithFormat:@"mediaType = %ld",(long)PHAssetMediaTypeImage];
@@ -106,80 +107,36 @@
     return fetchResult.count;
 }
 
-- (NSArray *)loadMyPhotoAlbumsFromDevice {
-    return [self loadPhotoAlbumFromDeviceWithType:PHAssetCollectionTypeAlbum];
-}
-
-- (NSArray *)loadSmartPhotoAlbumsFromDevice {
-    return [self loadPhotoAlbumFromDeviceWithType:PHAssetCollectionTypeSmartAlbum];
-}
-
-- (NSArray *)loadMomentPhotoAlbumsFromDevice {
-    return [self loadPhotoAlbumFromDeviceWithType:PHAssetCollectionTypeMoment];
-}
-
-- (NSArray *)loadPhotoAlbumFromDeviceWithType:(PHAssetCollectionType)albumType {
-    PHFetchResult *albumsFetchResult   =   [PHAssetCollection fetchAssetCollectionsWithType:albumType
-                                                                                    subtype:PHAssetCollectionSubtypeAlbumRegular
-                                                                                    options:nil];
-    NSMutableArray *tempAlbumsMutArr   =   [[NSMutableArray alloc] initWithCapacity:albumsFetchResult.count];
-    PHFetchOptions *fetchOptions       =   [[PHFetchOptions alloc] init];
-    fetchOptions.sortDescriptors       =   @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
-    for (PHCollection *assetCollection in albumsFetchResult) {
-        @autoreleasepool {
-            if ([assetCollection isKindOfClass:[PHAssetCollection class]]) {
-                NSString *albumTitle                =   assetCollection.localizedTitle;
-                PHFetchResult *assetFetchResult     =   [PHAsset fetchAssetsInAssetCollection:(PHAssetCollection *)assetCollection
-                                                                                      options:nil];
-                NSUInteger assetCount               =   assetFetchResult.count;
-                if (self.photoRequestSize.width == 0 && self.photoRequestSize.height == 0) {
-                    // if you not set a value to photo request size
-                    CGFloat screenScale     =   [UIScreen mainScreen].scale;
-                    self.photoRequestSize   =   CGSizeMake(60.0f*screenScale, 60.0f*screenScale);
-                }
-                if (assetFetchResult.count > 0) {
-                    IMPhoto *albumCoverPhoto    =   [[IMPhoto alloc] initWithAsset:assetFetchResult[0]
-                                                                        targetSize:self.photoRequestSize
-                                                                       contentMode:PHImageContentModeAspectFill];
-                    IMAlbum *albumModel         =   [[IMAlbum alloc] initAlbumModelWithTitle:albumTitle
-                                                                                  photoCount:assetCount
-                                                                                  albumCover:albumCoverPhoto
-                                                                             albumCollection:(PHAssetCollection *)assetCollection];
-                    [tempAlbumsMutArr addObject:albumModel];
-                }
-            }
-        }
-        
-    }
-    return [tempAlbumsMutArr copy];
-}
-
 #pragma mark -
 #pragma mark - Get photos from album
 // Not allow download image from iCloud
+// If there is no target size, pass a default size
 - (NSArray *)loadPhotosFromAlbum:(PHAssetCollection *)assetCollection {
-    PHFetchOptions  *fetchOptions       =   [[PHFetchOptions alloc] init];
-    fetchOptions.sortDescriptors        =   @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-    fetchOptions.predicate              =   [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeImage];
-    PHFetchResult *assetFetchResult     =   [PHAsset fetchAssetsInAssetCollection:assetCollection
-                                                                          options:fetchOptions];
-    NSMutableArray *tempPhotoMutArr     =   [[NSMutableArray alloc] initWithCapacity:assetFetchResult.count];
-    for (PHAsset *asset in assetFetchResult) {
-        if (asset.mediaType == PHAssetMediaTypeImage && asset.mediaType) {
-           [tempPhotoMutArr addObject:asset];
-        }
-    }
-    return [tempPhotoMutArr copy];
+    CGFloat screenScale                         =   [UIScreen mainScreen].scale;
+    CGFloat sizeWidth                           =   ((ScreenWidth-25.0f)/4)*screenScale;
+    CGFloat sizeHeight                          =   (sizeWidth*(16/10))*screenScale;
+    CGSize  targetSize                          =   CGSizeMake(sizeWidth, sizeHeight);
+    return [self loadPhotosFromAlbum:assetCollection targetSize:targetSize];
 }
 
 - (NSArray *)loadPhotosFromAlbum:(PHAssetCollection *)assetCollection
                       targetSize:(CGSize)targetSize {
-    PHFetchResult *assetFetchResult     =   [PHAsset fetchAssetsInAssetCollection:assetCollection
-                                                                          options:nil];
-    NSMutableArray *tempPhotoMutArr     =   [[NSMutableArray alloc] initWithCapacity:assetFetchResult.count];
-    for (PHAsset *asset in assetFetchResult) {
-        [tempPhotoMutArr addObject:asset];
-    }
+    PHFetchOptions  *fetchOptions               =   [[PHFetchOptions alloc] init];
+    fetchOptions.sortDescriptors                =   @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+    fetchOptions.predicate                      =   [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeImage];
+    PHFetchResult *assetFetchResult             =   [PHAsset fetchAssetsInAssetCollection:assetCollection
+                                                                                  options:fetchOptions];
+    __block NSMutableArray *tempPhotoMutArr     =   [[NSMutableArray alloc] initWithCapacity:assetFetchResult.count];
+    //
+    [assetFetchResult enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[PHAsset class]]) {
+            PHAsset *aAsset =   (PHAsset *)obj;
+            IMPhoto *aPhoto =   [[IMPhoto alloc] initWithAsset:aAsset
+                                                    targetSize:targetSize
+                                                   contentMode:PHImageContentModeAspectFit];
+            [tempPhotoMutArr addObject:aPhoto];
+        }
+    }];
     return [tempPhotoMutArr copy];
 }
 

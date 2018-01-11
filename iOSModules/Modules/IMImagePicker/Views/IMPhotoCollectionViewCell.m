@@ -27,9 +27,13 @@
 }
 
 - (void)configurePhotoCVCWithPhoto:(id<IMPhotoProtocol>)photo selectedHandler:(IMPhotoCVCDidSelectedBlock)selectedBlock {
-    self.photo                  =   photo;
-    self.photoSelectedBlock     =   selectedBlock;
-    self.photoImageView.image   =   self.photo.resultImage;
+    self.photo                      =   photo;
+    self.photoSelectedBlock         =   selectedBlock;
+    if (!self.photo.resultImage) {
+        [self.photo loadImageFromAsset];
+    } else {
+        self.photoImageView.image   =   self.photo.resultImage;
+    }
     //
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handlePhotoLoadDidEndNotification:)

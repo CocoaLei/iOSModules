@@ -15,7 +15,8 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
 @interface IMPhotosPreviewViewController ()
 <
     UICollectionViewDelegate,
-    UICollectionViewDataSource
+    UICollectionViewDataSource,
+    UIScrollViewDelegate
 >
 
 @property (nonatomic, assign)   BOOL                    isHideOtherUI;
@@ -42,9 +43,8 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
 #pragma mark - Private methods
 - (void)configureViewApperance {
     //
-    self.navigationController.navigationBar.hidden  =   YES;
     UIImage *backgroundImage    =   [UIImage createTranslucenceImageWithSize:CGSizeMake(ScreenWidth, 64.0f)
-                                                                       alpha:0.0f
+                                                                       alpha:0.7f
                                                                       colorR:255.0f
                                                                       colorG:255.0f
                                                                       colorB:255.0f];
@@ -56,12 +56,10 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
                                                                       }];
     self.navigationItem.leftBarButtonItem  =   [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"im_arrow_left"]
                                                                                 style:UIBarButtonItemStylePlain target:self action:@selector(backItemAction)];
-    self.navigationController.navigationBar.translucent =   YES;
     [self.view setBackgroundColor:[UIColor whiteColor]];
     //
     self.isHideOtherUI          =   NO;
     //
-    [self.photosCollectionView setFrame:CGRectMake(0.0f, 0.0f, ScreenWidth, ScreenHeight)];
     [self.view addSubview:self.photosCollectionView];
 }
 
@@ -69,15 +67,9 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
     switch (self.previewType) {
         case IMPhotosPreviewTypeAlbumPhotos:
         {
-            NSArray *imageAssetsArray    =   [IMPhotoManagerInstance loadPhotosFromAlbum:self.album.albumCollection];
-            if (imageAssetsArray.count > 0) {
-                for (PHAsset *asset in imageAssetsArray) {
-                    IMPhoto *photo  =   [[IMPhoto alloc] initWithAsset:asset
-                                                            targetSize:CGSizeMake(ScreenWidth, ScreenHeight)
-                                                           contentMode:PHImageContentModeAspectFit];
-                    [self.photosMutArray addObject:photo];
-                }
-            }
+            NSArray *imageAssetsArray    =   [IMPhotoManagerInstance loadPhotosFromAlbum:self.album.albumCollection
+                                                                              targetSize:CGSizeMake(ScreenWidth, ScreenHeight)];
+            [self.photosMutArray addObjectsFromArray:imageAssetsArray];
         }
             break;
         case IMPhotosPreviewTypeSelectedPhotos:
@@ -97,12 +89,6 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    UITouch *anyTouch   =   [touches anyObject];
-    if (anyTouch.view == self.photosCollectionView) {
-        
-    }
-}
 
 #pragma mark -
 #pragma mark - UICollectionViewDatasource
@@ -136,6 +122,10 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
     self.isHideOtherUI  =   !self.isHideOtherUI;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    [(IMPhotoPreviewCollectionViewCell *)cell resetContentViewScale];
+}
+
 #pragma mark -
 #pragma mark - Initializations
 - (UICollectionView *)photosCollectionView {
@@ -147,12 +137,17 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
         flowLayout.sectionInset                 =   UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
         flowLayout.itemSize                     =   itemSize;
         flowLayout.scrollDirection              =   UICollectionViewScrollDirectionHorizontal;
-        _photosCollectionView                   =   [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
-        _photosCollectionView.backgroundColor   =   [UIColor clearColor];
+        _photosCollectionView                   =   [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, ScreenWidth, ScreenHeight) collectionViewLayout:flowLayout];
+        //
+        if (@available(iOS 11.0, *)) {
+            _photosCollectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
+        
+        _photosCollectionView.backgroundColor   =   [UIColor whiteColor];
         _photosCollectionView.pagingEnabled     =   YES;
         _photosCollectionView.delegate          =   self;
         _photosCollectionView.dataSource        =   self;
-        [_photosCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([IMPhotoPreviewCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:IMPhotoPreviewCVCID];
+        [_photosCollectionView registerClass:[IMPhotoPreviewCollectionViewCell class] forCellWithReuseIdentifier:IMPhotoPreviewCVCID];
     }
     return _photosCollectionView;
 }

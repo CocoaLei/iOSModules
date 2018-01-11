@@ -10,7 +10,7 @@
 
 @interface IMPhoto ()
 
-@property (nonatomic, strong) PHAsset               *photoAsset;
+
 @property (nonatomic, assign) CGSize                photoTargetSize;
 
 @property (nonatomic, assign) PHImageRequestID      assetRequestId;
@@ -24,6 +24,7 @@
 @implementation IMPhoto
 
 @synthesize resultImage =   _resultImage;
+@synthesize photoAsset  =   _photoAsset;
 
 #pragma mark - Constructor
 + (IMPhoto *)photoWithAsset:(PHAsset *)asset targetSize:(CGSize)targetSize contentMode:(PHImageContentMode)contentMode {

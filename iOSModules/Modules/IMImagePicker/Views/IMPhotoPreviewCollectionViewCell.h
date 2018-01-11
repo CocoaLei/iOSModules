@@ -12,5 +12,6 @@
 @interface IMPhotoPreviewCollectionViewCell : UICollectionViewCell
 
 - (void)configurePhotoPreviewCVCWithPhoto:(id<IMPhotoProtocol>)photo;
+- (void)resetContentViewScale;
 
 @end
