@@ -16,6 +16,7 @@
 		B71A7E251FEBF85C0050E834 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A7E1D1FEBF85C0050E834 /* AppDelegate.m */; };
 		B71A7E261FEBF85C0050E834 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B71A7E1E1FEBF85C0050E834 /* Info.plist */; };
 		B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B71A7E1F1FEBF85C0050E834 /* iOSModules.xcdatamodeld */; };
+		B7234D1A20090B740005C364 /* UIImage+FileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = B7234D1920090B740005C364 /* UIImage+FileSize.m */; };
 		B728F9071FFFBA6E007B903B /* IMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = B728F9061FFFBA6E007B903B /* IMPhoto.m */; };
 		B728F90B20025604007B903B /* IMAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = B728F90A20025604007B903B /* IMAlbum.m */; };
 		B728F90F200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B728F90D200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m */; };
@@ -76,6 +77,8 @@
 		B71A7E1D1FEBF85C0050E834 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B71A7E1E1FEBF85C0050E834 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B71A7E201FEBF85C0050E834 /* iOSModules.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSModules.xcdatamodel; sourceTree = "<group>"; };
+		B7234D1820090B740005C364 /* UIImage+FileSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+FileSize.h"; sourceTree = "<group>"; };
+		B7234D1920090B740005C364 /* UIImage+FileSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FileSize.m"; sourceTree = "<group>"; };
 		B728F9051FFFBA6E007B903B /* IMPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhoto.h; sourceTree = "<group>"; };
 		B728F9061FFFBA6E007B903B /* IMPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMPhoto.m; sourceTree = "<group>"; };
 		B728F9081FFFBD23007B903B /* IMPhotoProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhotoProtocol.h; sourceTree = "<group>"; };
@@ -358,6 +361,8 @@
 				B728F9061FFFBA6E007B903B /* IMPhoto.m */,
 				B728F90920025604007B903B /* IMAlbum.h */,
 				B728F90A20025604007B903B /* IMAlbum.m */,
+				B7234D1820090B740005C364 /* UIImage+FileSize.h */,
+				B7234D1920090B740005C364 /* UIImage+FileSize.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -520,6 +525,7 @@
 				B728F90F200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m in Sources */,
 				B71A7E241FEBF85C0050E834 /* main.m in Sources */,
 				B787206B1FF525D00005928C /* IMPhotoPickerInitialViewController.m in Sources */,
+				B7234D1A20090B740005C364 /* UIImage+FileSize.m in Sources */,
 				B7FF84202007A9B3001690B3 /* IMPhotoPreview.m in Sources */,
 				B71A7E251FEBF85C0050E834 /* AppDelegate.m in Sources */,
 				B7381DC51FED501D008F7F7A /* IMPlistFileManager.m in Sources */,

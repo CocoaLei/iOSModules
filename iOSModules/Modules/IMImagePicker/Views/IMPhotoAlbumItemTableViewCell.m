@@ -23,7 +23,11 @@
 
 - (void)configurePhotoAlbum:(IMAlbum *)album {
     self.albumModel =   album;
-    self.photoAlbumCoverImageView.image =   album.albumCoverPhoto.resultImage;
+    if (!album.albumCoverPhoto.resultImage) {
+        [album.albumCoverPhoto loadImageFromAsset];
+    } else {
+        self.photoAlbumCoverImageView.image =   album.albumCoverPhoto.resultImage;
+    }
     self.photoAlbumBriefIntroLabel.text =   [NSString stringWithFormat:@"%@ (%ld)",album.albumTitle,(long)[album.albumPhotoCount integerValue]];
     //
     [[NSNotificationCenter defaultCenter] addObserver:self

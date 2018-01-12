@@ -7,13 +7,14 @@
 //
 
 #import "IMPhotoPreviewCollectionViewCell.h"
+#import "UIImage+FileSize.h"
 
 @interface IMPhotoPreviewCollectionViewCell () <UIScrollViewDelegate>
 
 @property (nonatomic, strong)   UIScrollView    *photoContentView;
 @property (nonatomic, strong)   UIImageView     *photoImageView;
 
-@property (nonatomic, strong)   IMPhoto               *photo;
+@property (nonatomic, strong)   IMPhoto         *photo;
 
 @end
 
@@ -35,27 +36,24 @@
 //
 - (void)configurePhotoPreviewCVCWithPhoto:(id<IMPhotoProtocol>)photo {
     self.photo                  =   photo;
-    if (!self.photo.resultImage) {
-        self.photoImageView.image   =   self.photo.resultImage;
+    if (!self.photo.originalImage) {
+        [self.photo loadOriginalImageFromAsset];
     } else {
-        [self.photo loadImageFromAsset];
+        self.photoImageView.image   =   self.photo.originalImage;
     }
     
     //
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handlePhotoLoadDidEndNotification:)
-                                                 name:IMPHOTO_LOADING_FINISHED_NOTIFICATION
+                                                 name:ORIGINAL_LOADING_FINISHED_NOTIFICATION
                                                object:nil];
 }
 
-- (void)loadOriginalImage {
-}
-
 - (void)handlePhotoLoadDidEndNotification:(NSNotification *)notfication {
-    id <IMPhotoProtocol> photo = [notfication object];
-    if (photo == self.photo) {
-        if ([photo resultImage]) {
-            self.photoImageView.image   =   photo.resultImage;
+    PHAsset *photoAsset = [notfication object];
+    if (photoAsset == self.photo.photoAsset) {
+        if ([self.photo originalImage]) {
+            self.photoImageView.image   =   self.photo.originalImage;
         } else {
             self.photoImageView.image   =   [UIImage imageNamed:@"im_image_placeholder"];
         }

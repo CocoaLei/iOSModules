@@ -27,6 +27,10 @@
 - (void)testExample {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
+    NSInteger itemNumberInRow   =   3;
+    for (NSInteger index = 0; index < 15; index++) {
+        NSLog(@"Current row = %ld and index in row = %ld",index/itemNumberInRow,index%itemNumberInRow);
+    }
 }
 
 - (void)testPerformanceExample {

@@ -11,6 +11,9 @@
 #define IMPHOTO_LOADING_FINISHED_NOTIFICATION             @"IMPHOTO_LOADING_FINISHED_NOTIFICATION"
 #define IMPHOTO_LOADING_INPROGRESS_NOTIFICATION           @"IMPHOTO_LOADING_INPROGRESS_NOTIFICATION"
 
+#define ORIGINAL_INPROGRESS_NOTIFICATION                  @"ORIGINAL_INPROGRESS_NOTIFICATION"
+#define ORIGINAL_LOADING_FINISHED_NOTIFICATION            @"ORIGINAL_LOADING_FINISHED_NOTIFICATION"
+
 #define IMPHOTO_LOADING_PROGRESS_KEY                      @"IMPHOTO_LOADING_PROGRESS_KEY"
 #define IMPHOTO_LOADING_PHOTOT_KEY                        @"IMPHOTO_LOADING_PHOTOT_KEY"
 
@@ -19,9 +22,12 @@
 @required
 @property (nonatomic, strong) PHAsset *photoAsset;
 @property (nonatomic, strong) UIImage *resultImage;
+@property (nonatomic, strong) UIImage *originalImage;
+
 - (void)loadImageFromAsset;
 
 @optional
+- (void)loadOriginalImageFromAsset;
 - (void)cancelAnyImageRequest;
 
 @end
