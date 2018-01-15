@@ -13,6 +13,7 @@
 #import "IMModuleItemTableViewCell.h"
 
 #import "IMPhotoPickerInitialViewController.h"
+#import "IMTableViewCellAnimationViewController.h"
 
 static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
 
@@ -74,6 +75,12 @@ static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
         {
             IMPhotoPickerInitialViewController *photoPickerInitialVC    =   [[IMPhotoPickerInitialViewController alloc] init];
             [self.navigationController pushViewController:photoPickerInitialVC animated:YES];
+        }
+            break;
+        case 1:
+        {
+            IMTableViewCellAnimationViewController  *tvcAnimationVC     =   [[IMTableViewCellAnimationViewController alloc] init];
+            [self.navigationController pushViewController:tvcAnimationVC animated:YES];
         }
             break;
         default:

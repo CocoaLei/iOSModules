@@ -36,6 +36,8 @@
 		B78720D41FF63FD70005928C /* IMPhotoAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B78720D31FF63FD70005928C /* IMPhotoAlbumsViewController.m */; };
 		B78720D81FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B78720D61FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.m */; };
 		B78720D91FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B78720D71FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.xib */; };
+		B7AEFEDA200A4D0D00312964 /* IMTableViewCellAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AEFED9200A4D0D00312964 /* IMTableViewCellAnimationViewController.m */; };
+		B7AEFEDE200A4EE500312964 /* IMExpandedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AEFEDD200A4EE500312964 /* IMExpandedTableViewCell.m */; };
 		B7B2666D1FF131CA00EDF3C4 /* IMModuleItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B2666C1FF131CA00EDF3C4 /* IMModuleItemModel.m */; };
 		B7B266701FF1326300EDF3C4 /* IMModules.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7B2666F1FF1326300EDF3C4 /* IMModules.plist */; };
 		B7B266E21FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B266E11FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m */; };
@@ -117,6 +119,10 @@
 		B78720D51FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhotoAlbumItemTableViewCell.h; sourceTree = "<group>"; };
 		B78720D61FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMPhotoAlbumItemTableViewCell.m; sourceTree = "<group>"; };
 		B78720D71FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IMPhotoAlbumItemTableViewCell.xib; sourceTree = "<group>"; };
+		B7AEFED8200A4D0D00312964 /* IMTableViewCellAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMTableViewCellAnimationViewController.h; sourceTree = "<group>"; };
+		B7AEFED9200A4D0D00312964 /* IMTableViewCellAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMTableViewCellAnimationViewController.m; sourceTree = "<group>"; };
+		B7AEFEDC200A4EE500312964 /* IMExpandedTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMExpandedTableViewCell.h; sourceTree = "<group>"; };
+		B7AEFEDD200A4EE500312964 /* IMExpandedTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMExpandedTableViewCell.m; sourceTree = "<group>"; };
 		B7B2666B1FF131CA00EDF3C4 /* IMModuleItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMModuleItemModel.h; sourceTree = "<group>"; };
 		B7B2666C1FF131CA00EDF3C4 /* IMModuleItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMModuleItemModel.m; sourceTree = "<group>"; };
 		B7B2666F1FF1326300EDF3C4 /* IMModules.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = IMModules.plist; sourceTree = "<group>"; };
@@ -280,6 +286,15 @@
 			path = PLISTManager;
 			sourceTree = "<group>";
 		};
+		B7AEFEDB200A4E5E00312964 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B7AEFEDC200A4EE500312964 /* IMExpandedTableViewCell.h */,
+				B7AEFEDD200A4EE500312964 /* IMExpandedTableViewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B7B2666E1FF1324400EDF3C4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,6 +385,7 @@
 		B7B266DA1FF3D5E700EDF3C4 /* IMTableViewCellAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				B7AEFEDB200A4E5E00312964 /* Views */,
 				B7B266DB1FF3D5FD00EDF3C4 /* Controllers */,
 			);
 			path = IMTableViewCellAnimation;
@@ -378,6 +394,8 @@
 		B7B266DB1FF3D5FD00EDF3C4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B7AEFED8200A4D0D00312964 /* IMTableViewCellAnimationViewController.h */,
+				B7AEFED9200A4D0D00312964 /* IMTableViewCellAnimationViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -535,7 +553,9 @@
 				B787206F1FF52F6F0005928C /* UIView+AddRoundBorder.m in Sources */,
 				B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */,
 				B7B266E21FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m in Sources */,
+				B7AEFEDA200A4D0D00312964 /* IMTableViewCellAnimationViewController.m in Sources */,
 				B7381DD11FEE995E008F7F7A /* IMModuleItemTableViewCell.m in Sources */,
+				B7AEFEDE200A4EE500312964 /* IMExpandedTableViewCell.m in Sources */,
 				B728F9071FFFBA6E007B903B /* IMPhoto.m in Sources */,
 				B7B266EE1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m in Sources */,
 				B728F90B20025604007B903B /* IMAlbum.m in Sources */,
