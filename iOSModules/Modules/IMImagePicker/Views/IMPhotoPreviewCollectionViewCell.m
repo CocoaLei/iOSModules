@@ -8,8 +8,11 @@
 
 #import "IMPhotoPreviewCollectionViewCell.h"
 #import "UIImage+FileSize.h"
+#import "IMProgressView.h"
 
 @interface IMPhotoPreviewCollectionViewCell () <UIScrollViewDelegate>
+
+@property (nonatomic, strong)   IMProgressView  *loadingProgressView;
 
 @property (nonatomic, strong)   UIScrollView    *photoContentView;
 @property (nonatomic, strong)   UIImageView     *photoImageView;
@@ -42,11 +45,35 @@
         self.photoImageView.image   =   self.photo.originalImage;
     }
     
+    self.loadingProgressView    =   [IMProgressView progressViewWithFrame:CGRectMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame), 80.0f, 80.0f)
+                                                              borderColor:[UIColor blackColor]
+                                                              borderWidth:1.0f
+                                                                lineWidth:1.0f
+                                                        progressDidChange:^(CGFloat progress) {
+                                                            //
+                                                        }];
+    
+    //
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handPhotoLoadingNotification:)
+                                                 name:ORIGINAL_INPROGRESS_NOTIFICATION
+                                               object:nil];
     //
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handlePhotoLoadDidEndNotification:)
                                                  name:ORIGINAL_LOADING_FINISHED_NOTIFICATION
                                                object:nil];
+    
+}
+
+- (void)handPhotoLoadingNotification:(NSNotification *)notification {
+    NSDictionary *pregressDict  =   [notification object];
+    CGFloat loadProgress        =   [[pregressDict objectForKey:IMPHOTO_LOADING_PROGRESS_KEY] floatValue];
+    if (loadProgress == 1.0f) {
+        [self.loadingProgressView removeFromSuperview];
+    } else {
+        [self.loadingProgressView updateProgress:loadProgress animated:YES];
+    }
 }
 
 - (void)handlePhotoLoadDidEndNotification:(NSNotification *)notfication {

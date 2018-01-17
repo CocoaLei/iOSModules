@@ -177,7 +177,9 @@
 
 - (void)loadOriginalImageFromAsset:(PHAsset *)photoAsset {
     PHImageRequestOptions *options  =   [PHImageRequestOptions new];
-    options.resizeMode              =   self.imageContentMode==PHImageContentModeAspectFill?PHImageRequestOptionsResizeModeExact:PHImageRequestOptionsResizeModeFast;
+    options.networkAccessAllowed    =   YES; //  A Boolean value that specifies whether Photos can download the requested image from iCloud.
+    options.version                 =   PHImageRequestOptionsVersionOriginal;
+    options.resizeMode              =   PHImageRequestOptionsResizeModeNone;
     options.deliveryMode            =   PHImageRequestOptionsDeliveryModeHighQualityFormat;
     options.synchronous             =   NO;
     options.progressHandler         =   ^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
@@ -186,16 +188,27 @@
                                         };
         [[NSNotificationCenter defaultCenter] postNotificationName:ORIGINAL_INPROGRESS_NOTIFICATION object:progressDict];
     };
+    
     self.assetOriginalImageRequestId=   [[PHImageManager defaultManager] requestImageForAsset:photoAsset
                                                                                    targetSize:PHImageManagerMaximumSize
-                                                                                  contentMode:self.imageContentMode
+                                                                                  contentMode:PHImageContentModeDefault // Default value is PHImageContentModeAspectFit
                                                                                       options:options
                                                                                 resultHandler:^(UIImage *resultImage, NSDictionary *imageInfo) {
                                                                                     
                                                                                     dispatch_async(dispatch_get_main_queue(), ^{
-                                                                                        BOOL downloadFinined = (![[imageInfo objectForKey:PHLivePhotoInfoCancelledKey] boolValue]
-                                                                                                                && ![[imageInfo objectForKey:PHLivePhotoInfoErrorKey] boolValue]);
-                                                                                        if (downloadFinined && resultImage) {
+                                                                                        if ([imageInfo objectForKey:PHImageErrorKey]) {
+                                                                                            // An error that occurred when Photos attempted to load the image.
+                                                                                        }
+                                                                                        if ([[imageInfo objectForKey:PHImageCancelledKey] boolValue]) {
+                                                                                            // The image request was canceled.
+                                                                                        }
+                                                                                        if ([[imageInfo objectForKey:PHImageResultIsDegradedKey] boolValue]) {
+                                                                                            // The result image is a low-quality substitute for the requested image.
+                                                                                        }
+                                                                                        if ([[imageInfo objectForKey:PHImageResultIsInCloudKey] boolValue]) {
+                                                                                            // Asset data must be downloaded from iCloud.
+                                                                                        }
+                                                                                        if (resultImage) {
                                                                                             self.originalImage    =   resultImage;
                                                                                             [self originalImageLoadFinished];
                                                                                         } else {
