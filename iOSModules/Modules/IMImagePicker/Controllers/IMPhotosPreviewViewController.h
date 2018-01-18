@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, IMPhotosPreviewType) {
 
 @property (nonatomic, assign) IMPhotosPreviewType   previewType;
 @property (nonatomic, strong) IMAlbum               *album;
+@property (nonatomic, assign) NSInteger             selectedPhotoIndex;
 @property (nonatomic, copy  ) NSArray               *selectedPhotosArray;
 
 @end

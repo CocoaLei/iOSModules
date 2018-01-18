@@ -12,6 +12,8 @@
 
 @interface IMPhoto : NSObject   <IMPhotoProtocol>
 
+@property   (nonatomic, assign) NSInteger photoIndex;
+
 + (IMPhoto *)photoWithAsset:(PHAsset *)asset
                  targetSize:(CGSize)targetSize
                 contentMode:(PHImageContentMode)contentMode;

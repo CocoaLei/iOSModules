@@ -8,11 +8,14 @@
 
 #import "IMPhotoPreviewCollectionViewCell.h"
 #import "UIImage+FileSize.h"
-#import "IMProgressView.h"
 
-@interface IMPhotoPreviewCollectionViewCell () <UIScrollViewDelegate>
 
-@property (nonatomic, strong)   IMProgressView  *loadingProgressView;
+@interface IMPhotoPreviewCollectionViewCell ()
+<
+    UIScrollViewDelegate,
+    UIGestureRecognizerDelegate
+>
+
 
 @property (nonatomic, strong)   UIScrollView    *photoContentView;
 @property (nonatomic, strong)   UIImageView     *photoImageView;
@@ -45,14 +48,6 @@
         self.photoImageView.image   =   self.photo.originalImage;
     }
     
-    self.loadingProgressView    =   [IMProgressView progressViewWithFrame:CGRectMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame), 80.0f, 80.0f)
-                                                              borderColor:[UIColor blackColor]
-                                                              borderWidth:1.0f
-                                                                lineWidth:1.0f
-                                                        progressDidChange:^(CGFloat progress) {
-                                                            //
-                                                        }];
-    
     //
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handPhotoLoadingNotification:)
@@ -69,11 +64,7 @@
 - (void)handPhotoLoadingNotification:(NSNotification *)notification {
     NSDictionary *pregressDict  =   [notification object];
     CGFloat loadProgress        =   [[pregressDict objectForKey:IMPHOTO_LOADING_PROGRESS_KEY] floatValue];
-    if (loadProgress == 1.0f) {
-        [self.loadingProgressView removeFromSuperview];
-    } else {
-        [self.loadingProgressView updateProgress:loadProgress animated:YES];
-    }
+    IMDebugLog(@"%f",loadProgress);
 }
 
 - (void)handlePhotoLoadDidEndNotification:(NSNotification *)notfication {
@@ -85,6 +76,18 @@
             self.photoImageView.image   =   [UIImage imageNamed:@"im_image_placeholder"];
         }
     }
+}
+
+- (void)singleTapGestureAction {
+    if (self.photoViewTapHandler) {
+        self.photoViewTapHandler();
+    }
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    IMDebugLog(@"A gesture recognizer happened %@",[gestureRecognizer class]);
+    return YES;
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -111,6 +114,12 @@
         _photoContentView.delaysContentTouches              = NO;
         _photoContentView.canCancelContentTouches           = YES;
         _photoContentView.alwaysBounceVertical              = NO;
+        [_photoContentView setBackgroundColor:[UIColor blackColor]];
+        
+        UITapGestureRecognizer *singleTap                   =   [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapGestureAction)];
+        singleTap.numberOfTapsRequired                      =   1;
+        singleTap.numberOfTouchesRequired                   =   1;
+        [_photoContentView addGestureRecognizer:singleTap];
     }
     return _photoContentView;
 }

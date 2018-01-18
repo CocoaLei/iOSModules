@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "IMPhoto.h"
 
+typedef void (^SingleTapPhotoViewHandler)(void);
+
 @interface IMPhotoPreviewCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic, copy) SingleTapPhotoViewHandler   photoViewTapHandler;
 
 - (void)configurePhotoPreviewCVCWithPhoto:(id<IMPhotoProtocol>)photo;
 - (void)resetContentViewScale;

@@ -138,6 +138,15 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
 }
 
 #pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    // When you selected a photo to view in prview controller
+    IMPhotosPreviewViewController *photosPreviewVC  =   [[IMPhotosPreviewViewController alloc] init];
+    photosPreviewVC.previewType                     =   IMPhotosPreviewTypeAlbumPhotos;
+    photosPreviewVC.album                           =   self.album;
+    photosPreviewVC.selectedPhotoIndex              =   indexPath.row;
+    [self.navigationController pushViewController:photosPreviewVC animated:YES];
+    
+}
 
 #pragma mark -
 #pragma mark - Initializations
@@ -211,7 +220,7 @@ static NSString * const IMPhotoCVCID    =   @"IMPhotoCVCID";
 
 - (NSArray *)photoArray {
     if (!_photoArray) {
-        _photoArray                         =   [[NSArray alloc] initWithArray:[IMPhotoManagerInstance loadPhotosFromAlbum:self.album.albumCollection]];
+        _photoArray  =   [[NSArray alloc] initWithArray:[IMPhotoManagerInstance loadPhotosFromAlbum:self.album.albumCollection]];
     }
     return _photoArray;
 }

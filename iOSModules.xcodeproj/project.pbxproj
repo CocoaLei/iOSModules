@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B7174B05200F8AFB00760083 /* IMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B7174B04200F8AFB00760083 /* IMProgressView.m */; };
-		B7174B08200F8F6500760083 /* IMCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B7174B07200F8F6500760083 /* IMCircleView.m */; };
 		B71A7DFD1FEBF7FB0050E834 /* iOSModulesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A7DFC1FEBF7FB0050E834 /* iOSModulesTests.m */; };
 		B71A7E081FEBF7FB0050E834 /* iOSModulesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A7E071FEBF7FB0050E834 /* iOSModulesUITests.m */; };
 		B71A7E211FEBF85C0050E834 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B71A7E171FEBF85C0050E834 /* Assets.xcassets */; };
@@ -66,10 +64,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B7174B03200F8AFB00760083 /* IMProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMProgressView.h; sourceTree = "<group>"; };
-		B7174B04200F8AFB00760083 /* IMProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMProgressView.m; sourceTree = "<group>"; };
-		B7174B06200F8F6500760083 /* IMCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMCircleView.h; sourceTree = "<group>"; };
-		B7174B07200F8F6500760083 /* IMCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMCircleView.m; sourceTree = "<group>"; };
 		B71A7DDD1FEBF7FB0050E834 /* iOSModules.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSModules.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71A7DF81FEBF7FB0050E834 /* iOSModulesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSModulesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71A7DFC1FEBF7FB0050E834 /* iOSModulesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSModulesTests.m; sourceTree = "<group>"; };
@@ -364,10 +358,6 @@
 				B786C7341FF769640017AA6C /* IMPhotoCollectionViewCell.xib */,
 				B728F90C200267C0007B903B /* IMPhotoPreviewCollectionViewCell.h */,
 				B728F90D200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m */,
-				B7174B03200F8AFB00760083 /* IMProgressView.h */,
-				B7174B04200F8AFB00760083 /* IMProgressView.m */,
-				B7174B06200F8F6500760083 /* IMCircleView.h */,
-				B7174B07200F8F6500760083 /* IMCircleView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -565,10 +555,8 @@
 				B7B266E21FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m in Sources */,
 				B7AEFEDA200A4D0D00312964 /* IMTableViewCellAnimationViewController.m in Sources */,
 				B7381DD11FEE995E008F7F7A /* IMModuleItemTableViewCell.m in Sources */,
-				B7174B05200F8AFB00760083 /* IMProgressView.m in Sources */,
 				B7AEFEDE200A4EE500312964 /* IMExpandedTableViewCell.m in Sources */,
 				B728F9071FFFBA6E007B903B /* IMPhoto.m in Sources */,
-				B7174B08200F8F6500760083 /* IMCircleView.m in Sources */,
 				B7B266EE1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m in Sources */,
 				B728F90B20025604007B903B /* IMAlbum.m in Sources */,
 				B786C72E1FF6A0020017AA6C /* IMPhotoBrowseViewController.m in Sources */,

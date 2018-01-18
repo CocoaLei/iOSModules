@@ -84,9 +84,32 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
     }
     [self.photosCollectionView setContentSize:CGSizeMake(ScreenWidth*self.photosMutArray.count, ScreenHeight)];
     [self.photosCollectionView reloadData];
+    
+    if (self.selectedPhotoIndex > 0) {
+        [self.photosCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.selectedPhotoIndex inSection:0]
+                                          atScrollPosition:UICollectionViewScrollPositionRight
+                                                  animated:YES];
+    }
+    
+    
 }
 - (void)backItemAction {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)hideOtherUI {
+    if (!self.isHideOtherUI) {
+        [UIView animateWithDuration:0.25 animations:^{
+            CGRect navigationBarRect  =   self.navigationController.navigationBar.frame;
+            self.navigationController.navigationBar.frame   =   CGRectMake(navigationBarRect.origin.x, navigationBarRect.origin.y-64.0f, navigationBarRect.size.width, navigationBarRect.size.height);
+        }];
+    } else {
+        [UIView animateWithDuration:0.25 animations:^{
+            CGRect navigationBarRect  =   self.navigationController.navigationBar.frame;
+            self.navigationController.navigationBar.frame   =   CGRectMake(navigationBarRect.origin.x, navigationBarRect.origin.y+64.0f, navigationBarRect.size.width, navigationBarRect.size.height);
+        }];
+    }
+    self.isHideOtherUI  =   !self.isHideOtherUI;
 }
 
 
@@ -103,23 +126,14 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     IMPhotoPreviewCollectionViewCell *photoPreviceCVC   =   [collectionView dequeueReusableCellWithReuseIdentifier:IMPhotoPreviewCVCID forIndexPath:indexPath];
     [photoPreviceCVC configurePhotoPreviewCVCWithPhoto:self.photosMutArray[indexPath.row]];
+    [photoPreviceCVC setPhotoViewTapHandler:^{
+        [self hideOtherUI];
+    }];
     return photoPreviceCVC;
 }
 
 #pragma mark - UICollectionViewCellDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (!self.isHideOtherUI) {
-        [UIView animateWithDuration:0.25 animations:^{
-            CGRect navigationBarRect  =   self.navigationController.navigationBar.frame;
-            self.navigationController.navigationBar.frame   =   CGRectMake(navigationBarRect.origin.x, navigationBarRect.origin.y-64.0f, navigationBarRect.size.width, navigationBarRect.size.height);
-        }];
-    } else {
-        [UIView animateWithDuration:0.25 animations:^{
-            CGRect navigationBarRect  =   self.navigationController.navigationBar.frame;
-            self.navigationController.navigationBar.frame   =   CGRectMake(navigationBarRect.origin.x, navigationBarRect.origin.y+64.0f, navigationBarRect.size.width, navigationBarRect.size.height);
-        }];
-    }
-    self.isHideOtherUI  =   !self.isHideOtherUI;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
