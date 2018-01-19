@@ -222,7 +222,7 @@
 
 - (void)imageLoadFinished {
     self.isLoading          =   NO;
-    [self performSelector:@selector(postPhotoDidLoadedNotification) withObject:nil];
+    [self performSelector:@selector(postPhotoDidLoadedNotification) withObject:self];
 }
 
 - (void)originalImageLoadFinished {

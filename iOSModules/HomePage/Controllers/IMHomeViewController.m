@@ -15,6 +15,8 @@
 #import "IMPhotoPickerInitialViewController.h"
 #import "IMTableViewCellAnimationViewController.h"
 
+#import "IMInitialProgressViewController.h"
+
 static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
 
 @interface IMHomeViewController ()
@@ -81,6 +83,12 @@ static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
         {
             IMTableViewCellAnimationViewController  *tvcAnimationVC     =   [[IMTableViewCellAnimationViewController alloc] init];
             [self.navigationController pushViewController:tvcAnimationVC animated:YES];
+        }
+            break;
+        case 2:
+        {
+            IMInitialProgressViewController *progressVC =   [[IMInitialProgressViewController alloc] init];
+            [self.navigationController pushViewController:progressVC animated:YES];
         }
             break;
         default:

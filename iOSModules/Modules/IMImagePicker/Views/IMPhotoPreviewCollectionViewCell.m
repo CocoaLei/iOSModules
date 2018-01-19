@@ -8,6 +8,7 @@
 
 #import "IMPhotoPreviewCollectionViewCell.h"
 #import "UIImage+FileSize.h"
+#import "IMRingProgressView.h"
 
 
 @interface IMPhotoPreviewCollectionViewCell ()
@@ -16,9 +17,9 @@
     UIGestureRecognizerDelegate
 >
 
-
-@property (nonatomic, strong)   UIScrollView    *photoContentView;
-@property (nonatomic, strong)   UIImageView     *photoImageView;
+@property (nonatomic, strong)   IMRingProgressView  *loadingProgressView;
+@property (nonatomic, strong)   UIScrollView        *photoContentView;
+@property (nonatomic, strong)   UIImageView         *photoImageView;
 
 @property (nonatomic, strong)   IMPhoto         *photo;
 
@@ -36,18 +37,33 @@
 
 - (void)resetContentViewScale {
     self.photoContentView.zoomScale =   1.0f;
+    [self.loadingProgressView removeFromSuperview];
+    [self.loadingProgressView setProgress:0.0f animated:YES];
+    [self.loadingProgressView performAction:IMProgressViewActionTypeNone animated:YES];
 }
-
 
 //
 - (void)configurePhotoPreviewCVCWithPhoto:(id<IMPhotoProtocol>)photo {
+    [self resetContentViewScale];
+    
+    //
     self.photo                  =   photo;
     if (!self.photo.originalImage) {
-        [self.photo loadOriginalImageFromAsset];
+        if (self.photo.resultImage) {
+            self.photoImageView.image   =   self.photo.resultImage;
+        } else {
+            [self.photo loadOriginalImageFromAsset];
+        }
+        [self.photoContentView addSubview:self.loadingProgressView];
     } else {
         self.photoImageView.image   =   self.photo.originalImage;
     }
     
+    //
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleResultImageDidLoadNotification:)
+                                                 name:IMPHOTO_LOADING_FINISHED_NOTIFICATION
+                                               object:nil];
     //
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handPhotoLoadingNotification:)
@@ -61,10 +77,31 @@
     
 }
 
+- (void)handleResultImageDidLoadNotification:(NSNotification *)notification {
+    IMPhoto *photo  =   (IMPhoto *)[notification object];
+    if (self.photo == photo) {
+        self.photoImageView.image   =   photo.resultImage;
+        self.photo                  =   photo;
+    }
+}
+
 - (void)handPhotoLoadingNotification:(NSNotification *)notification {
     NSDictionary *pregressDict  =   [notification object];
     CGFloat loadProgress        =   [[pregressDict objectForKey:IMPHOTO_LOADING_PROGRESS_KEY] floatValue];
-    IMDebugLog(@"%f",loadProgress);
+    IMPhoto *postPhoto          =   (IMPhoto *)[pregressDict objectForKey:IMPHOTO_LOADING_PHOTOT_KEY];
+    if (self.photo == postPhoto) {
+        if (loadProgress == 1.0f) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.loadingProgressView performAction:IMProgressViewActionTypeSuccess animated:YES];
+                dispatch_time_t delayTime   =   dispatch_time(DISPATCH_TIME_NOW, 0.75*NSEC_PER_SEC);
+                dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+                    [self.loadingProgressView removeFromSuperview];
+                });
+            });
+        } else {
+         [self.loadingProgressView setProgress:loadProgress animated:YES];
+        }
+    }
 }
 
 - (void)handlePhotoLoadDidEndNotification:(NSNotification *)notfication {
@@ -75,7 +112,15 @@
         } else {
             self.photoImageView.image   =   [UIImage imageNamed:@"im_image_placeholder"];
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.loadingProgressView performAction:IMProgressViewActionTypeSuccess animated:YES];
+            dispatch_time_t delayTime   =   dispatch_time(DISPATCH_TIME_NOW, 0.75*NSEC_PER_SEC);
+            dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+                [self.loadingProgressView removeFromSuperview];
+            });
+        });
     }
+    
 }
 
 - (void)singleTapGestureAction {
@@ -122,6 +167,14 @@
         [_photoContentView addGestureRecognizer:singleTap];
     }
     return _photoContentView;
+}
+
+- (IMRingProgressView *)loadingProgressView {
+    if (!_loadingProgressView) {
+        _loadingProgressView    =   [[IMRingProgressView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.bounds)-40.0f, CGRectGetMidY(self.bounds)-40.0f, 80.0f, 80.0f)];
+        [_loadingProgressView performAction:IMProgressViewActionTypeNone animated:YES];
+    }
+    return _loadingProgressView;
 }
 
 - (UIImageView *)photoImageView {
