@@ -771,7 +771,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6H7FG34BKU;
+				DEVELOPMENT_TEAM = TX9JKQT5R6;
 				GCC_PREFIX_HEADER = "${SRCROOT}/iOSModules/Modules/IMModules-PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/iOSModules/DefaultFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -789,7 +789,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6H7FG34BKU;
+				DEVELOPMENT_TEAM = TX9JKQT5R6;
 				GCC_PREFIX_HEADER = "${SRCROOT}/iOSModules/Modules/IMModules-PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/iOSModules/DefaultFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
