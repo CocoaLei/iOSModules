@@ -18,14 +18,16 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
     UICollectionViewDataSource
 >
 
-@property (nonatomic, assign)   BOOL                                            isHideOtherUI;
+@property (nonatomic, assign)  BOOL                                            isHideOtherUI;
 @property (nonatomic, strong)  UICollectionView                                *photosCollectionView;
 @property (nonatomic, strong)  NSMutableArray <id <IMPhotoProtocol>>           *photosMutArray;
+
 @property (nonatomic, strong)  UIButton                                        *selectButton;
-
-@property (nonatomic, strong)  NSMutableArray <id <IMPhotoProtocol>>           *selectedPhotoMutArr;
-
-@property (nonatomic, strong) NSMutableSet                                      *selectedMutSet;
+@property (nonatomic, strong)  NSMutableSet                                    *selectedMutSet;
+@property (nonatomic, strong)  UIView                                          *bottomBarView;
+@property (nonatomic, strong)  UIScrollView                                    *selectedPhotoThumbnailView;
+@property (nonatomic, strong)  UIButton                                        *photoEditButton;
+@property (nonatomic, strong)  UIButton                                        *completePickButton;
 
 @end
 
@@ -213,18 +215,33 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
     return _photosMutArray;
 }
 
-- (NSMutableArray<id<IMPhotoProtocol>> *)selectedPhotoMutArr {
-    if (!_selectedPhotoMutArr) {
-        _selectedPhotoMutArr =   [[NSMutableArray alloc] init];
-    }
-    return _selectedPhotoMutArr;
-}
-
 - (NSMutableSet *)selectedMutSet {
     if (!_selectedMutSet) {
         _selectedMutSet =   [[NSMutableSet alloc] init];
     }
     return _selectedMutSet;
+}
+
+- (UIView *)bottomBarView {
+    if (!_bottomBarView) {
+        _bottomBarView  =   [[UIView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(self.view.frame)-40.0f, ScreenWidth, 40.0f)];
+        [_bottomBarView setBackgroundColor:RGBACOLOR(255.0f, 255.0f, 255.0f, 0.5)];
+    }
+    return _bottomBarView;
+}
+
+- (UIButton *)photoEditButton {
+    if (!_photoEditButton) {
+        _photoEditButton    =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    }
+    return _photoEditButton;
+}
+
+- (UIButton *)completePickButton {
+    if (!_completePickButton) {
+        _completePickButton =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    }
+    return _completePickButton;
 }
 
 @end
