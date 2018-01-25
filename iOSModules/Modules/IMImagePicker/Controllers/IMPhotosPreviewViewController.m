@@ -42,12 +42,16 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
     [self initialPhotosData];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 #pragma mark -
 #pragma mark - Private methods
 - (void)configureViewApperance {
     //
     UIImage *backgroundImage    =   [UIImage createTranslucenceImageWithSize:CGSizeMake(ScreenWidth, 64.0f)
-                                                                       alpha:1.0f
+                                                                       alpha:0.80f
                                                                       colorR:255.0f
                                                                       colorG:255.0f
                                                                       colorB:255.0f];
@@ -192,12 +196,11 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
         flowLayout.sectionInset                 =   UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
         flowLayout.itemSize                     =   itemSize;
         flowLayout.scrollDirection              =   UICollectionViewScrollDirectionHorizontal;
-        _photosCollectionView                   =   [[UICollectionView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, ScreenWidth, ScreenHeight) collectionViewLayout:flowLayout];
-
+        _photosCollectionView                   =   [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
         //
         if (@available(iOS 11.0, *)) {
             _photosCollectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
+        } 
         
         _photosCollectionView.backgroundColor   =   [UIColor whiteColor];
         _photosCollectionView.pagingEnabled     =   YES;
