@@ -42,10 +42,6 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
     [self initialPhotosData];
 }
 
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
-
 #pragma mark -
 #pragma mark - Private methods
 - (void)configureViewApperance {
@@ -64,7 +60,7 @@ static NSString * const IMPhotoPreviewCVCID =   @"IMPhotoPreviewCVCID";
     self.navigationItem.leftBarButtonItem  =   [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"im_arrow_left"]
                                                                                 style:UIBarButtonItemStylePlain target:self action:@selector(backItemAction)];
     self.selectButton                =    [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.selectButton setTintColor:[UIColor whiteColor]];
+    [self.selectButton setTintColor:[UIColor clearColor]];
     [self.selectButton setSelected:NO];
     [self.selectButton setBackgroundImage:[UIImage imageNamed:@"im_select"] forState:UIControlStateSelected];
     [self.selectButton setBackgroundImage:[UIImage imageNamed:@"im_deselect"] forState:UIControlStateNormal];

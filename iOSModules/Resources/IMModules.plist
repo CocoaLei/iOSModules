@@ -22,7 +22,7 @@
 	</dict>
 	<dict>
 		<key>ModuleName</key>
-		<string>Loading View</string>
+		<string>DatePicker</string>
 		<key>ModuleImagePath</key>
 		<string>im_placeholder</string>
 	</dict>

@@ -17,6 +17,8 @@
 
 #import "IMInitialProgressViewController.h"
 
+#import "IMDatePickerViewController.h"
+
 static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
 
 @interface IMHomeViewController ()
@@ -89,6 +91,12 @@ static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
         {
             IMInitialProgressViewController *progressVC =   [[IMInitialProgressViewController alloc] init];
             [self.navigationController pushViewController:progressVC animated:YES];
+        }
+            break;
+        case 3:
+        {
+            IMDatePickerViewController *datePickerVC    =   [[IMDatePickerViewController alloc] init];
+            [self.navigationController pushViewController:datePickerVC animated:YES];
         }
             break;
         default:

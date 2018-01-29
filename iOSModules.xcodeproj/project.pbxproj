@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B7183A35201F5D4D00284B21 /* IMDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7183A34201F5D4D00284B21 /* IMDatePickerViewController.m */; };
+		B7183A39201F5E8E00284B21 /* IMDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B7183A38201F5E8E00284B21 /* IMDatePicker.m */; };
+		B7183A3D201F70BE00284B21 /* IMYearModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7183A3C201F70BE00284B21 /* IMYearModel.m */; };
+		B7183A40201F711800284B21 /* IMMonthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7183A3F201F711800284B21 /* IMMonthModel.m */; };
 		B71A7DFD1FEBF7FB0050E834 /* iOSModulesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A7DFC1FEBF7FB0050E834 /* iOSModulesTests.m */; };
 		B71A7E081FEBF7FB0050E834 /* iOSModulesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A7E071FEBF7FB0050E834 /* iOSModulesUITests.m */; };
 		B71A7E211FEBF85C0050E834 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B71A7E171FEBF85C0050E834 /* Assets.xcassets */; };
@@ -67,6 +71,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B7183A33201F5D4D00284B21 /* IMDatePickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMDatePickerViewController.h; sourceTree = "<group>"; };
+		B7183A34201F5D4D00284B21 /* IMDatePickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMDatePickerViewController.m; sourceTree = "<group>"; };
+		B7183A37201F5E8E00284B21 /* IMDatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMDatePicker.h; sourceTree = "<group>"; };
+		B7183A38201F5E8E00284B21 /* IMDatePicker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMDatePicker.m; sourceTree = "<group>"; };
+		B7183A3B201F70BE00284B21 /* IMYearModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMYearModel.h; sourceTree = "<group>"; };
+		B7183A3C201F70BE00284B21 /* IMYearModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMYearModel.m; sourceTree = "<group>"; };
+		B7183A3E201F711800284B21 /* IMMonthModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMMonthModel.h; sourceTree = "<group>"; };
+		B7183A3F201F711800284B21 /* IMMonthModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMMonthModel.m; sourceTree = "<group>"; };
 		B71A7DDD1FEBF7FB0050E834 /* iOSModules.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSModules.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71A7DF81FEBF7FB0050E834 /* iOSModulesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSModulesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71A7DFC1FEBF7FB0050E834 /* iOSModulesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSModulesTests.m; sourceTree = "<group>"; };
@@ -171,6 +183,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B7183A31201F5CF800284B21 /* IMDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				B7183A3A201F70A800284B21 /* Models */,
+				B7183A36201F5E7300284B21 /* Views */,
+				B7183A32201F5D2D00284B21 /* Controllers */,
+			);
+			path = IMDatePicker;
+			sourceTree = "<group>";
+		};
+		B7183A32201F5D2D00284B21 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B7183A33201F5D4D00284B21 /* IMDatePickerViewController.h */,
+				B7183A34201F5D4D00284B21 /* IMDatePickerViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B7183A36201F5E7300284B21 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B7183A37201F5E8E00284B21 /* IMDatePicker.h */,
+				B7183A38201F5E8E00284B21 /* IMDatePicker.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B7183A3A201F70A800284B21 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B7183A3B201F70BE00284B21 /* IMYearModel.h */,
+				B7183A3C201F70BE00284B21 /* IMYearModel.m */,
+				B7183A3E201F711800284B21 /* IMMonthModel.h */,
+				B7183A3F201F711800284B21 /* IMMonthModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B71A7DD41FEBF7FB0050E834 = {
 			isa = PBXGroup;
 			children = (
@@ -354,6 +405,7 @@
 				B78720641FF5223F0005928C /* IMBaseViewController.m */,
 				B7B266DA1FF3D5E700EDF3C4 /* IMTableViewCellAnimation */,
 				B7B266D61FF3B2A300EDF3C4 /* IMImagePicker */,
+				B7183A31201F5CF800284B21 /* IMDatePicker */,
 				B72088062011C81200EAB366 /* ProgressView */,
 			);
 			path = Modules;
@@ -599,12 +651,16 @@
 				B7AEFEDE200A4EE500312964 /* IMExpandedTableViewCell.m in Sources */,
 				B728F9071FFFBA6E007B903B /* IMPhoto.m in Sources */,
 				B7B266EE1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m in Sources */,
+				B7183A40201F711800284B21 /* IMMonthModel.m in Sources */,
+				B7183A35201F5D4D00284B21 /* IMDatePickerViewController.m in Sources */,
 				B728F90B20025604007B903B /* IMAlbum.m in Sources */,
 				B786C72E1FF6A0020017AA6C /* IMPhotoBrowseViewController.m in Sources */,
 				B78720D81FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.m in Sources */,
 				B7381DC01FED4E31008F7F7A /* IMHomeViewController.m in Sources */,
+				B7183A39201F5E8E00284B21 /* IMDatePicker.m in Sources */,
 				B720880E2011CFD000EAB366 /* IMProgressView.m in Sources */,
 				B786C7311FF6AC7C0017AA6C /* UIImage+TranslucenceImage.m in Sources */,
+				B7183A3D201F70BE00284B21 /* IMYearModel.m in Sources */,
 				B786C7391FF7CEAC0017AA6C /* IMPhotosPreviewViewController.m in Sources */,
 				B7B266E71FF3DA7000EDF3C4 /* IMConstantFile.m in Sources */,
 			);
