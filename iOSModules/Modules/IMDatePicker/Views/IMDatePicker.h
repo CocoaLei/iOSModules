@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^DidSelectDateBlock)(NSDictionary *dateDict);
+
 @interface IMDatePicker : UIView
 
-
+@property (nonatomic, copy )    DidSelectDateBlock selectDateCompletionHandler;
 
 @end

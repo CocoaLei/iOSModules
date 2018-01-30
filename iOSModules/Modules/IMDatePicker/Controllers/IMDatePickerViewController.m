@@ -45,7 +45,10 @@
     NSLocale *currentLocal  =   [NSLocale currentLocale];
     IMDebugLog(@"%@",currentLocal.languageCode);
     
-    IMDatePicker *imDatePicker  =   [[IMDatePicker alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(self.view.frame)-200.0f, CGRectGetWidth(self.view.frame), 200.0f)];
+    IMDatePicker *imDatePicker  =   [[IMDatePicker alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(self.view.frame)-300.0f, CGRectGetWidth(self.view.frame), 300.0f)];
+    [imDatePicker setSelectDateCompletionHandler:^(NSDictionary *dateDict) {
+        IMDebugLog(@"Name = %@ \n Date = %@",dateDict[@"Name"],dateDict[@"Date"]);
+    }];
     [self.view addSubview:imDatePicker];
 }
 
