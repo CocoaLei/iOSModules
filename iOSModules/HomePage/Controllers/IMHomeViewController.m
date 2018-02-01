@@ -19,6 +19,8 @@
 
 #import "IMDatePickerViewController.h"
 
+#import <objc/runtime.h>
+
 static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
 
 @interface IMHomeViewController ()
@@ -74,34 +76,9 @@ static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.row) {
-        case 0:
-        {
-            IMPhotoPickerInitialViewController *photoPickerInitialVC    =   [[IMPhotoPickerInitialViewController alloc] init];
-            [self.navigationController pushViewController:photoPickerInitialVC animated:YES];
-        }
-            break;
-        case 1:
-        {
-            IMTableViewCellAnimationViewController  *tvcAnimationVC     =   [[IMTableViewCellAnimationViewController alloc] init];
-            [self.navigationController pushViewController:tvcAnimationVC animated:YES];
-        }
-            break;
-        case 2:
-        {
-            IMInitialProgressViewController *progressVC =   [[IMInitialProgressViewController alloc] init];
-            [self.navigationController pushViewController:progressVC animated:YES];
-        }
-            break;
-        case 3:
-        {
-            IMDatePickerViewController *datePickerVC    =   [[IMDatePickerViewController alloc] init];
-            [self.navigationController pushViewController:datePickerVC animated:YES];
-        }
-            break;
-        default:
-            break;
-    }
+    IMModuleItemModel *itemModel    =   self.modulesArray[indexPath.row];
+    NSString *className             =   itemModel.InitialClass;
+    [self.navigationController pushViewController:[[objc_getClass([className UTF8String]) alloc] init] animated:YES];
 }
 
 #pragma mark - Initializations
@@ -125,8 +102,7 @@ static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
         NSMutableArray *tempMutArray        =   [NSMutableArray arrayWithCapacity:modulesItemArray.count];
         for (NSDictionary *itemDict in modulesItemArray) {
             IMModuleItemModel *itemModel    =   [[IMModuleItemModel alloc] init];
-            itemModel.imModuleName          =   itemDict[@"ModuleName"];
-            itemModel.imModuleImagePath     =   itemDict[@"ModuleImagePath"];
+            [itemModel setValuesForKeysWithDictionary:itemDict];
             [tempMutArray addObject:itemModel];
         }
         _modulesArray                       =   [[NSArray alloc] initWithArray:[tempMutArray copy]];

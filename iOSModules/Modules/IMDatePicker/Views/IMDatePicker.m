@@ -214,30 +214,30 @@
         case 0:
         {
             IMYearModel *yModel =   self.imYearsMutArray[row];
-            return [NSString stringWithFormat:@"%ld",[yModel.im_Year integerValue]];
+            return [NSString stringWithFormat:@"%ld",(long)[yModel.im_Year integerValue]];
         }
             break;
         case 1:
         {
-            return [NSString stringWithFormat:@"%ld月",row+1];
+            return [NSString stringWithFormat:@"%ld月",(long)row+1];
         }
             break;
         case 2:
         {
             NSInteger day   =   [self.imDaysMutArray[row] integerValue];
-            return [NSString stringWithFormat:@"%ld日",day];
+            return [NSString stringWithFormat:@"%ld日",(long)day];
         }
             break;
         case 3:
         {
             NSInteger hour  =   [self.imHoursMutArray[row] integerValue];
-            return [NSString stringWithFormat:@"%ld时",hour];
+            return [NSString stringWithFormat:@"%ld时",(long)hour];
         }
             break;
         case 4:
         {
             NSInteger minute  =   [self.imMinutesMuArray[row] integerValue];
-            return [NSString stringWithFormat:@"%ld分",minute];
+            return [NSString stringWithFormat:@"%ld分",(long)minute];
         }
             break;
         default:

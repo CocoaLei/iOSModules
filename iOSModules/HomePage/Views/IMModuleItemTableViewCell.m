@@ -22,8 +22,8 @@
 
 - (void)setModel:(IMModuleItemModel *)model {
     _model                          =   model;
-    _imModuleItemNameLabel.text     =   model.imModuleName;
-    _imModuleItemImageView.image    =   [[UIImage imageNamed:model.imModuleImagePath]
+    _imModuleItemNameLabel.text     =   model.ModuleName;
+    _imModuleItemImageView.image    =   [[UIImage imageNamed:model.ModuleImagePath]
                                          im_addRoundCornerWithRadius:_imModuleItemImageView.bounds.size.width/2
                                          andSize:_imModuleItemImageView.bounds.size];
 }

@@ -7,24 +7,32 @@
 		<string>PhotoPicker</string>
 		<key>ModuleImagePath</key>
 		<string>im_placeholder</string>
+		<key>InitialClass</key>
+		<string>IMPhotoPickerInitialViewController</string>
 	</dict>
 	<dict>
 		<key>ModuleName</key>
 		<string>TableViewCell Animation</string>
 		<key>ModuleImagePath</key>
 		<string>im_placeholder</string>
+		<key>InitialClass</key>
+		<string>IMTableViewCellAnimationViewController</string>
 	</dict>
 	<dict>
 		<key>ModuleName</key>
 		<string>Rich Text</string>
 		<key>ModuleImagePath</key>
 		<string>im_placeholder</string>
+		<key>InitialClass</key>
+		<string>IMInitialProgressViewController</string>
 	</dict>
 	<dict>
 		<key>ModuleName</key>
 		<string>DatePicker</string>
 		<key>ModuleImagePath</key>
 		<string>im_placeholder</string>
+		<key>InitialClass</key>
+		<string>IMDatePickerViewController</string>
 	</dict>
 </array>
 </plist>
