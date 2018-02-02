@@ -78,7 +78,7 @@ static NSString * const IMModuleItemTVCID   =   @"IMModuleItemTVCID";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     IMModuleItemModel *itemModel    =   self.modulesArray[indexPath.row];
     NSString *className             =   itemModel.InitialClass;
-    [self.navigationController pushViewController:[[objc_getClass([className UTF8String]) alloc] init] animated:YES];
+    [self.navigationController pushViewController:class_createInstance(objc_getClass([className UTF8String]), 0) animated:YES];
 }
 
 #pragma mark - Initializations
