@@ -34,5 +34,13 @@
 		<key>InitialClass</key>
 		<string>IMDatePickerViewController</string>
 	</dict>
+	<dict>
+		<key>ModuleName</key>
+		<string>Video</string>
+		<key>ModuleImagePath</key>
+		<string>im_placeholder</string>
+		<key>InitialClass</key>
+		<string>IMVideoRecordViewController</string>
+	</dict>
 </array>
 </plist>
