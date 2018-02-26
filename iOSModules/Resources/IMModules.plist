@@ -40,7 +40,7 @@
 		<key>ModuleImagePath</key>
 		<string>im_placeholder</string>
 		<key>InitialClass</key>
-		<string>IMVideoRecordViewController</string>
+		<string>IMVideoInitialViewController</string>
 	</dict>
 </array>
 </plist>

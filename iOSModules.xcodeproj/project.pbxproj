@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B70A3CAC204450C100DE3854 /* IMVideoInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B70A3CAB204450C100DE3854 /* IMVideoInitialViewController.m */; };
 		B7183A35201F5D4D00284B21 /* IMDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7183A34201F5D4D00284B21 /* IMDatePickerViewController.m */; };
 		B7183A39201F5E8E00284B21 /* IMDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B7183A38201F5E8E00284B21 /* IMDatePicker.m */; };
 		B7183A3D201F70BE00284B21 /* IMYearModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7183A3C201F70BE00284B21 /* IMYearModel.m */; };
@@ -71,6 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B70A3CAA204450C100DE3854 /* IMVideoInitialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMVideoInitialViewController.h; sourceTree = "<group>"; };
+		B70A3CAB204450C100DE3854 /* IMVideoInitialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMVideoInitialViewController.m; sourceTree = "<group>"; };
 		B7183A33201F5D4D00284B21 /* IMDatePickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMDatePickerViewController.h; sourceTree = "<group>"; };
 		B7183A34201F5D4D00284B21 /* IMDatePickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMDatePickerViewController.m; sourceTree = "<group>"; };
 		B7183A37201F5E8E00284B21 /* IMDatePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMDatePicker.h; sourceTree = "<group>"; };
@@ -183,6 +186,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B70A3CA72044506700DE3854 /* IMVideoRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				B70A3CA92044509F00DE3854 /* Views */,
+				B70A3CA82044509300DE3854 /* Controllers */,
+			);
+			path = IMVideoRecorder;
+			sourceTree = "<group>";
+		};
+		B70A3CA82044509300DE3854 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B70A3CAA204450C100DE3854 /* IMVideoInitialViewController.h */,
+				B70A3CAB204450C100DE3854 /* IMVideoInitialViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B70A3CA92044509F00DE3854 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B7183A31201F5CF800284B21 /* IMDatePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +435,7 @@
 				B7B266D61FF3B2A300EDF3C4 /* IMImagePicker */,
 				B7183A31201F5CF800284B21 /* IMDatePicker */,
 				B72088062011C81200EAB366 /* ProgressView */,
+				B70A3CA72044506700DE3854 /* IMVideoRecorder */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -656,6 +685,7 @@
 				B728F90B20025604007B903B /* IMAlbum.m in Sources */,
 				B786C72E1FF6A0020017AA6C /* IMPhotoBrowseViewController.m in Sources */,
 				B78720D81FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.m in Sources */,
+				B70A3CAC204450C100DE3854 /* IMVideoInitialViewController.m in Sources */,
 				B7381DC01FED4E31008F7F7A /* IMHomeViewController.m in Sources */,
 				B7183A39201F5E8E00284B21 /* IMDatePicker.m in Sources */,
 				B720880E2011CFD000EAB366 /* IMProgressView.m in Sources */,
