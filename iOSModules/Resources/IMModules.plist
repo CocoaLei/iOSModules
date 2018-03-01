@@ -12,6 +12,14 @@
 	</dict>
 	<dict>
 		<key>ModuleName</key>
+		<string>Video</string>
+		<key>ModuleImagePath</key>
+		<string>im_placeholder</string>
+		<key>InitialClass</key>
+		<string>IMVideoInitialViewController</string>
+	</dict>
+	<dict>
+		<key>ModuleName</key>
 		<string>TableViewCell Animation</string>
 		<key>ModuleImagePath</key>
 		<string>im_placeholder</string>
@@ -33,14 +41,6 @@
 		<string>im_placeholder</string>
 		<key>InitialClass</key>
 		<string>IMDatePickerViewController</string>
-	</dict>
-	<dict>
-		<key>ModuleName</key>
-		<string>Video</string>
-		<key>ModuleImagePath</key>
-		<string>im_placeholder</string>
-		<key>InitialClass</key>
-		<string>IMVideoInitialViewController</string>
 	</dict>
 </array>
 </plist>

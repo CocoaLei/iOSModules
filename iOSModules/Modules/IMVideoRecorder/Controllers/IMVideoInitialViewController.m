@@ -7,6 +7,7 @@
 //
 
 #import "IMVideoInitialViewController.h"
+#import "UIView+AddRoundBorder.h"
 
 @interface IMVideoInitialViewController ()
 
@@ -22,6 +23,27 @@
 }
 
 - (void)configureViewsApperance {
+    UIButton *handleButton  =   [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [handleButton setFrame:CGRectMake(8.0f, ScreenHeight/2-20.0f, ScreenWidth-16.0f, 40.0f)];
+    [handleButton setTitle:@"Start use photo picker ~ " forState:UIControlStateNormal];
+    [handleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [handleButton addTarget:self action:@selector(presentVideoRecorderActionSheetButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [handleButton addRoundBorderWithBorderColor:[UIColor blackColor] borderWidth:1.0f radius:5.0f];
+    [self.view addSubview:handleButton];
+}
+
+- (void)presentVideoRecorderActionSheetButtonAction {
+    UIAlertController *photoPickerActionSheet   =   [UIAlertController alertControllerWithTitle:@"Select Video" message:@"Select video from local or record a video use camera" preferredStyle:UIAlertControllerStyleActionSheet];
+    [photoPickerActionSheet addAction:[UIAlertAction actionWithTitle:@"Select From Local" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [photoPickerActionSheet dismissViewControllerAnimated:YES completion:^{}];
+    }]];
+    [photoPickerActionSheet addAction:[UIAlertAction actionWithTitle:@"Use Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [photoPickerActionSheet dismissViewControllerAnimated:YES completion:^{}];
+    }]];
+    [photoPickerActionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [photoPickerActionSheet dismissViewControllerAnimated:YES completion:^{}];
+    }]];
+    [self presentViewController:photoPickerActionSheet animated:YES completion:^{}];
 }
 
 @end
