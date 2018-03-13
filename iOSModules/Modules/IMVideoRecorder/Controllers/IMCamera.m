@@ -9,11 +9,20 @@
 #import "IMCamera.h"
 #import <AVFoundation/AVFoundation.h>
 #import "IMCameraHelper.h"
+#import "IMCameraPreview.h"
+
+typedef NS_ENUM(NSInteger, IMCameraCatpureType) {
+    IMCameraCatpureTypePhoto  = 0,
+    IMCameraCatpureTypeVideo  = 1,
+    IMCameraCatpureTypeCancel = 2
+};
 
 @interface IMCamera ()
+<
+    AVCapturePhotoCaptureDelegate
+>
 // Record apperance
-@property (nonatomic, strong)   UIView                      *im_videoRecordPreview;
-@property (nonatomic, strong)   AVCaptureVideoPreviewLayer  *im_captureVideoPreviewLayer;
+@property (nonatomic, strong)   IMCameraPreview             *im_videoRecordPreview;
 //
 @property (nonatomic, strong)   AVCaptureSession            *im_captureSeesion;
 //
@@ -30,9 +39,7 @@
 @property (nonatomic, strong)   AVCaptureVideoDataOutput    *im_videoOutput;
 
 //
-@property (nonatomic, strong)   UIButton *recordButton;
-@property (nonatomic, strong)   UIButton *dismissButton;
-@property (nonatomic, strong)   UIButton *switchCameraButton;
+@property (nonatomic, assign)   IMCameraCatpureType         currentCameraType;
 
 @end
 
@@ -46,39 +53,62 @@
     [self setUpCaptureSession];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 #pragma mark - Private methods
 - (void)configureViewsApperance {
     [self.view setBackgroundColor:[UIColor clearColor]];
     //
-    self.im_videoRecordPreview  =   [[UIView alloc] initWithFrame:CGRectZero];
-    [self.im_videoRecordPreview setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:self.im_videoRecordPreview];
 }
 
 - (void)setUpCaptureSession {
     if (!self.im_captureSeesion) {
-        self.im_captureSeesion  =   [[AVCaptureSession alloc] init];
         //
-        self.im_photoCaptureDevice  =   [self getCameraDeviceWithPosition:AVCaptureDevicePositionBack];
-        NSError *photoDeviceInputerror = nil;
+        self.currentCameraType  =   IMCameraCatpureTypePhoto;
+        self.im_captureSeesion  =   [[AVCaptureSession alloc] init];
+        // 默认为拍照模式
+        self.im_photoCaptureDevice      =   [self getCameraDeviceWithPosition:AVCaptureDevicePositionBack];
+        NSError *photoDeviceInputerror  =   nil;
         self.im_photoCaptureDeviceInput =   [AVCaptureDeviceInput deviceInputWithDevice:self.im_photoCaptureDevice error:&photoDeviceInputerror];
         if ([self.im_captureSeesion canAddInput:self.im_photoCaptureDeviceInput]) {
             [self.im_captureSeesion addInput:self.im_photoCaptureDeviceInput];
         }
-        //
-        self.im_audioCaptureDevice  =   [AVCaptureDevice defaultDeviceWithMediaType:AVCaptureDeviceTypeBuiltInMicrophone];
-        NSError *audioDeviceInputerror = nil;
-        self.im_audioCaptureDeviceInput =   [AVCaptureDeviceInput deviceInputWithDevice:self.im_audioCaptureDevice error:&audioDeviceInputerror];
-        if ([self.im_captureSeesion canAddInput:self.im_audioCaptureDeviceInput]) {
-            [self.im_captureSeesion addInput:self.im_audioCaptureDeviceInput];
+        self.im_photoOutput             =   [[AVCapturePhotoOutput alloc] init];
+        if ([self.im_captureSeesion canAddOutput:self.im_photoOutput]) {
+            [self.im_captureSeesion addOutput:self.im_photoOutput];
         }
         //
-        self.im_videoCaptureDevice =   [self getCameraDeviceWithPosition:AVCaptureDevicePositionBack];
-        NSError *videoDeviceInputerror = nil;
-        self.im_videoCaptureDeviceInput =   [AVCaptureDeviceInput deviceInputWithDevice:self.im_videoCaptureDevice error:&videoDeviceInputerror];
-        if ([self.im_captureSeesion canAddInput:self.im_videoCaptureDeviceInput]) {
-            [self.im_captureSeesion addInput:self.im_videoCaptureDeviceInput];
-        }
+        self.im_videoRecordPreview      =   [[IMCameraPreview alloc] initWithFrame:self.view.bounds captureSession:self.im_captureSeesion];
+        [self.im_videoRecordPreview setBackgroundColor:[UIColor clearColor]];
+        [self.im_videoRecordPreview.startRecordButton setMaxVideoDuration:15.0f];
+        //
+        __weak typeof(self) weakSelf    =   self;
+        [self.im_videoRecordPreview.startRecordButton setCameraHandler:^(IMCameraRecordControlType handleType) {
+            switch (handleType) {
+                case IMCameraRecordControlTypePhoto:
+                {
+                    [weakSelf   startCameraCapture:IMCameraCatpureTypePhoto];
+                }
+                    break;
+                case IMCameraRecordControlTypeVideo:
+                {
+                    [weakSelf   startCameraCapture:IMCameraCatpureTypeVideo];
+                }
+                    break;
+                case IMCameraRecordControlTypeCancel:
+                {
+                    [weakSelf   startCameraCapture:IMCameraCatpureTypeCancel];
+                }
+                    break;
+                default:
+                    break;
+            }
+        }];
+        [self.view addSubview:self.im_videoRecordPreview];
+        //
+        [self.im_captureSeesion startRunning];
     }
 }
 
@@ -92,7 +122,7 @@
     return nil;
 }
 
-- (void)startRecordVideo {
+- (void)startCameraCapture:(IMCameraCatpureType)captureType {
     //
     [IMCameraHelper im_CameraAuthorizationDetection:^(BOOL authorized) {
         if (!authorized) {
@@ -107,9 +137,57 @@
             }]];
             [self presentViewController:alertController animated:YES completion:nil];
             return;
+        } else {
+            switch (captureType) {
+                case IMCameraCatpureTypePhoto:
+                {
+                    if ([self.im_captureSeesion isRunning]) {
+                        [self.im_captureSeesion startRunning];
+                    }
+                    [self.im_photoOutput capturePhotoWithSettings:[AVCapturePhotoSettings photoSettings] delegate:self];
+                }
+                    break;
+                case IMCameraCatpureTypeVideo:
+                {
+                    //
+                    self.im_audioCaptureDevice      =   [AVCaptureDevice defaultDeviceWithMediaType:AVCaptureDeviceTypeBuiltInMicrophone];
+                    NSError *audioDeviceInputerror  =   nil;
+                    self.im_audioCaptureDeviceInput =   [AVCaptureDeviceInput deviceInputWithDevice:self.im_audioCaptureDevice error:&audioDeviceInputerror];
+                    if ([self.im_captureSeesion canAddInput:self.im_audioCaptureDeviceInput]) {
+                        [self.im_captureSeesion addInput:self.im_audioCaptureDeviceInput];
+                    }
+                    //
+                    self.im_videoOutput             =   [[AVCaptureVideoDataOutput alloc] init];
+                    if ([self.im_captureSeesion canAddOutput:self.im_videoOutput]) {
+                        [self.im_captureSeesion addOutput:self.im_videoOutput];
+                    }
+                    
+                }
+                    break;
+                case IMCameraCatpureTypeCancel:
+                    break;
+                default:
+                    break;
+            }
         }
     }];
     //
 }
+
+#pragma mark - AVCapturePhotoCaptureDelegate
+- (void)captureOutput:(AVCapturePhotoOutput *)output didFinishProcessingPhoto:(AVCapturePhoto *)photo error:(NSError *)error {
+    if (!error) {
+        NSData *photoData   =   [photo fileDataRepresentation];
+        UIImage *photo      =   [UIImage imageWithData:photoData];
+        [self.im_captureSeesion stopRunning];
+    } else {
+        IMDebugLog(@"error : %@", error.localizedDescription);
+    }
+}
+
+- (void)captureOutput:(AVCapturePhotoOutput *)output didCapturePhotoForResolvedSettings:(AVCaptureResolvedPhotoSettings *)resolvedSettings {
+    
+}
+
 
 @end

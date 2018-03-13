@@ -21,6 +21,8 @@
 		B71A7E251FEBF85C0050E834 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B71A7E1D1FEBF85C0050E834 /* AppDelegate.m */; };
 		B71A7E261FEBF85C0050E834 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B71A7E1E1FEBF85C0050E834 /* Info.plist */; };
 		B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B71A7E1F1FEBF85C0050E834 /* iOSModules.xcdatamodeld */; };
+		B71F623A2057AB1A00CCDF04 /* IMCameraPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = B71F62392057AB1A00CCDF04 /* IMCameraPreview.m */; };
+		B71F623D2057B47500CCDF04 /* IMCameraRecordControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B71F623C2057B47500CCDF04 /* IMCameraRecordControl.m */; };
 		B720880E2011CFD000EAB366 /* IMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B720880D2011CFD000EAB366 /* IMProgressView.m */; };
 		B72088112011D0A500EAB366 /* IMRingProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B72088102011D0A500EAB366 /* IMRingProgressView.m */; };
 		B72088172011D97A00EAB366 /* IMInitialProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B72088162011D97A00EAB366 /* IMInitialProgressViewController.m */; };
@@ -99,6 +101,10 @@
 		B71A7E1D1FEBF85C0050E834 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B71A7E1E1FEBF85C0050E834 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B71A7E201FEBF85C0050E834 /* iOSModules.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOSModules.xcdatamodel; sourceTree = "<group>"; };
+		B71F62382057AB1A00CCDF04 /* IMCameraPreview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMCameraPreview.h; sourceTree = "<group>"; };
+		B71F62392057AB1A00CCDF04 /* IMCameraPreview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMCameraPreview.m; sourceTree = "<group>"; };
+		B71F623B2057B47500CCDF04 /* IMCameraRecordControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMCameraRecordControl.h; sourceTree = "<group>"; };
+		B71F623C2057B47500CCDF04 /* IMCameraRecordControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMCameraRecordControl.m; sourceTree = "<group>"; };
 		B720880C2011CFD000EAB366 /* IMProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMProgressView.h; sourceTree = "<group>"; };
 		B720880D2011CFD000EAB366 /* IMProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMProgressView.m; sourceTree = "<group>"; };
 		B720880F2011D0A500EAB366 /* IMRingProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMRingProgressView.h; sourceTree = "<group>"; };
@@ -210,6 +216,10 @@
 				B7FAF1D9204842CB0083685D /* IMCamera.m */,
 				B7FAF1DB20484BCE0083685D /* IMCameraHelper.h */,
 				B7FAF1DC20484BCE0083685D /* IMCameraHelper.m */,
+				B71F62382057AB1A00CCDF04 /* IMCameraPreview.h */,
+				B71F62392057AB1A00CCDF04 /* IMCameraPreview.m */,
+				B71F623B2057B47500CCDF04 /* IMCameraRecordControl.h */,
+				B71F623C2057B47500CCDF04 /* IMCameraRecordControl.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -679,6 +689,7 @@
 				B72088172011D97A00EAB366 /* IMInitialProgressViewController.m in Sources */,
 				B78720CE1FF631EB0005928C /* IMPhotosManager.m in Sources */,
 				B7B2666D1FF131CA00EDF3C4 /* IMModuleItemModel.m in Sources */,
+				B71F623A2057AB1A00CCDF04 /* IMCameraPreview.m in Sources */,
 				B728F90F200267C0007B903B /* IMPhotoPreviewCollectionViewCell.m in Sources */,
 				B71A7E241FEBF85C0050E834 /* main.m in Sources */,
 				B787206B1FF525D00005928C /* IMPhotoPickerInitialViewController.m in Sources */,
@@ -690,6 +701,7 @@
 				B78720651FF5223F0005928C /* IMBaseViewController.m in Sources */,
 				B7FAF1DD20484BCE0083685D /* IMCameraHelper.m in Sources */,
 				B78720D41FF63FD70005928C /* IMPhotoAlbumsViewController.m in Sources */,
+				B71F623D2057B47500CCDF04 /* IMCameraRecordControl.m in Sources */,
 				B786C7351FF769640017AA6C /* IMPhotoCollectionViewCell.m in Sources */,
 				B787206F1FF52F6F0005928C /* UIView+AddRoundBorder.m in Sources */,
 				B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */,
@@ -880,7 +892,7 @@
 				DEVELOPMENT_TEAM = TX9JKQT5R6;
 				GCC_PREFIX_HEADER = "${SRCROOT}/iOSModules/Modules/IMModules-PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/iOSModules/DefaultFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CodeLei.iOSModules;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -898,7 +910,7 @@
 				DEVELOPMENT_TEAM = TX9JKQT5R6;
 				GCC_PREFIX_HEADER = "${SRCROOT}/iOSModules/Modules/IMModules-PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/iOSModules/DefaultFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CodeLei.iOSModules;
 				PRODUCT_NAME = "$(TARGET_NAME)";
