@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "IMCameraRecordControl.h"
+#import "IMCamera.h"
 
 @interface IMCameraPreview : UIView
 //
@@ -16,6 +17,6 @@
 @property (nonatomic, strong)   IMCameraRecordControl       *startRecordButton;
 @property (nonatomic, strong)   UIButton                    *switchCameraButton;
 
-- (instancetype)initWithFrame:(CGRect)frame captureSession:(AVCaptureSession *)session;
+- (instancetype)initWithFrame:(CGRect)frame camera:(IMCamera *)camera;
 
 @end

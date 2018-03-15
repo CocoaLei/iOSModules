@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface IMCamera : UIViewController
+@class IMCamera;
+
+typedef void (^IMPhotoCaptureHandler)(IMCamera *camera, UIImage *image, NSError *NSError);
+
+@interface IMCamera : NSObject
+
+//
+@property (nonatomic, strong)   AVCaptureSession            *im_captureSeesion;
+//
+-(void)photoCapture:(IMPhotoCaptureHandler)photoCaptureHandler
+     exactSeenImage:(BOOL)exactSeenImage
+     animationBlock:(void (^)(AVCaptureVideoPreviewLayer *))animationBlock;
 
 @end

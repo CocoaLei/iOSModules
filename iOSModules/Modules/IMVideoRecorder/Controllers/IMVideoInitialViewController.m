@@ -8,7 +8,7 @@
 
 #import "IMVideoInitialViewController.h"
 #import "UIView+AddRoundBorder.h"
-#import "IMCamera.h"
+#import "IMCameraViewController.h"
 
 @interface IMVideoInitialViewController ()
 
@@ -36,7 +36,7 @@
 - (void)presentVideoRecorderActionSheetButtonAction {
     UIAlertController *photoPickerActionSheet   =   [UIAlertController alertControllerWithTitle:@"Select Video" message:@"Select video from local or record a video use camera" preferredStyle:UIAlertControllerStyleActionSheet];
     [photoPickerActionSheet addAction:[UIAlertAction actionWithTitle:@"Select From Local" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        IMCamera *camera    =   [[IMCamera alloc] init];
+        IMCameraViewController *camera    =   [[IMCameraViewController alloc] init];
         [self presentViewController:camera animated:YES completion:^{}];
         [photoPickerActionSheet dismissViewControllerAnimated:YES completion:^{}];
     }]];

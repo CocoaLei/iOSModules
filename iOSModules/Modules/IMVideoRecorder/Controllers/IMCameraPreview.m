@@ -19,9 +19,9 @@
 
 @implementation IMCameraPreview
 
-- (instancetype)initWithFrame:(CGRect)frame captureSession:(AVCaptureSession *)session {
+- (instancetype)initWithFrame:(CGRect)frame camera:(IMCamera *)camera {
     if (self = [super initWithFrame:frame]) {
-        _im_captureSession  =   session;
+        _im_captureSession  =   camera.im_captureSeesion;
         [self initialCameraPreview];
     }
     return self;
@@ -40,6 +40,8 @@
     //
     [self addSubview:self.startRecordButton];
 }
+
+
 
 #pragma mark - Lazy Initializations
 - (UIButton *)dismissButton {

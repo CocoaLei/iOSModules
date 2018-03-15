@@ -7,7 +7,6 @@
 //
 
 #import "IMCamera.h"
-#import <AVFoundation/AVFoundation.h>
 #import "IMCameraHelper.h"
 #import "IMCameraPreview.h"
 
@@ -24,8 +23,6 @@ typedef NS_ENUM(NSInteger, IMCameraCatpureType) {
 // Record apperance
 @property (nonatomic, strong)   IMCameraPreview             *im_videoRecordPreview;
 //
-@property (nonatomic, strong)   AVCaptureSession            *im_captureSeesion;
-//
 @property (nonatomic, strong)   AVCaptureDevice             *im_photoCaptureDevice;
 @property (nonatomic, strong)   AVCaptureDeviceInput        *im_photoCaptureDeviceInput;
 @property (nonatomic, strong)   AVCapturePhotoOutput        *im_photoOutput;
@@ -41,28 +38,21 @@ typedef NS_ENUM(NSInteger, IMCameraCatpureType) {
 //
 @property (nonatomic, assign)   IMCameraCatpureType         currentCameraType;
 
+//
+@property (nonatomic, copy  )   IMPhotoCaptureHandler       photoCaptureHandler;
 @end
 
 @implementation IMCamera
 
 #pragma mark - Life cycle
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [self configureViewsApperance];
-    [self setUpCaptureSession];
-}
-
-- (BOOL)prefersStatusBarHidden {
-    return YES;
+- (instancetype)init {
+    if (self = [super init]) {
+        [self setUpCaptureSession];
+    }
+    return self;
 }
 
 #pragma mark - Private methods
-- (void)configureViewsApperance {
-    [self.view setBackgroundColor:[UIColor clearColor]];
-    //
-}
-
 - (void)setUpCaptureSession {
     if (!self.im_captureSeesion) {
         //
@@ -79,10 +69,6 @@ typedef NS_ENUM(NSInteger, IMCameraCatpureType) {
         if ([self.im_captureSeesion canAddOutput:self.im_photoOutput]) {
             [self.im_captureSeesion addOutput:self.im_photoOutput];
         }
-        //
-        self.im_videoRecordPreview      =   [[IMCameraPreview alloc] initWithFrame:self.view.bounds captureSession:self.im_captureSeesion];
-        [self.im_videoRecordPreview setBackgroundColor:[UIColor clearColor]];
-        [self.im_videoRecordPreview.startRecordButton setMaxVideoDuration:15.0f];
         //
         __weak typeof(self) weakSelf    =   self;
         [self.im_videoRecordPreview.startRecordButton setCameraHandler:^(IMCameraRecordControlType handleType) {
@@ -106,7 +92,6 @@ typedef NS_ENUM(NSInteger, IMCameraCatpureType) {
                     break;
             }
         }];
-        [self.view addSubview:self.im_videoRecordPreview];
         //
         [self.im_captureSeesion startRunning];
     }
@@ -122,26 +107,36 @@ typedef NS_ENUM(NSInteger, IMCameraCatpureType) {
     return nil;
 }
 
+-(void)photoCapture:(IMPhotoCaptureHandler)photoCaptureHandler
+     exactSeenImage:(BOOL)exactSeenImage
+     animationBlock:(void (^)(AVCaptureVideoPreviewLayer *))animationBlock {
+    __weak typeof(self) weakSelf    =   self;
+    [IMCameraHelper im_CameraAuthorizationDetection:^(BOOL authorized) {
+        if (!authorized) {
+            return;
+        } else {
+            weakSelf.photoCaptureHandler    =   photoCaptureHandler;
+            // Capture an image
+            if (![self.im_captureSeesion isRunning]) {
+                [self.im_captureSeesion startRunning];
+            }
+            if (@available(iOS 11.0, *)) {
+                [self.im_photoOutput capturePhotoWithSettings:[AVCapturePhotoSettings photoSettings] delegate:self];
+            }
+        }
+    }];
+}
+
 - (void)startCameraCapture:(IMCameraCatpureType)captureType {
     //
     [IMCameraHelper im_CameraAuthorizationDetection:^(BOOL authorized) {
         if (!authorized) {
-            UIAlertController *alertController  =   [UIAlertController alertControllerWithTitle:@"Unauthorized access to camera"
-                                                                                        message:@"If you need to continue using the camera to do the job, go to the Settings reference to authorize access to the camera device."
-                                                                                 preferredStyle:UIAlertControllerStyleAlert];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                [alertController dismissViewControllerAnimated:YES completion:nil];
-            }]];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [alertController dismissViewControllerAnimated:YES completion:nil];
-            }]];
-            [self presentViewController:alertController animated:YES completion:nil];
             return;
         } else {
             switch (captureType) {
                 case IMCameraCatpureTypePhoto:
                 {
-                    if ([self.im_captureSeesion isRunning]) {
+                    if (![self.im_captureSeesion isRunning]) {
                         [self.im_captureSeesion startRunning];
                     }
                     [self.im_photoOutput capturePhotoWithSettings:[AVCapturePhotoSettings photoSettings] delegate:self];
@@ -176,17 +171,10 @@ typedef NS_ENUM(NSInteger, IMCameraCatpureType) {
 
 #pragma mark - AVCapturePhotoCaptureDelegate
 - (void)captureOutput:(AVCapturePhotoOutput *)output didFinishProcessingPhoto:(AVCapturePhoto *)photo error:(NSError *)error {
-    if (!error) {
-        NSData *photoData   =   [photo fileDataRepresentation];
-        UIImage *photo      =   [UIImage imageWithData:photoData];
-        [self.im_captureSeesion stopRunning];
-    } else {
-        IMDebugLog(@"error : %@", error.localizedDescription);
-    }
-}
-
-- (void)captureOutput:(AVCapturePhotoOutput *)output didCapturePhotoForResolvedSettings:(AVCaptureResolvedPhotoSettings *)resolvedSettings {
-    
+    NSData *photoData   =   [photo fileDataRepresentation];
+    UIImage *image      =   [UIImage imageWithData:photoData];
+    self.photoCaptureHandler(self, image, error);
+    [self.im_captureSeesion stopRunning];
 }
 
 

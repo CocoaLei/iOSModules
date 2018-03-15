@@ -23,6 +23,7 @@
 		B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B71A7E1F1FEBF85C0050E834 /* iOSModules.xcdatamodeld */; };
 		B71F623A2057AB1A00CCDF04 /* IMCameraPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = B71F62392057AB1A00CCDF04 /* IMCameraPreview.m */; };
 		B71F623D2057B47500CCDF04 /* IMCameraRecordControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B71F623C2057B47500CCDF04 /* IMCameraRecordControl.m */; };
+		B71F6240205A705200CCDF04 /* IMCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B71F623F205A705200CCDF04 /* IMCameraViewController.m */; };
 		B720880E2011CFD000EAB366 /* IMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B720880D2011CFD000EAB366 /* IMProgressView.m */; };
 		B72088112011D0A500EAB366 /* IMRingProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B72088102011D0A500EAB366 /* IMRingProgressView.m */; };
 		B72088172011D97A00EAB366 /* IMInitialProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B72088162011D97A00EAB366 /* IMInitialProgressViewController.m */; };
@@ -105,6 +106,8 @@
 		B71F62392057AB1A00CCDF04 /* IMCameraPreview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMCameraPreview.m; sourceTree = "<group>"; };
 		B71F623B2057B47500CCDF04 /* IMCameraRecordControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMCameraRecordControl.h; sourceTree = "<group>"; };
 		B71F623C2057B47500CCDF04 /* IMCameraRecordControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMCameraRecordControl.m; sourceTree = "<group>"; };
+		B71F623E205A705200CCDF04 /* IMCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMCameraViewController.h; sourceTree = "<group>"; };
+		B71F623F205A705200CCDF04 /* IMCameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMCameraViewController.m; sourceTree = "<group>"; };
 		B720880C2011CFD000EAB366 /* IMProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMProgressView.h; sourceTree = "<group>"; };
 		B720880D2011CFD000EAB366 /* IMProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMProgressView.m; sourceTree = "<group>"; };
 		B720880F2011D0A500EAB366 /* IMRingProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMRingProgressView.h; sourceTree = "<group>"; };
@@ -212,6 +215,8 @@
 			children = (
 				B70A3CAA204450C100DE3854 /* IMVideoInitialViewController.h */,
 				B70A3CAB204450C100DE3854 /* IMVideoInitialViewController.m */,
+				B71F623E205A705200CCDF04 /* IMCameraViewController.h */,
+				B71F623F205A705200CCDF04 /* IMCameraViewController.m */,
 				B7FAF1D8204842CB0083685D /* IMCamera.h */,
 				B7FAF1D9204842CB0083685D /* IMCamera.m */,
 				B7FAF1DB20484BCE0083685D /* IMCameraHelper.h */,
@@ -719,6 +724,7 @@
 				B78720D81FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.m in Sources */,
 				B70A3CAC204450C100DE3854 /* IMVideoInitialViewController.m in Sources */,
 				B7381DC01FED4E31008F7F7A /* IMHomeViewController.m in Sources */,
+				B71F6240205A705200CCDF04 /* IMCameraViewController.m in Sources */,
 				B7183A39201F5E8E00284B21 /* IMDatePicker.m in Sources */,
 				B720880E2011CFD000EAB366 /* IMProgressView.m in Sources */,
 				B786C7311FF6AC7C0017AA6C /* UIImage+TranslucenceImage.m in Sources */,
