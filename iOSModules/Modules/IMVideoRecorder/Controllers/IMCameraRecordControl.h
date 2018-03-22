@@ -18,8 +18,9 @@ typedef void (^CamearRecordControlHandler)(IMCameraRecordControlType handleType)
 
 @interface IMCameraRecordControl : UIControl
 
-@property (nonatomic, assign )  NSTimeInterval maxVideoDuration;
-@property (nonatomic, copy   )  CamearRecordControlHandler cameraHandler;
+@property (nonatomic, assign )  NSTimeInterval              maxVideoDuration;
+@property (nonatomic, copy   )  CamearRecordControlHandler  cameraHandler;
 
+- (void)configureRecordControlWithType:(IMCameraRecordControlType)controlType;
 
 @end

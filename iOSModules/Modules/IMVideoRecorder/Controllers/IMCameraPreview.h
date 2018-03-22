@@ -12,10 +12,7 @@
 #import "IMCamera.h"
 
 @interface IMCameraPreview : UIView
-//
-@property (nonatomic, strong)   UIButton                    *dismissButton;
-@property (nonatomic, strong)   IMCameraRecordControl       *startRecordButton;
-@property (nonatomic, strong)   UIButton                    *switchCameraButton;
+
 
 - (instancetype)initWithFrame:(CGRect)frame camera:(IMCamera *)camera;
 

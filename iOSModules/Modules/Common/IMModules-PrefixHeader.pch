@@ -11,5 +11,6 @@
 
 #import "IMMacroTool.h"
 #import "ModulesHeader.h"
+#import "UIView+AddRoundBorder.h"
 
 #endif /* IMModules_PrefixHeader_pch */

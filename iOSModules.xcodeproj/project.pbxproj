@@ -40,7 +40,6 @@
 		B786C7351FF769640017AA6C /* IMPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B786C7331FF769640017AA6C /* IMPhotoCollectionViewCell.m */; };
 		B786C7361FF769640017AA6C /* IMPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B786C7341FF769640017AA6C /* IMPhotoCollectionViewCell.xib */; };
 		B786C7391FF7CEAC0017AA6C /* IMPhotosPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B786C7381FF7CEAC0017AA6C /* IMPhotosPreviewViewController.m */; };
-		B78720651FF5223F0005928C /* IMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B78720641FF5223F0005928C /* IMBaseViewController.m */; };
 		B787206B1FF525D00005928C /* IMPhotoPickerInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B78720691FF525D00005928C /* IMPhotoPickerInitialViewController.m */; };
 		B787206F1FF52F6F0005928C /* UIView+AddRoundBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = B787206E1FF52F6F0005928C /* UIView+AddRoundBorder.m */; };
 		B78720CE1FF631EB0005928C /* IMPhotosManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B78720CD1FF631EB0005928C /* IMPhotosManager.m */; };
@@ -52,8 +51,12 @@
 		B7B2666D1FF131CA00EDF3C4 /* IMModuleItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B2666C1FF131CA00EDF3C4 /* IMModuleItemModel.m */; };
 		B7B266701FF1326300EDF3C4 /* IMModules.plist in Resources */ = {isa = PBXBuildFile; fileRef = B7B2666F1FF1326300EDF3C4 /* IMModules.plist */; };
 		B7B266E21FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B266E11FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m */; };
-		B7B266E71FF3DA7000EDF3C4 /* IMConstantFile.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B266E61FF3DA7000EDF3C4 /* IMConstantFile.m */; };
 		B7B266EE1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B266ED1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m */; };
+		B7DBB27A2061FA0D00938364 /* IMConstantFile.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DBB2732061FA0D00938364 /* IMConstantFile.m */; };
+		B7DBB27B2061FA0D00938364 /* IMBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DBB2752061FA0D00938364 /* IMBaseViewController.m */; };
+		B7DBB2872061FB8600938364 /* IMModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DBB2862061FB8600938364 /* IMModalViewController.m */; };
+		B7DBB28A2062057400938364 /* IMModalInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DBB2892062057400938364 /* IMModalInitialViewController.m */; };
+		B7DBB2922062698D00938364 /* IMModalViewAction.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DBB2912062698D00938364 /* IMModalViewAction.m */; };
 		B7FAF1DA204842CB0083685D /* IMCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FAF1D9204842CB0083685D /* IMCamera.m */; };
 		B7FAF1DD20484BCE0083685D /* IMCameraHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FAF1DC20484BCE0083685D /* IMCameraHelper.m */; };
 		B7FF84202007A9B3001690B3 /* IMPhotoPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FF841F2007A9B3001690B3 /* IMPhotoPreview.m */; };
@@ -139,14 +142,10 @@
 		B786C7341FF769640017AA6C /* IMPhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IMPhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		B786C7371FF7CEAC0017AA6C /* IMPhotosPreviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhotosPreviewViewController.h; sourceTree = "<group>"; };
 		B786C7381FF7CEAC0017AA6C /* IMPhotosPreviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMPhotosPreviewViewController.m; sourceTree = "<group>"; };
-		B78720631FF5223F0005928C /* IMBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMBaseViewController.h; sourceTree = "<group>"; };
-		B78720641FF5223F0005928C /* IMBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMBaseViewController.m; sourceTree = "<group>"; };
 		B78720681FF525D00005928C /* IMPhotoPickerInitialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhotoPickerInitialViewController.h; sourceTree = "<group>"; };
 		B78720691FF525D00005928C /* IMPhotoPickerInitialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMPhotoPickerInitialViewController.m; sourceTree = "<group>"; };
 		B787206D1FF52F6F0005928C /* UIView+AddRoundBorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+AddRoundBorder.h"; sourceTree = "<group>"; };
 		B787206E1FF52F6F0005928C /* UIView+AddRoundBorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+AddRoundBorder.m"; sourceTree = "<group>"; };
-		B78720701FF538680005928C /* IMMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMMacroTool.h; sourceTree = "<group>"; };
-		B78720731FF53AFB0005928C /* IMModules-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IMModules-PrefixHeader.pch"; sourceTree = "<group>"; };
 		B78720CC1FF631EB0005928C /* IMPhotosManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhotosManager.h; sourceTree = "<group>"; };
 		B78720CD1FF631EB0005928C /* IMPhotosManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMPhotosManager.m; sourceTree = "<group>"; };
 		B78720D21FF63FD70005928C /* IMPhotoAlbumsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMPhotoAlbumsViewController.h; sourceTree = "<group>"; };
@@ -161,13 +160,23 @@
 		B7B2666B1FF131CA00EDF3C4 /* IMModuleItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMModuleItemModel.h; sourceTree = "<group>"; };
 		B7B2666C1FF131CA00EDF3C4 /* IMModuleItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMModuleItemModel.m; sourceTree = "<group>"; };
 		B7B2666F1FF1326300EDF3C4 /* IMModules.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = IMModules.plist; sourceTree = "<group>"; };
-		B7B266DC1FF3D62F00EDF3C4 /* ModulesHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModulesHeader.h; sourceTree = "<group>"; };
 		B7B266E01FF3D75E00EDF3C4 /* NSArray+LoadFromPList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+LoadFromPList.h"; sourceTree = "<group>"; };
 		B7B266E11FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LoadFromPList.m"; sourceTree = "<group>"; };
-		B7B266E51FF3DA7000EDF3C4 /* IMConstantFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMConstantFile.h; sourceTree = "<group>"; };
-		B7B266E61FF3DA7000EDF3C4 /* IMConstantFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMConstantFile.m; sourceTree = "<group>"; };
 		B7B266EC1FF3E5A400EDF3C4 /* UIImage+RoundCorner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundCorner.h"; sourceTree = "<group>"; };
 		B7B266ED1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundCorner.m"; sourceTree = "<group>"; };
+		B7DBB2732061FA0D00938364 /* IMConstantFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMConstantFile.m; sourceTree = "<group>"; };
+		B7DBB2742061FA0D00938364 /* ModulesHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulesHeader.h; sourceTree = "<group>"; };
+		B7DBB2752061FA0D00938364 /* IMBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMBaseViewController.m; sourceTree = "<group>"; };
+		B7DBB2762061FA0D00938364 /* IMMacroTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMMacroTool.h; sourceTree = "<group>"; };
+		B7DBB2772061FA0D00938364 /* IMConstantFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMConstantFile.h; sourceTree = "<group>"; };
+		B7DBB2782061FA0D00938364 /* IMModules-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IMModules-PrefixHeader.pch"; sourceTree = "<group>"; };
+		B7DBB2792061FA0D00938364 /* IMBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMBaseViewController.h; sourceTree = "<group>"; };
+		B7DBB2852061FB8600938364 /* IMModalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMModalViewController.h; sourceTree = "<group>"; };
+		B7DBB2862061FB8600938364 /* IMModalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMModalViewController.m; sourceTree = "<group>"; };
+		B7DBB2882062057400938364 /* IMModalInitialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMModalInitialViewController.h; sourceTree = "<group>"; };
+		B7DBB2892062057400938364 /* IMModalInitialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMModalInitialViewController.m; sourceTree = "<group>"; };
+		B7DBB2902062698D00938364 /* IMModalViewAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMModalViewAction.h; sourceTree = "<group>"; };
+		B7DBB2912062698D00938364 /* IMModalViewAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMModalViewAction.m; sourceTree = "<group>"; };
 		B7FAF1D8204842CB0083685D /* IMCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMCamera.h; sourceTree = "<group>"; };
 		B7FAF1D9204842CB0083685D /* IMCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMCamera.m; sourceTree = "<group>"; };
 		B7FAF1DB20484BCE0083685D /* IMCameraHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMCameraHelper.h; sourceTree = "<group>"; };
@@ -450,13 +459,8 @@
 		B7B266D31FF3B25700EDF3C4 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				B78720731FF53AFB0005928C /* IMModules-PrefixHeader.pch */,
-				B7B266DC1FF3D62F00EDF3C4 /* ModulesHeader.h */,
-				B78720701FF538680005928C /* IMMacroTool.h */,
-				B7B266E51FF3DA7000EDF3C4 /* IMConstantFile.h */,
-				B7B266E61FF3DA7000EDF3C4 /* IMConstantFile.m */,
-				B78720631FF5223F0005928C /* IMBaseViewController.h */,
-				B78720641FF5223F0005928C /* IMBaseViewController.m */,
+				B7DBB2722061FA0D00938364 /* Common */,
+				B7DBB27C2061FA6D00938364 /* IMModalView */,
 				B7B266DA1FF3D5E700EDF3C4 /* IMTableViewCellAnimation */,
 				B7B266D61FF3B2A300EDF3C4 /* IMImagePicker */,
 				B7183A31201F5CF800284B21 /* IMDatePicker */,
@@ -542,6 +546,41 @@
 			children = (
 				B7AEFED8200A4D0D00312964 /* IMTableViewCellAnimationViewController.h */,
 				B7AEFED9200A4D0D00312964 /* IMTableViewCellAnimationViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B7DBB2722061FA0D00938364 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B7DBB2732061FA0D00938364 /* IMConstantFile.m */,
+				B7DBB2742061FA0D00938364 /* ModulesHeader.h */,
+				B7DBB2752061FA0D00938364 /* IMBaseViewController.m */,
+				B7DBB2762061FA0D00938364 /* IMMacroTool.h */,
+				B7DBB2772061FA0D00938364 /* IMConstantFile.h */,
+				B7DBB2782061FA0D00938364 /* IMModules-PrefixHeader.pch */,
+				B7DBB2792061FA0D00938364 /* IMBaseViewController.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B7DBB27C2061FA6D00938364 /* IMModalView */ = {
+			isa = PBXGroup;
+			children = (
+				B7DBB27D2061FA7900938364 /* Controllers */,
+			);
+			path = IMModalView;
+			sourceTree = "<group>";
+		};
+		B7DBB27D2061FA7900938364 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B7DBB2852061FB8600938364 /* IMModalViewController.h */,
+				B7DBB2862061FB8600938364 /* IMModalViewController.m */,
+				B7DBB2882062057400938364 /* IMModalInitialViewController.h */,
+				B7DBB2892062057400938364 /* IMModalInitialViewController.m */,
+				B7DBB2902062698D00938364 /* IMModalViewAction.h */,
+				B7DBB2912062698D00938364 /* IMModalViewAction.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -703,18 +742,21 @@
 				B71A7E251FEBF85C0050E834 /* AppDelegate.m in Sources */,
 				B72088112011D0A500EAB366 /* IMRingProgressView.m in Sources */,
 				B7381DC51FED501D008F7F7A /* IMPlistFileManager.m in Sources */,
-				B78720651FF5223F0005928C /* IMBaseViewController.m in Sources */,
 				B7FAF1DD20484BCE0083685D /* IMCameraHelper.m in Sources */,
 				B78720D41FF63FD70005928C /* IMPhotoAlbumsViewController.m in Sources */,
 				B71F623D2057B47500CCDF04 /* IMCameraRecordControl.m in Sources */,
 				B786C7351FF769640017AA6C /* IMPhotoCollectionViewCell.m in Sources */,
+				B7DBB2922062698D00938364 /* IMModalViewAction.m in Sources */,
 				B787206F1FF52F6F0005928C /* UIView+AddRoundBorder.m in Sources */,
 				B71A7E271FEBF85C0050E834 /* iOSModules.xcdatamodeld in Sources */,
 				B7B266E21FF3D75E00EDF3C4 /* NSArray+LoadFromPList.m in Sources */,
 				B7AEFEDA200A4D0D00312964 /* IMTableViewCellAnimationViewController.m in Sources */,
 				B7381DD11FEE995E008F7F7A /* IMModuleItemTableViewCell.m in Sources */,
+				B7DBB28A2062057400938364 /* IMModalInitialViewController.m in Sources */,
+				B7DBB2872061FB8600938364 /* IMModalViewController.m in Sources */,
 				B7FAF1DA204842CB0083685D /* IMCamera.m in Sources */,
 				B7AEFEDE200A4EE500312964 /* IMExpandedTableViewCell.m in Sources */,
+				B7DBB27A2061FA0D00938364 /* IMConstantFile.m in Sources */,
 				B728F9071FFFBA6E007B903B /* IMPhoto.m in Sources */,
 				B7B266EE1FF3E5A400EDF3C4 /* UIImage+RoundCorner.m in Sources */,
 				B7183A40201F711800284B21 /* IMMonthModel.m in Sources */,
@@ -724,13 +766,13 @@
 				B78720D81FF64A8F0005928C /* IMPhotoAlbumItemTableViewCell.m in Sources */,
 				B70A3CAC204450C100DE3854 /* IMVideoInitialViewController.m in Sources */,
 				B7381DC01FED4E31008F7F7A /* IMHomeViewController.m in Sources */,
+				B7DBB27B2061FA0D00938364 /* IMBaseViewController.m in Sources */,
 				B71F6240205A705200CCDF04 /* IMCameraViewController.m in Sources */,
 				B7183A39201F5E8E00284B21 /* IMDatePicker.m in Sources */,
 				B720880E2011CFD000EAB366 /* IMProgressView.m in Sources */,
 				B786C7311FF6AC7C0017AA6C /* UIImage+TranslucenceImage.m in Sources */,
 				B7183A3D201F70BE00284B21 /* IMYearModel.m in Sources */,
 				B786C7391FF7CEAC0017AA6C /* IMPhotosPreviewViewController.m in Sources */,
-				B7B266E71FF3DA7000EDF3C4 /* IMConstantFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -896,7 +938,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TX9JKQT5R6;
-				GCC_PREFIX_HEADER = "${SRCROOT}/iOSModules/Modules/IMModules-PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "${SRCROOT}/iOSModules/Modules/Common/IMModules-PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/iOSModules/DefaultFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -914,7 +956,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TX9JKQT5R6;
-				GCC_PREFIX_HEADER = "${SRCROOT}/iOSModules/Modules/IMModules-PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "${SRCROOT}/iOSModules/Modules/Common/IMModules-PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/iOSModules/DefaultFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

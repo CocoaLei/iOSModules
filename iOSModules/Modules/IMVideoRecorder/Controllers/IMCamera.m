@@ -70,29 +70,6 @@ typedef NS_ENUM(NSInteger, IMCameraCatpureType) {
             [self.im_captureSeesion addOutput:self.im_photoOutput];
         }
         //
-        __weak typeof(self) weakSelf    =   self;
-        [self.im_videoRecordPreview.startRecordButton setCameraHandler:^(IMCameraRecordControlType handleType) {
-            switch (handleType) {
-                case IMCameraRecordControlTypePhoto:
-                {
-                    [weakSelf   startCameraCapture:IMCameraCatpureTypePhoto];
-                }
-                    break;
-                case IMCameraRecordControlTypeVideo:
-                {
-                    [weakSelf   startCameraCapture:IMCameraCatpureTypeVideo];
-                }
-                    break;
-                case IMCameraRecordControlTypeCancel:
-                {
-                    [weakSelf   startCameraCapture:IMCameraCatpureTypeCancel];
-                }
-                    break;
-                default:
-                    break;
-            }
-        }];
-        //
         [self.im_captureSeesion startRunning];
     }
 }
@@ -125,48 +102,6 @@ typedef NS_ENUM(NSInteger, IMCameraCatpureType) {
             }
         }
     }];
-}
-
-- (void)startCameraCapture:(IMCameraCatpureType)captureType {
-    //
-    [IMCameraHelper im_CameraAuthorizationDetection:^(BOOL authorized) {
-        if (!authorized) {
-            return;
-        } else {
-            switch (captureType) {
-                case IMCameraCatpureTypePhoto:
-                {
-                    if (![self.im_captureSeesion isRunning]) {
-                        [self.im_captureSeesion startRunning];
-                    }
-                    [self.im_photoOutput capturePhotoWithSettings:[AVCapturePhotoSettings photoSettings] delegate:self];
-                }
-                    break;
-                case IMCameraCatpureTypeVideo:
-                {
-                    //
-                    self.im_audioCaptureDevice      =   [AVCaptureDevice defaultDeviceWithMediaType:AVCaptureDeviceTypeBuiltInMicrophone];
-                    NSError *audioDeviceInputerror  =   nil;
-                    self.im_audioCaptureDeviceInput =   [AVCaptureDeviceInput deviceInputWithDevice:self.im_audioCaptureDevice error:&audioDeviceInputerror];
-                    if ([self.im_captureSeesion canAddInput:self.im_audioCaptureDeviceInput]) {
-                        [self.im_captureSeesion addInput:self.im_audioCaptureDeviceInput];
-                    }
-                    //
-                    self.im_videoOutput             =   [[AVCaptureVideoDataOutput alloc] init];
-                    if ([self.im_captureSeesion canAddOutput:self.im_videoOutput]) {
-                        [self.im_captureSeesion addOutput:self.im_videoOutput];
-                    }
-                    
-                }
-                    break;
-                case IMCameraCatpureTypeCancel:
-                    break;
-                default:
-                    break;
-            }
-        }
-    }];
-    //
 }
 
 #pragma mark - AVCapturePhotoCaptureDelegate

@@ -11,7 +11,7 @@
 
 @class IMCamera;
 
-typedef void (^IMPhotoCaptureHandler)(IMCamera *camera, UIImage *image, NSError *NSError);
+typedef void (^IMPhotoCaptureHandler)(IMCamera *camera, UIImage *image, NSError *error);
 
 @interface IMCamera : NSObject
 
