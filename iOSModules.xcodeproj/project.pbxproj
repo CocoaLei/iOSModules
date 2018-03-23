@@ -575,10 +575,10 @@
 		B7DBB27D2061FA7900938364 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B7DBB2852061FB8600938364 /* IMModalViewController.h */,
-				B7DBB2862061FB8600938364 /* IMModalViewController.m */,
 				B7DBB2882062057400938364 /* IMModalInitialViewController.h */,
 				B7DBB2892062057400938364 /* IMModalInitialViewController.m */,
+				B7DBB2852061FB8600938364 /* IMModalViewController.h */,
+				B7DBB2862061FB8600938364 /* IMModalViewController.m */,
 				B7DBB2902062698D00938364 /* IMModalViewAction.h */,
 				B7DBB2912062698D00938364 /* IMModalViewAction.m */,
 			);
@@ -937,10 +937,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TX9JKQT5R6;
+				DEVELOPMENT_TEAM = 2C7674AFEL;
 				GCC_PREFIX_HEADER = "${SRCROOT}/iOSModules/Modules/Common/IMModules-PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/iOSModules/DefaultFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CodeLei.iOSModules;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -955,10 +955,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TX9JKQT5R6;
+				DEVELOPMENT_TEAM = 2C7674AFEL;
 				GCC_PREFIX_HEADER = "${SRCROOT}/iOSModules/Modules/Common/IMModules-PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/iOSModules/DefaultFiles/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CodeLei.iOSModules;
 				PRODUCT_NAME = "$(TARGET_NAME)";

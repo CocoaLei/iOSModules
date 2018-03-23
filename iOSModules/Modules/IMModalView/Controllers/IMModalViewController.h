@@ -16,7 +16,19 @@ typedef NS_ENUM(NSInteger,IMModalViewStyle) {
 
 @interface IMModalViewController : UIViewController
 
-+ (instancetype)modalViewControllerWithTitle:(NSString *)title message:(NSString *)message modalViewStyle:(IMModalViewStyle)modalViewStyle;
+// Base module
+@property (nonatomic, copy  )   NSString        *modalViewTitle;
+@property (nonatomic, copy  )   NSDictionary    *modalViewTitleAttributes;
+@property (nonatomic, copy  )   NSString        *modalViewMessage;
+@property (nonatomic, copy  )   NSDictionary    *modalViewMessageAttributes;
+@property (nonatomic, assign)   IMModalViewStyle modalViewStyle;
+
++ (instancetype)modalViewControllerWithTitle:(NSString *)title
+                            titleAttributes:(NSDictionary *)titleAttribus
+                                     message:(NSString *)message
+                           messageAttributes:(NSDictionary *)messageAttributes
+                              modalViewStyle:(IMModalViewStyle)modalViewStyle;
+//
 - (void)modalViewAddAction:(IMModalViewAction *)modalViewAction;
 
 @end

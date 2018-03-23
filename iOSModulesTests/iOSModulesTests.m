@@ -30,10 +30,9 @@
 - (void)testExample {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
-    NSString *aStr  =   @"AAA";
-    NSLog(@"%p",aStr);
-    self.str = [aStr copy];
-    NSLog(@"%p %p",aStr,self.str);
+    for (NSInteger index = 0; index < 20; index ++) {
+        NSLog(@"%ld",index%4);
+    }
 }
 
 - (void)testPerformanceExample {

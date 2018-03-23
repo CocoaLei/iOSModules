@@ -10,10 +10,7 @@
 
 @interface IMModalViewAction ()
 
-@property (nonatomic, copy  )   NSString                 *title;
-@property (nonatomic, copy  )   NSDictionary             *attributeDict;
-@property (nonatomic, assign)   IMModalViewActionStyle   style;
-@property (nonatomic, copy  )   IMModalViewActionHandler actionHandler;
+
 
 @end
 
@@ -35,19 +32,27 @@
         self.attributeDict  =   attributeDict;
         self.style          =   style;
         self.actionHandler  =   handler;
-        [self setUpModalViewAction];
     }
     return self;
 }
 
 #pragma mark - Set up view
 - (void)setUpModalViewAction {
-    UILabel *titleLabel =   [[UILabel alloc] initWithFrame:self.bounds];
+    [self setBackgroundColor:[UIColor clearColor]];
+    //
+    UILabel *titleLabel =   [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 1.0f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)-1.0f)];
+    if (self.style == IMModalViewActionStyleCancel) {
+        [titleLabel setFrame:CGRectMake(0.0f, 8.0f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds)-8.0f)];
+        
+    }
+    titleLabel.layer.cornerRadius   =   5.0f;
+    titleLabel.layer.masksToBounds  =   YES;
+    [titleLabel setBackgroundColor:[UIColor whiteColor]];
     [titleLabel setTextColor:[UIColor blackColor]];
     [titleLabel setFont:[UIFont systemFontOfSize:14.0f]];
     [titleLabel setTextAlignment:NSTextAlignmentCenter];
     //
-    if (!self.attributeDict) {
+    if (self.attributeDict) {
         NSAttributedString *attributedString    =   [[NSAttributedString alloc] initWithString:self.title attributes:self.attributeDict];
         [titleLabel setAttributedText:attributedString];
     } else {

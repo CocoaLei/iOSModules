@@ -19,12 +19,17 @@ typedef void (^IMModalViewActionHandler) (IMModalViewAction *action);
 
 @interface IMModalViewAction : UIView
 
+@property (nonatomic, copy  )   NSString                 *title;
+@property (nonatomic, copy  )   NSDictionary             *attributeDict;
+@property (nonatomic, assign)   IMModalViewActionStyle   style;
+@property (nonatomic, copy  )   IMModalViewActionHandler actionHandler;
+
 //
 + (instancetype)modalViewActionWithTitle:(NSString *)title
                            attributeDict:(NSDictionary *)attributeDict
                                    style:(IMModalViewActionStyle)style
                                  handler:(IMModalViewActionHandler)handler;
 //
-
+- (void)setUpModalViewAction;
 
 @end
